@@ -15,3 +15,13 @@ data:
           hs = {}
           hs.status = "Healthy"
           return hs
+  resource.exclusions: |
+    - apiGroups:
+        - kyverno.io
+      kinds:
+        - AdmissionReport
+        - BackgroundScanReport
+        - ClusterAdmissionReport
+        - ClusterBackgroundScanReport
+      clusters:
+        - '*'
