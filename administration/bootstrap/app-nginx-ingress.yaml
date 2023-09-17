@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: ingress-nginx
   namespace: argocd
   # finalizers:
   #   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: administration/resources/argocd/overlays/current
+    path: administration/resources/ingress-nginx/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: argocd
+    namespace: ingress-nginx
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
@@ -20,5 +20,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      # - Replace=true
-      - RespectIgnoreDifferences=true
