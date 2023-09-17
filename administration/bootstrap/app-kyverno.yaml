@@ -14,6 +14,11 @@ spec:
   destination:
     namespace: kyverno
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+    - group: kyverno.io
+      kind: ClusterPolicy
+      jqPathExpressions:
+        - .spec.rules[] | select(.name|test("autogen-."))
   syncPolicy:
     automated:
       prune: true
@@ -21,8 +26,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - Replace=true
-  ignoreDifferences:
-    - group: kyverno.io
-      kind: ClusterPolicy
-      jqPathExpressions:
-        - .spec.rules[] | select(.name|test("autogen-."))
+      - RespectIgnoreDifferences=true
