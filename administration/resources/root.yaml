@@ -11,24 +11,18 @@ spec:
       revision: HEAD
       directories:
         - path: administration/resources/*
-        - path: administration/resources/**/current
-          exclude: false
-        - path: administration/resources/**/base
-          exclude: true
-        - path: administration/resources/**/addons
-          exclude: true
   template:
     metadata:
-      name: '{{path[2]}}'
+      name: '{{path.basename}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
         targetRevision: HEAD
-        path: '{{path}}'
+        path: '{{path}}/overlays/current'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path[2]}}'
+        namespace: '{{path.basename}}'
       ignoreDifferences:
         - group: "apps"
           kind: "Deployment"
