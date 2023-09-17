@@ -11,6 +11,8 @@ spec:
       revision: HEAD
       directories:
         - path: administration/resources/*
+        - path: administration/resources/**/base
+          exclude: true
   template:
     metadata:
       name: '{{path.basename}}'
