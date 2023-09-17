@@ -1,16 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: crossplane
+  name: crossplane-providers
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: default
   source:
-    path: administration/resources/crossplane/overlays/current
+    path: administration/providers
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
     namespace: crossplane-system
     server: https://kubernetes.default.svc
@@ -20,4 +23,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true

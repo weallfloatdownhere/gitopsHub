@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-- helm-controller-config-debug.yaml
-- helm-default-provider-config.yaml
-- helm-provider-crb.yaml
-- helm-provider-sa.yaml
-- provider-helm.yaml
