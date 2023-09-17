@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-GIT_ROOT=$(git rev-parse --show-toplevel)
+export SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export GIT_ROOT=$(git rev-parse --show-toplevel)
+export KUBECONFIG="$SCRIPT_DIR/kubeconfig.$NAME"
 
 if [[ -z "$NAME" ]]; then
 echo """
@@ -11,6 +12,7 @@ NAME=clustername ./minicluster.sh
 exit 1
 fi
 
-export KUBECONFIG="$SCRIPT_DIR/kubeconfig.$NAME"
+rm -rf ~/.kube/config
+rm -rf $KUBECONFIG
 minikube delete -p "$NAME"
 minikube start -p "$NAME" --network bridge
