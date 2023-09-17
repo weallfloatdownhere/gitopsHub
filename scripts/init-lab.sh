@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MINIKUBE_MEMORY=8192
+MINIKUBE_MEMORY=7897
 MINIKUBE_CPUS=2
 
 rm -rf ~/.kube/config

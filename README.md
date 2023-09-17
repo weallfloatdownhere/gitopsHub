@@ -13,15 +13,18 @@ Starting the dev environment
 . Then the script will download the latest `vcluster` client from Github.
 
 ## Charts
+- https://www.vcluster.com/docs/getting-started/deployment
 - https://artifacthub.io/packages/helm/crossplane/crossplane
 
 ## Sources
 - https://github.com/kyverno/policies
+- https://github.com/salaboy/from-monolith-to-k8s
 
 ## References
 - https://gist.github.com/eddycharly/58aac2e6955d0118947f3ec751a41d44
 - https://github.com/codefresh-contrib/kubecon-eu-2023-demo-crossplane-vcluster
 - https://github.com/argoproj/argo-cd/issues/4651
+- https://github.com/a1tan/argocdsecretsynchronizer
 - https://github.com/kyverno/policies/blob/main/argo/argo-cluster-generation-from-rancher-capi
 
 
