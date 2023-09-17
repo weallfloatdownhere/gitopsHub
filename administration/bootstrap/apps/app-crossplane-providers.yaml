@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    path: administration/providers
+    path: administration/resources/crossplane-providers
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
