@@ -14,4 +14,4 @@ fi
 kubectl apply -k "$GIT_ROOT/administration/resources/argo-cd/base"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
-kubectl apply -k "$GIT_ROOT/administration/resources/root.yaml"
+kubectl apply -f "$GIT_ROOT/administration/resources/root.yaml"
