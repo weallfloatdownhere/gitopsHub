@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane
+  namespace: argocd
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: administration/resources/crossplane/overlays/current
+    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    targetRevision: HEAD
+  destination:
+    namespace: crossplane-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      # - Replace=true
+      - RespectIgnoreDifferences=true
