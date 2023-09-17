@@ -5,12 +5,12 @@ ARGO_DIR="$GIT_ROOT/administration/resources/argocd/overlays/current"
 ARGO_BOOTSTRAP_APP="$GIT_ROOT/administration/bootstrap/app-bootstrap.yaml"
 
 if [[ -z "$KUBECONFIG" ]]; then
-echo "USAGE: KUBECONFIG=~/.kube/config ./deploy-hub.sh"
+echo "USAGE: KUBECONFIG=~/.kube/config ./init-hub.sh"
 exit 1
 elif [[ ! -f "$KUBECONFIG" ]]; then
 echo "ERROR - Specified kubeconfig file not found."
 exit 1
-elif [[ -f "$ARGO_BOOTSTRAP_APP" ]]; then
+elif [[ ! -f "$ARGO_BOOTSTRAP_APP" ]]; then
 echo "ERROR - $ARGO_BOOTSTRAP_APP cant be found."
 exit 1
 fi

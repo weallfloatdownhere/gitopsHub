@@ -20,6 +20,6 @@ a centrilized way of managing an almost infinite amount of other Kubernetes clus
 - https://github.com/kyverno/policies
 
 ## References
+- https://gist.github.com/eddycharly/58aac2e6955d0118947f3ec751a41d44
 - https://github.com/codefresh-contrib/kubecon-eu-2023-demo-crossplane-vcluster
-- https://argo-cd.readthedocs.io/en/stable/user-guide/diffing/#system-level-configuration
 - https://github.com/argoproj/argo-cd/issues/4651

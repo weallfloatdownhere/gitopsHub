@@ -7,18 +7,18 @@ metadata:
   name: argocd-cm
   namespace: argocd
 data:
-  kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   admin.enabled: "true"
+  application.resourceTrackingMethod: annotation
+  kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   resource.customizations: |
     extensions/Ingress:
         health.lua: |
           hs = {}
           hs.status = "Healthy"
           return hs
-
   resource.compareoptions: |
     ignoreAggregatedRoles: true
-
+    ignoreResourceStatusField: all
   resource.customizations.ignoreDifferences.all: |
     managedFieldsManagers:
     - kyverno
