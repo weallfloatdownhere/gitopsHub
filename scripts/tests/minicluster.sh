@@ -16,3 +16,4 @@ rm -rf ~/.kube/config
 rm -rf $KUBECONFIG
 minikube delete -p "$NAME"
 minikube start -p "$NAME" --network bridge
+cp $KUBECONFIG ~/.kube/config
