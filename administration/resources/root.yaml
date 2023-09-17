@@ -19,7 +19,7 @@ spec:
           exclude: true
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{path[2]}}'
     spec:
       project: default
       source:
@@ -28,7 +28,7 @@ spec:
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: '{{path[2]}}'
       ignoreDifferences:
         - group: "apps"
           kind: "Deployment"
