@@ -10,7 +10,7 @@ spec:
       repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
       revision: HEAD
       directories:
-        - path: 'administration/resources/**/overlays/current/*'
+        - path: 'administration/resources/**/overlays/current'
   template:
     metadata:
       name: '{{path[2]}}'
