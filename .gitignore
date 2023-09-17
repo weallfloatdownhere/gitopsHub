@@ -3,5 +3,6 @@
 *.secret
 *.kubeconfig
 *.lab
+lab-tmpscript.sh
 vcluster
 kubectl
