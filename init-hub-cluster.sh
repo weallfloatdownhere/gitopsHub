@@ -11,7 +11,7 @@ echo "ERROR - Specified kubeconfig file not found."
 exit 1
 fi
 
-kubectl apply -k "$GIT_ROOT/administration/resources/argocd/base"
+kubectl apply -k "$GIT_ROOT/administration/resources/argocd/overlays/current"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 kubectl apply -f "$GIT_ROOT/administration/resources/root.yaml"
