@@ -12,6 +12,11 @@ Starting the dev environment
 . The hub resulting kubeconfig file will be located there at tests/kubeconfig.lab-hub.kubeconfig
 . Then the script will download the latest `vcluster` client from Github.
 
+```bash
+connect to vcluster
+vcluster connect dev-environment --server https://localhost:8443 -- bash
+```
+
 ## Charts
 - https://www.vcluster.com/docs/getting-started/deployment
 - https://artifacthub.io/packages/helm/crossplane/crossplane
