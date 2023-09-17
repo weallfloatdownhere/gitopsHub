@@ -9,19 +9,26 @@ metadata:
 data:
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   admin.enabled: "true"
+  resource.compareoptions: |
+    ignoreAggregatedRoles: true
   resource.customizations: |
     extensions/Ingress:
         health.lua: |
           hs = {}
           hs.status = "Healthy"
           return hs
+  resource.customizations.ignoreDifferences.all: |
+    - group: kyverno.io
+      kind: ClusterPolicy
+      jqPathExpressions:
+        - .spec.rules[] | select(.name|test("autogen-."))
+  resource.customizations.ignoreDifferences.apps_Deployment: |
+    managedFieldsManagers:
+      - kyverno
   resource.exclusions: |
     - apiGroups:
         - kyverno.io
       kinds:
-        - AdmissionReport
-        - BackgroundScanReport
-        - ClusterAdmissionReport
-        - ClusterBackgroundScanReport
+        - '*'
       clusters:
         - '*'
