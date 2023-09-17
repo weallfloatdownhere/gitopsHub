@@ -5,6 +5,7 @@ metadata:
 data:
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   admin.enabled: "true"
+  application.resourceTrackingMethod: annotation
   resource.customizations: |
     extensions/Ingress:
         health.lua: |

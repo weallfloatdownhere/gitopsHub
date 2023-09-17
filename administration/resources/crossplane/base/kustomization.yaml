@@ -1,0 +1,9 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+helmCharts:
+- name: crossplane
+  repo: https://charts.crossplane.io/master/
+  version: 1.14.0-rc.0.99.g329308ce
+  releaseName: crossplane
+  namespace: crossplane
