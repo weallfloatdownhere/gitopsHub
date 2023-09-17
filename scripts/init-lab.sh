@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-export SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export GIT_ROOT=$(git rev-parse --show-toplevel)
-export KUBECONFIG="$SCRIPT_DIR/kubeconfig.$NAME"
+export KUBECONFIG="$GIT_ROOT/kubeconfig.$NAME"
 
 if [[ -z "$NAME" ]]; then
 echo """
