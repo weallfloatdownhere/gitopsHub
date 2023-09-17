@@ -1,7 +1,0 @@
-namespaceSelector:
-  - name: foo
-    labels:
-      velero-backup-pvc: "true"
-  - name: bar
-    labels:
-      env: production

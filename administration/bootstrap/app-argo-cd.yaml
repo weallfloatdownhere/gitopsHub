@@ -14,11 +14,6 @@ spec:
     path: administration/resources/argocd/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
-  ignoreDifferences:
-    - group: kyverno.io
-      kind: ClusterPolicy
-      jqPathExpressions:
-        - .spec.rules[] | select(.name|test("autogen-."))
   syncPolicy:
     automated:
       prune: true
