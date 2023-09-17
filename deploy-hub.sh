@@ -4,7 +4,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
 if [[ -z "$KUBECONFIG" ]]; then
-echo "USAGE: KUBECONFIG=/home/user/kubeconfig ./init-hub-cluster.sh"
+echo "USAGE: KUBECONFIG=~/.kube/config ./deploy-hub.sh"
 exit 1
 elif [[ ! -f "$KUBECONFIG" ]]; then
 echo "ERROR - Specified kubeconfig file not found."

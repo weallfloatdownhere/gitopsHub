@@ -7,7 +7,7 @@ export KUBECONFIG="$SCRIPT_DIR/kubeconfig.$NAME"
 if [[ -z "$NAME" ]]; then
 echo """
 USAGE:
-NAME=clustername ./minicluster.sh
+NAME=clustername ./init-k8s-lab.sh
 """
 exit 1
 fi
