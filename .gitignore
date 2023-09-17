@@ -2,4 +2,5 @@
 *.tmp
 *.secret
 *.kubeconfig
+*.lab
 vcluster

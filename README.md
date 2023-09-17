@@ -13,6 +13,9 @@ a centrilized way of managing an almost infinite amount of other Kubernetes clus
 - [Vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.](https://github.com/loft-sh/vcluster)
 
 
+### TODO
+- DEMO: https://github.com/kyverno/policies/tree/main/argo/argo-cluster-generation-from-rancher-capi
+
 ## Charts
 - https://artifacthub.io/packages/helm/crossplane/crossplane
 
@@ -23,3 +26,4 @@ a centrilized way of managing an almost infinite amount of other Kubernetes clus
 - https://gist.github.com/eddycharly/58aac2e6955d0118947f3ec751a41d44
 - https://github.com/codefresh-contrib/kubecon-eu-2023-demo-crossplane-vcluster
 - https://github.com/argoproj/argo-cd/issues/4651
+- https://github.com/kyverno/policies/blob/main/argo/argo-cluster-generation-from-rancher-capi

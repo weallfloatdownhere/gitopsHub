@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export GIT_ROOT=$(git rev-parse --show-toplevel)
-export KUBECONFIG="$GIT_ROOT/kubeconfig.$NAME.kubeconfig"
+export KUBECONFIG="$GIT_ROOT/kubeconfig.$NAME.kubeconfig.lab"
 
 if [[ -z "$NAME" ]]; then
 echo "USAGE: NAME=demo-hub ./init-lab.sh"
