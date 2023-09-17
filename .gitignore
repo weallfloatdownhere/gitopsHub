@@ -4,3 +4,4 @@
 *.kubeconfig
 *.lab
 vcluster
+kubectl
