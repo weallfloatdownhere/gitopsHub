@@ -3,8 +3,8 @@ kind: Application
 metadata:
   name: security
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -15,7 +15,7 @@ spec:
       recurse: true
       include: '*.yaml'
   destination:
-    namespace: argocd
+    namespace: security
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
