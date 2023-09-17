@@ -9,14 +9,20 @@ metadata:
 data:
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   admin.enabled: "true"
-  resource.compareoptions: |
-    ignoreAggregatedRoles: true
   resource.customizations: |
     extensions/Ingress:
         health.lua: |
           hs = {}
           hs.status = "Healthy"
           return hs
+
+  resource.compareoptions: |
+    ignoreAggregatedRoles: true
+
+  resource.customizations.ignoreDifferences.all: |
+    managedFieldsManagers:
+    - kyverno
+
   # resource.customizations.ignoreDifferences.all: |
   #   - group: kyverno.io
   #     kind: ClusterPolicy
