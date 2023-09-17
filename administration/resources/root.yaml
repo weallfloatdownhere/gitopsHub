@@ -11,7 +11,11 @@ spec:
       revision: HEAD
       directories:
         - path: administration/resources/*
+        - path: administration/resources/**/current
+          exclude: false
         - path: administration/resources/**/base
+          exclude: true
+        - path: administration/resources/**/addons
           exclude: true
   template:
     metadata:
