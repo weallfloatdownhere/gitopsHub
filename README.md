@@ -4,32 +4,13 @@ Repository that manages the HUB part of a multi-clusters. multi-tenancy, gitops 
 The `Hub` is a complete up and running Kubernetes cluster. The sole purpose of this cluster is to ultimatly give Devops operator
 a centrilized way of managing an almost infinite amount of other Kubernetes clusters called `Spokes`.
 
-- [ArgoCD - Declarative continuous deployment for Kubernetes.](https://github.com/argoproj/argo-cd)
-- [Kyverno - Kubernetes Native Policy Management.](https://github.com/kyverno/kyverno)
-- [Crossplane - Cloud Native Control Planes.](https://github.com/crossplane/crossplane)
-- [Vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.](https://github.com/loft-sh/vcluster)
-
-
-# Getting started
+## Getting started
 
 Starting the dev environment
 
 . This script will start a minikube kubernetes cluster (`lab-hub`).
 . The hub resulting kubeconfig file will be located there at tests/kubeconfig.lab-hub.kubeconfig
 . Then the script will download the latest `vcluster` client from Github.
-
-```bash
-(
-    cd tests/
-    ./init-lab.sh
-)
-```
-
-
-## TODO
-- DEMO: https://github.com/kyverno/policies/tree/main/argo/argo-cluster-generation-from-rancher-capi
-
-
 
 ## Charts
 - https://artifacthub.io/packages/helm/crossplane/crossplane
@@ -42,3 +23,10 @@ Starting the dev environment
 - https://github.com/codefresh-contrib/kubecon-eu-2023-demo-crossplane-vcluster
 - https://github.com/argoproj/argo-cd/issues/4651
 - https://github.com/kyverno/policies/blob/main/argo/argo-cluster-generation-from-rancher-capi
+
+
+## Powered by
+- [ArgoCD - Declarative continuous deployment for Kubernetes.](https://github.com/argoproj/argo-cd)
+- [Kyverno - Kubernetes Native Policy Management.](https://github.com/kyverno/kyverno)
+- [Crossplane - Cloud Native Control Planes.](https://github.com/crossplane/crossplane)
+- [Vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.](https://github.com/loft-sh/vcluster)
