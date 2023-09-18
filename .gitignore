@@ -1,8 +1,6 @@
 **/**/charts
 *.tmp
 *.secret
-*.kubeconfig
-*.lab
-lab-tmpscript.sh
+kubeconfig.tmp
 vcluster
 kubectl
