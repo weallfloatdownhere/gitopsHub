@@ -64,6 +64,7 @@ spec:
         string:
           fmt: "--tls-san=%s-vcluster.%s.svc.cluster.local"
       toFieldPath: spec.forProvider.values.syncer.extraArgs[2]
+  # https://github.com/crossplane-contrib/provider-kubernetes/blob/main/docs/enhanced-provider-k8s.md#resource-management-policy
   - name: observe-delete-namespace
     base:
       apiVersion: kubernetes.crossplane.io/v1alpha1

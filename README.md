@@ -17,7 +17,12 @@ connect to vcluster
 vcluster connect dev-environment --server https://localhost:8443 -- bash
 ```
 
+
+## TODO
+https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
+
 ## Charts
+- https://github.com/loft-sh/vcluster/tree/v0.7.0-alpha.1/charts
 - https://www.vcluster.com/docs/getting-started/deployment
 - https://artifacthub.io/packages/helm/crossplane/crossplane
 
@@ -31,6 +36,7 @@ vcluster connect dev-environment --server https://localhost:8443 -- bash
 - https://github.com/argoproj/argo-cd/issues/4651
 - https://github.com/a1tan/argocdsecretsynchronizer
 - https://github.com/kyverno/policies/blob/main/argo/argo-cluster-generation-from-rancher-capi
+- https://github.com/crossplane/crossplane/blob/master/design/one-pager-helm-provider.md
 
 
 ## Powered by

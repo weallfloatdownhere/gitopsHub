@@ -1,1 +1,10 @@
-// infos, creds, path of the tenant app to deploy
+{
+    "owner": "John Smith",
+    "contact": "john.smith@company.com",
+    "description": "Simple demo tenant.",
+    "tenant": {
+      "name": "cluster-admin@company.com",
+      "repo_url": "https://github.com/repo-company/app.git",
+      "path": "root/dir/apps/demos/*"
+    }
+  }
