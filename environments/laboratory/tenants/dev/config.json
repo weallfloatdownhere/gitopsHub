@@ -3,8 +3,8 @@
     "contact": "john.smith@company.com",
     "description": "Simple demo tenant.",
     "tenant": {
-      "name": "cluster-admin@company.com",
+      "name": "example-1",
       "repo_url": "https://github.com/repo-company/app.git",
-      "path": "root/dir/apps/demos/*"
+      "path": "tenants/example-1/"
     }
-  }
+}
