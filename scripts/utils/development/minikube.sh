@@ -19,9 +19,7 @@ rm -rf ~/.kube/config
 # START HUB LAB STEP
 if [[ "$1" == "hub" ]] || [[ "$1" == "all" ]]; then
 export NAME="lab-1"
-export OUTDIR="$GIT_ROOT/administration/hubs/$NAME"
-rm -rf "$OUTDIR" && mkdir -p "$OUTDIR"
-export KUBECONFIG="$OUTDIR/kubeconfig.tmp"
+export KUBECONFIG="$GIT_ROOT/kubeconfig.conf"
 minikube delete -p "$NAME"
 minikube start -p "$NAME" --memory $HUB_MINIKUBE_MEMORY --cpus $HUB_MINIKUBE_CPUS --network bridge
 kubectl config view --context "$NAME" --minify --flatten > $KUBECONFIG.tmp
