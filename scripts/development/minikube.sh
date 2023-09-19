@@ -15,7 +15,6 @@ exit 1
 fi
 
 rm -rf ~/.kube/config
-$GIT_ROOT/scripts/get-cli-tools.sh
 
 # START HUB LAB STEP
 if [[ "$1" == "hub" ]] || [[ "$1" == "all" ]]; then
@@ -27,7 +26,6 @@ minikube delete -p "$NAME"
 minikube start -p "$NAME" --memory $HUB_MINIKUBE_MEMORY --cpus $HUB_MINIKUBE_CPUS --network bridge
 kubectl config view --context "$NAME" --minify --flatten > $KUBECONFIG.tmp
 rm -rf $KUBECONFIG && mv $KUBECONFIG.tmp $KUBECONFIG
-KUBECONFIG="$KUBECONFIG" $GIT_ROOT/scripts/init-hub.sh
 fi
 
 # START SPOKE LAB STEP
