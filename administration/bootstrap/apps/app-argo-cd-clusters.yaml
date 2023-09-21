@@ -10,12 +10,12 @@ metadata:
 spec:
   project: default
   source:
-    path: environments/
+    path: environments/*
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
       recurse: true
-      include: '*token.yaml'
+      include: '{*/token.yaml}'
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
