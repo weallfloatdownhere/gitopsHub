@@ -82,16 +82,29 @@ tasks:
         EOF
       - sleep 5
       - |
-        KUBECONFIG64=$(kubectl config view --flatten --minify | base64 -w0)
+        CA=$(kubectl -n kube-system get secret/argocd-manager-token -o jsonpath='{.data.ca\.crt}')
         TOKEN=$(kubectl -n kube-system get secret/argocd-manager-token -o jsonpath='{.data.token}' | base64 --decode)
+        SERVER="$(kubectl config view --minify | grep server | cut -f 2- -d ":" | tr -d " ")"
         cat <<EOF> token.yaml
-        ---
         apiVersion: v1
         kind: Secret
         metadata:
-          name: {{.CLUSTER_ENV}}-{{.CLUSTER_NAME}}-kubeconfig
+          name: {{.CLUSTER_NAME}}-cluster-token
           namespace: argocd
-        data:
-          value: $KUBECONFIG64
-          token: $TOKEN
+          labels:
+            env_name: {{.CLUSTER_ENV}}
+            argocd.argoproj.io/secret-type: cluster
+        type: Opaque
+        stringData:
+          name: {{.CLUSTER_NAME}}
+          server: $SERVER
+          config: |
+            {
+              "bearerToken": "$TOKEN",
+              "tlsClientConfig": {
+                "serverName": "kubernetes.default.svc",
+                "insecure": true,
+                "ca": "$CA"
+              }
+            }
         EOF
