@@ -1,0 +1,31 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: crossplane-providers
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: 'providers'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+        targetRevision: HEAD
+        path: administration/resources/crossplane-providers
+      destination:
+        server: '{{server}}'
+        namespace: crossplane-system
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
