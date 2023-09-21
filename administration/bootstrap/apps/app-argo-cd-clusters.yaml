@@ -15,7 +15,7 @@ spec:
     targetRevision: HEAD
     directory:
       recurse: true
-      include: '**/token.yaml'
+      include: '*token.yaml'
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
