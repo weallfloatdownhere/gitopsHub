@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cluster-1-cluster-token
+  name: c-1-cluster-token
   namespace: argocd
   labels:
-    env_name: demonstration
+    env_name: lab
     argocd.argoproj.io/secret-type: cluster
 type: Opaque
 stringData:
-  name: demonstration.cluster-1
+  name: lab.c-1
   server: https://172.17.0.3:8443
   config: |
     {
