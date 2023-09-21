@@ -107,3 +107,4 @@ tasks:
               }
             }
         EOF
+      - test -f token.yaml && rm -rf kubeconfig

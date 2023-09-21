@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
-    path: environments/*
+    path: environments/
     directory:
       recurse: true
       include: '{*/token.yaml}'
