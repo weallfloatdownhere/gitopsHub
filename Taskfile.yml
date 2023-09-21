@@ -95,7 +95,7 @@ tasks:
             argocd.argoproj.io/secret-type: cluster
         type: Opaque
         stringData:
-          name: {{.CLUSTER_ENV}}-{{.CLUSTER_NAME}}
+          name: {{.CLUSTER_ENV}}.{{.CLUSTER_NAME}}
           server: $SERVER
           config: |
             {
