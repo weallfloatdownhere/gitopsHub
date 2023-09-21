@@ -16,20 +16,21 @@ tasks:
     preconditions:
       - test -f {{.GIT_DIR}}/kubeconfig.master
 
-  slave:
+  import:
     desc: Enroll a fresh Kubernetes cluster as a ArgoCD slave.
     dir: '{{.USER_WORKING_DIR}}'
     vars:
       CLUSTER_NAME: 
         sh: basename "{{.USER_WORKING_DIR}}"
       CLUSTER_ENV: 
-        sh: basename $(dirname $(dirname $PWD))
+        sh: basename $(dirname $PWD)
+      TOKEN_OUTPUTFILE: '{{.CLUSTER_NAME}}.token.yaml'
     env:
       KUBECONFIG: '{{.USER_WORKING_DIR}}/kubeconfig'
     preconditions:
-      - test -f {{.USER_WORKING_DIR}}/kubeconfig
-      - test ! -f  {{.USER_WORKING_DIR}}/token.yaml
-      - sh: '[ "$(basename $(dirname $PWD))" = "clusters" ]'  
+      - test -f kubeconfig
+      - test ! -f  {{.TOKEN_OUTPUTFILE}}
+      - sh: '[ "$(basename $(dirname $(dirname $PWD)))" = "environments" ]'  
     cmds:
       - |
         cat <<EOF | kubectl apply -n kube-system  -f -
@@ -84,7 +85,7 @@ tasks:
         CA=$(kubectl -n kube-system get secret/argocd-manager-token -o jsonpath='{.data.ca\.crt}')
         TOKEN=$(kubectl -n kube-system get secret/argocd-manager-token -o jsonpath='{.data.token}' | base64 --decode)
         SERVER="$(kubectl config view --minify | grep server | cut -f 2- -d ":" | tr -d " ")"
-        cat <<EOF> token.yaml
+        cat <<EOF> {{.TOKEN_OUTPUTFILE}}
         apiVersion: v1
         kind: Secret
         metadata:
@@ -107,4 +108,4 @@ tasks:
               }
             }
         EOF
-      - test -f token.yaml && rm -rf kubeconfig
+      # - test -f {{.CLUSTER_ENV}}.{{.CLUSTER_NAME}}.token.yaml && rm -rf kubeconfig
