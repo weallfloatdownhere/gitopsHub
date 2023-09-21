@@ -24,7 +24,7 @@ tasks:
         sh: basename "{{.USER_WORKING_DIR}}"
       CLUSTER_ENV: 
         sh: basename $(dirname $PWD)
-      TOKEN_OUTPUTFILE: '{{.CLUSTER_NAME}}.token.yaml'
+      TOKEN_OUTPUTFILE: 'token.yaml'
     env:
       KUBECONFIG: '{{.USER_WORKING_DIR}}/kubeconfig'
     preconditions:
