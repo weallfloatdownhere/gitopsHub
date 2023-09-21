@@ -8,9 +8,12 @@ metadata:
 spec:
   project: default
   source:
-    path: administration/bootstrap/apps
+    path: administration/bootstrap/
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '{*/*.yaml}'
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
