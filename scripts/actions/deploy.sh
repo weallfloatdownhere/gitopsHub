@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
+
 KUBECONFIG="$(git rev-parse --show-toplevel)/kubeconfig.conf"
 ARGO_DIR="$GIT_ROOT/administration/resources/argocd/overlays/current"
 ARGO_BOOTSTRAP_APP="$GIT_ROOT/administration/bootstrap/app-bootstrap.yaml"
 
-if [[ ! -f "$KUBECONFIG" ]]; then
+if [[ ! -z "$KUBECONFIG" ]]; then
+echo "ERROR - KUBECONFIG is empty."
+exit 1
+elif [[ ! -f "$KUBECONFIG" ]]; then
 echo "ERROR - Kubeconfig file ($KUBECONFIG) not found.."
 exit 1
 fi

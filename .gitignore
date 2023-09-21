@@ -3,4 +3,4 @@
 *.secret
 vcluster
 kubectl
-kubeconfig.conf
+kubeconfig*
