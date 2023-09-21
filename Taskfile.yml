@@ -5,10 +5,9 @@ version: '3'
 vars:
   GIT_DIR: { sh: git rev-parse --show-toplevel }
 
-
 tasks:
   master:
-    desc: Deploy administration resources to a fresh k8s cluster (MASTER/HUB).
+    desc: Deploy/refresh resources on the MASTER cluster.
     env:
       KUBECONFIG: '{{.GIT_DIR}}/kubeconfig.master'
     cmds:
@@ -18,7 +17,7 @@ tasks:
       - test -f {{.GIT_DIR}}/kubeconfig.master
 
   slave:
-    desc: Create required ArgoCD bootstrap permissions, service accounts and secrets.
+    desc: Enroll a fresh Kubernetes cluster as a ArgoCD slave.
     dir: '{{.USER_WORKING_DIR}}'
     vars:
       CLUSTER_NAME: 
