@@ -1,21 +1,14 @@
 # gitopsHub
-Repository that manages the HUB part of a multi-clusters. multi-tenancy, gitops driven whole Kubernetes infrastructure.
 
-The `Hub` is a complete up and running Kubernetes cluster. The sole purpose of this cluster is to ultimatly give Devops operator
-a centrilized way of managing an almost infinite amount of other Kubernetes clusters called `Spokes`.
+## Description
 
-## Getting started
-
-Starting the dev environment
-
-. This script will start a minikube kubernetes cluster (`lab-hub`).
-. The hub resulting kubeconfig file will be located there at tests/kubeconfig.lab-hub.kubeconfig
-. Then the script will download the latest `vcluster` client from Github.
-
-```bash
-connect to vcluster
-vcluster connect dev-environment --server https://localhost:8443 -- bash
-```
+- administration/
+    - applications/
+        - requirements/ # Contains required argocd applications for each of these components: argo-cd, kyverno and its policies.
+        - addons/       # Contains argocd applications for non-essentials cluster addons such as an ingress-controller, monitoring, etc.
+        - root.yaml     # Root argocd application applying the concept of ArgoCD App of Apps on both directories mentioned above.
+    - policies/         # Contains all Kyverno policies manifests to be applied on the management cluster.
+                          Please note that this directory is deployed recursively, which mean that you can create as much sub-directories as you need.
 
 ## TODO
 https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
