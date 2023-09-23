@@ -1,26 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: security
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: default
   source:
-    path: administration/resources/argocd/overlays/current
+    path: management/policies
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
-    namespace: argocd
+    namespace: security
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      # - Replace=true
-      - RespectIgnoreDifferences=true
