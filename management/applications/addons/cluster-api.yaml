@@ -35,7 +35,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/cluster-api/providers
+    path: management/resources/cluster-api/addons/providers
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
