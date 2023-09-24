@@ -12,8 +12,5 @@ helmCharts:
   valuesInline:
     installCRDs: true
     startupapicheck:
-      enabled: true
+      enabled: false
       timeout: '5m'
-
-resources:
-  - namespace.yaml
