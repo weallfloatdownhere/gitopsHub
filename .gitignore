@@ -4,3 +4,4 @@
 vcluster
 kubectl
 kubeconfig*
+.workspace

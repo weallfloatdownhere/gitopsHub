@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -o errexit
+# set -o errexit
 # set -o nounset
 set -o pipefail
 
@@ -17,12 +17,21 @@ fi
 export CLUSTERNAME="${1}"
 export KUBECONFIG="$(realpath "${2}")"
 
+read -p "
+CLUSTER NAME:           $CLUSTERNAME
+KUBECONFIG DESTINATION: $KUBECONFIG
+
+Press enter to continue..."
+
 minikube delete -p $CLUSTERNAME | true
 minikube start -p $CLUSTERNAME --memory 3078 --cpus 2 --network bridge
-kubectl config view --context $CLUSTERNAME --flatten --minify > $KUBECONFIG
+kubectl config view --context $CLUSTERNAME --flatten --minify > .k.tmp
+mv .k.tmp $KUBECONFIG
 
 if [ -f "$KUBECONFIG" ]; then
-  echo "New kubeconfig file generated succesfully at: $KUBECONFIG"
+  echo "New kubeconfig file generated succesfully at: $KUBECONFIG
+  $ export KUBECONFIG=$KUBECONFIG
+  "
   exit 0
 fi
 

@@ -2,7 +2,7 @@
 
 Lightweight Kubernetes. Production ready, easy to install, half the memory, all in a binary less than 100 MB.
 
-### What is this?
+# What is this?
 
 K3s is a fully conformant production-ready Kubernetes distribution with the following changes:
 
@@ -12,6 +12,8 @@ It wraps Kubernetes and other components in a single, simple launcher.
 It is secure by default with reasonable defaults for lightweight environments.
 It has minimal to no OS dependencies (just a sane kernel and cgroup mounts needed).
 It eliminates the need to expose a port on Kubernetes worker nodes for the kubelet API by exposing this API to the Kubernetes control plane nodes over a websocket tunnel.
+
+## Quick start
 
 ## Related tools
 
