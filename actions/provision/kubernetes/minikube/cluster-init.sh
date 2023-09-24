@@ -18,7 +18,7 @@ export CONTEXT="${1}"
 export KUBECONFIG="$(realpath "${2}")"
 
 read -p "
-CONTEXT:                $CONTEXT
+CONTEXT: $CONTEXT
 KUBECONFIG DESTINATION: $KUBECONFIG
 
 Press enter to continue..."

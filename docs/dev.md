@@ -41,7 +41,7 @@ $ kubectl port-forward -n argocd svc/argocd-server 8080:80
 
 ## 4. Workload cluster initialization
 
-We could use almost anything as workload cluster (vms, baremetal, raseberry pie, etc). This environment is using `Vagrant` and `Libvirt` to run a single ubuntu vanilla node with nothing installed on it yet.
+We could use almost anything as workload cluster (vms, baremetal, raseberry pie, etc). This environment is using `Vagrant` and [Libvirt](https://ubuntu.com/server/docs/virtualization-libvirt) to run a single ubuntu vanilla node with nothing installed on it yet.
 
 *First, it is not already done, you have to install dependencies.*
 
@@ -68,5 +68,7 @@ end
 We can now start the provisioning.
 
 ```bash
+$ virsh destroy vagrant_cluster
 $ vagrant up --provision --provider=libvirt
+$ virsh list
 ```
