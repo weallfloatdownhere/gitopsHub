@@ -5,13 +5,15 @@ namespace: cert-manager
 helmCharts:
 - name: cert-manager
   repo: https://charts.jetstack.io
-  version: 1.13.0
+  version: v1.13.0
   releaseName: cert-manager
   namespace: cert-manager
+  includeCRDs: true
   valuesInline:
     installCRDs: true
     startupapicheck:
-      enabled: false
+      enabled: true
+      timeout: '5m'
 
 resources:
   - namespace.yaml
