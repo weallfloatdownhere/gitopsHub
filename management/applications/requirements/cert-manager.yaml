@@ -4,7 +4,7 @@ metadata:
   name: cert-manager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
@@ -21,7 +21,8 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
-      # - Replace=true
+      - Replace=true
+
   #ignoreDifferences:
   #  - group: admissionregistration.k8s.io
   #    kind: ValidatingWebhookConfiguration
