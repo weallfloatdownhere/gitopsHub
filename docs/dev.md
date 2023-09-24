@@ -35,5 +35,5 @@ $ kubectl port-forward -n argocd svc/argocd-server 8080:80
 When we are done, we can clean the environment using this script
 
 ```bash
-$ $(git rev-parse --show-toplevel)/actions/utilities/clean-dev.sh
+$ $(git rev-parse --show-toplevel)/actions/dev/clean.sh
 ```
