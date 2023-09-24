@@ -16,6 +16,9 @@ data:
           hs = {}
           hs.status = "Healthy"
           return hs
+  resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
+    jqPathExpressions:
+    - '.webhooks[]?.clientConfig.caBundle'
   resource.compareoptions: |
     ignoreAggregatedRoles: true
     ignoreResourceStatusField: all
