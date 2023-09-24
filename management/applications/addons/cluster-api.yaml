@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: cluster-api
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "4"
 spec:
@@ -28,8 +26,6 @@ kind: Application
 metadata:
   name: cluster-api-providers
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 spec:
