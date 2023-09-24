@@ -1,6 +1,10 @@
 # Super Gitops repository.
 
 
+https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost
+https://github.com/piomin/sample-kubernetes-cluster-api-argocd/tree/master
+https://deploy.equinix.com/developers/guides/kubernetes-cluster-api/
+
 ## Powered by
 - [ArgoCD - Declarative continuous deployment for Kubernetes.](https://github.com/argoproj/argo-cd)
 - [Kyverno - Kubernetes Native Policy Management.](https://github.com/kyverno/kyverno)

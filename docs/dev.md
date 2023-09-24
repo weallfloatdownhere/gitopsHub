@@ -72,3 +72,10 @@ $ virsh list
 $ virsh destroy [YOURCLUSTER]
 $ vagrant up --provision --provider=libvirt
 ```
+
+Download and install clusterctl
+
+```bash
+$ curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.5.1/clusterctl-linux-amd64 -o clusterctl
+$ sudo install -o root -g root -m 0755 clusterctl /usr/local/bin/clusterctl
+```
