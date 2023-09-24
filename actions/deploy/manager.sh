@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# set -o errexit
-# set -o nounset
 set -o pipefail
+
+GIT_ROOT=$(git rev-parse --show-toplevel)
 
 USAGE="./$(basename "$0") [KUBECONFIG] [CONTEXT]"
 
@@ -23,10 +23,10 @@ Context         : $CONTEXT
 
 Press ENTER to continue or CTRL-C to Abort..."
 
-kubectl apply -k "$(git rev-parse --show-toplevel)/management/resources/argocd/overlays/current"
+kubectl apply -k "$GIT_ROOT/management/resources/argocd/overlays/current"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 sleep 1
-kubectl apply -f "$(git rev-parse --show-toplevel)/management/applications/root.yaml"
+kubectl apply -f "$GIT_ROOT/management/applications/root.yaml"
 sleep 1
 kubectl get pods -n argocd
