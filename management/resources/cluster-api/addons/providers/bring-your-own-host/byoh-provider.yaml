@@ -12,7 +12,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -90,7 +89,6 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -247,7 +245,6 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -376,7 +373,6 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -663,7 +659,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -868,7 +863,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -1027,7 +1021,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -1138,7 +1131,6 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     cluster.x-k8s.io/v1beta1: v1beta1
@@ -1327,7 +1319,6 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1636,7 +1627,6 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1654,7 +1644,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1674,7 +1663,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1691,7 +1679,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1708,7 +1695,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1725,7 +1711,6 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1798,7 +1783,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1814,7 +1798,6 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         cluster.x-k8s.io/provider: infrastructure-byoh
         control-plane: controller-manager
@@ -1898,7 +1881,6 @@ kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
     cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
-  creationTimestamp: null
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
