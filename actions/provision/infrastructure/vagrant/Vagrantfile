@@ -1,0 +1,22 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/bionic64"
+    config.vm.network "private_network", type: "dhcp", ip: "192.168.56.103"
+    #config.ssh.username = 'vagrant'
+    #config.ssh.password = 'vagrant'
+    #config.ssh.insert_key = false
+    #config.vm.provision "shell", inline: <<-SHELL
+    #  sed -i 's/^#* *\(PermitRootLogin\)\(.*\)$/\1 yes/' /etc/ssh/sshd_config
+    #  sed -i 's/^#* *\(PasswordAuthentication\)\(.*\)$/\1 yes/' /etc/ssh/sshd_config
+    #  useradd -d "/home/admin" -m admin
+    #  echo "admin" | passwd --stdin admin
+    #  usermod -a -G sudo,ssh admin
+    #  echo -e "\nadmin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    #  mkdir /home/admin/.ssh
+    #  touch /home/admin/.ssh/authorized_keys
+    #  chmod 700 /home/admin/.ssh
+    #  chmod 600 /home/admin/.ssh//home/admin/.ssh/authorized_keys
+    #  chown -R admin:admin /home/admin
+    #  systemctl restart sshd
+    #  service sshd restart
+    #SHELL
+end
