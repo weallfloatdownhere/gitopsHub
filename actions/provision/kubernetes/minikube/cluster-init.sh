@@ -29,9 +29,12 @@ kubectl config view --context $CLUSTERNAME --flatten --minify > .k.tmp
 mv .k.tmp $KUBECONFIG
 
 if [ -f "$KUBECONFIG" ]; then
-  echo "New kubeconfig file generated succesfully at: $KUBECONFIG
+  echo "
+  New kubeconfig file generated succesfully at: $KUBECONFIG
+  Cluster ip: $(minikube ip -p $CLUSTERNAME)
+
   $ export KUBECONFIG=$KUBECONFIG
-  "
+  $ kubectl get pods -A"
   exit 0
 fi
 
