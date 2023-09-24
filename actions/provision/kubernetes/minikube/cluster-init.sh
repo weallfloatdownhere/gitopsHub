@@ -4,7 +4,7 @@
 # set -o nounset
 set -o pipefail
 
-USAGE="./$(basename "$0") [CLUSTER_NAME] [CONFIG_DST]"
+USAGE="./$(basename "$0") [CONTEXT] [CONFIG_DST]"
 
 if [[ -z "${1}" ]] || [[ -z "${2}" ]] ; then
   echo "$USAGE"
@@ -14,24 +14,24 @@ elif [ -f "$(realpath "${2}")" ]; then
   exit 1
 fi
 
-export CLUSTERNAME="${1}"
+export CONTEXT="${1}"
 export KUBECONFIG="$(realpath "${2}")"
 
 read -p "
-CLUSTER NAME:           $CLUSTERNAME
+CONTEXT:                $CONTEXT
 KUBECONFIG DESTINATION: $KUBECONFIG
 
 Press enter to continue..."
 
-minikube delete -p $CLUSTERNAME | true
-minikube start -p $CLUSTERNAME --memory 3078 --cpus 2 --network bridge
-kubectl config view --context $CLUSTERNAME --flatten --minify > .k.tmp
+minikube delete -p $CONTEXT | true
+minikube start -p $CONTEXT --memory 3078 --cpus 2 --network bridge
+kubectl config view --context $CONTEXT --flatten --minify > .k.tmp
 mv .k.tmp $KUBECONFIG
 
 if [ -f "$KUBECONFIG" ]; then
   echo "
   New kubeconfig file generated succesfully at: $KUBECONFIG
-  Cluster ip: $(minikube ip -p $CLUSTERNAME)
+  Cluster ip: $(minikube ip -p $CONTEXT)
 
   $ export KUBECONFIG=$KUBECONFIG
   $ kubectl get pods -A"
