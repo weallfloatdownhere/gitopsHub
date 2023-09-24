@@ -68,7 +68,7 @@ end
 We can now start the provisioning.
 
 ```bash
-$ virsh destroy vagrant_cluster
-$ vagrant up --provision --provider=libvirt
 $ virsh list
+$ virsh destroy [YOURCLUSTER]
+$ vagrant up --provision --provider=libvirt
 ```
