@@ -1,6 +1,7 @@
 # Super Gitops repository.
 
 
+https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost/blob/main/docs/getting_started.md
 https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost
 https://github.com/piomin/sample-kubernetes-cluster-api-argocd/tree/master
 https://deploy.equinix.com/developers/guides/kubernetes-cluster-api/
