@@ -1,6 +1,6 @@
 # Super Gitops repository.
 
-
+https://gitlab.com/sylva-projects/sylva-elements/helm-charts/capi-rancher-import/-/tree/main/cattle-kustomize?ref_type=heads
 https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost/blob/main/docs/getting_started.md
 https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost
 https://github.com/piomin/sample-kubernetes-cluster-api-argocd/tree/master
