@@ -8,5 +8,8 @@ helmCharts:
 - name: cluster-api-operator
   repo: https://kubernetes-sigs.github.io/cluster-api-operator
   releaseName: cluster-api-operator
-  namespace: cluster-api-operator
+  namespace: cluster-api
   valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
