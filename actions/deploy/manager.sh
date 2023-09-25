@@ -23,7 +23,7 @@ export KUBECONFIG="$(realpath "${1}")"
 #
 #Press ENTER to continue or CTRL-C to Abort..."
 
-kubectl apply -k "$GIT_ROOT/management/resources/argocd/overlays/current"
+kubectl apply -k "$GIT_ROOT/management/resources/argocd/manifests/overlays/current"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 sleep 1
