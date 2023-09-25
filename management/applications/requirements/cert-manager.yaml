@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/cert-manager/overlays/current
+    path: management/resources/cert-manager/manifests/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
