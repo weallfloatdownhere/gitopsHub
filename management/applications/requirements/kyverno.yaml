@@ -42,7 +42,7 @@ spec:
       recurse: true
       include: '*.yaml'
   destination:
-    namespace: kyverno
+    namespace: kyverno-policies
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
@@ -50,4 +50,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
