@@ -8,12 +8,12 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/kyverno-policies
+    path: management/resources/kyverno/policies
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
       recurse: true
-      include: '{**/*.yaml}'
+      include: '*.yaml'
   destination:
     namespace: kyverno-policies
     server: https://kubernetes.default.svc

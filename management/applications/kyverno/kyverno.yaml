@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/kyverno/overlays/current
+    path: management/resources/kyverno/kyverno/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
