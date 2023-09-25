@@ -7,6 +7,7 @@ metadata:
   name: argocd-cm
   namespace: argocd
 data:
+  resource.ignoreResourceUpdatesEnabled: "true"
   admin.enabled: "true"
   application.resourceTrackingMethod: annotation
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
@@ -16,74 +17,21 @@ data:
           hs = {}
           hs.status = "Healthy"
           return hs
-
-  resource.customizations.health.certmanager.k8s.io-Certificate: |
-    hs = {}
-    if obj.status ~= nil then
-      if obj.status.conditions ~= nil then
-        for i, condition in ipairs(obj.status.conditions) do
-          if condition.type == "Ready" and condition.status == "False" then
-            hs.status = "Degraded"
-            hs.message = condition.message
-            return hs
-          end
-          if condition.type == "Ready" and condition.status == "True" then
-            hs.status = "Healthy"
-            hs.message = condition.message
-            return hs
-          end
-        end
-      end
-    end
-    hs.status = "Progressing"
-    hs.message = "Waiting for certificate"
-    return hs
-
-  resource.customizations.health.cert-manager.io_Certificate: |
-    hs = {}
-    if obj.status ~= nil then
-      if obj.status.conditions ~= nil then
-        for i, condition in ipairs(obj.status.conditions) do
-          if condition.type == "Ready" and condition.status == "False" then
-            hs.status = "Degraded"
-            hs.message = condition.message
-            return hs
-          end
-          if condition.type == "Ready" and condition.status == "True" then
-            hs.status = "Healthy"
-            hs.message = condition.message
-            return hs
-          end
-        end
-      end
-    end
-    hs.status = "Progressing"
-    hs.message = "Waiting for certificate"
-    return hs
-
   resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
+    jsonPointers:
+    - /webhooks/0/clientConfig/caBundle
     jqPathExpressions:
-    - '.webhooks[]?.clientConfig.caBundle'
+    - .webhooks[0].clientConfig.caBundle
+    managedFieldsManagers:
+    - kube-controller-manager
+    - cainjector
   resource.compareoptions: |
     ignoreAggregatedRoles: true
     ignoreResourceStatusField: all
   resource.customizations.ignoreDifferences.all: |
     managedFieldsManagers:
     - kyverno
+    - kube-controller-manager
+    jsonPointers:
+    - /spec/replicas
 
-
-  # resource.customizations.ignoreDifferences.all: |
-  #   - group: kyverno.io
-  #     kind: ClusterPolicy
-  #     jqPathExpressions:
-  #       - .spec.rules[] | select(.name|test("autogen-."))
-  # resource.customizations.ignoreDifferences.apps_Deployment: |
-  #   managedFieldsManagers:
-  #     - kyverno
-  # resource.exclusions: |
-  #   - apiGroups:
-  #       - kyverno.io
-  #     kinds:
-  #       - '*'
-  #     clusters:
-  #       - '*'
