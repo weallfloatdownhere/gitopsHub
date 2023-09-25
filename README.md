@@ -1,5 +1,21 @@
 # Super Gitops repository.
 
+# Getting started
+
+```bash
+( 
+export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace" && \
+mkdir -p $WORKSPACE && \
+export KUBECONFIG="$WORKSPACE/kubeconfig-manager" && \
+rm -rf $KUBECONFIG && \
+export CONTEXT="manager" && \
+mkdir -p $WORKSPACE && \
+$(git rev-parse --show-toplevel)/actions/distros/minikube/cluster-init.sh $CONTEXT $WORKSPACE/kubeconfig-manager && \
+$(git rev-parse --show-toplevel)/actions/deploy/manager.sh $KUBECONFIG $CONTEXT
+)
+```
+
+
 https://gitlab.com/sylva-projects/sylva-elements/helm-charts/capi-rancher-import/-/tree/main/cattle-kustomize?ref_type=heads
 https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost/blob/main/docs/getting_started.md
 https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost
