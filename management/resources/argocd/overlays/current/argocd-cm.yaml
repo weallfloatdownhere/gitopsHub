@@ -21,9 +21,9 @@ data:
           hs.status = "Healthy"
           return hs
   resource.customizations.ignoreDifferences.all: |
-    - group: '*'
-      kind: Deployment
-      jsonPointers:
+    managedFieldsManagers:
+      - kube-controller-manager
+    jsonPointers:
       - /spec/replicas
   resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
     jqPathExpressions:
