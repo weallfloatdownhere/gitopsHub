@@ -6,5 +6,5 @@ metadata:
   name: cluster-api
 spec:
   version: v1.4.3
-  featureGates:
-    ClusterTopology: true
+  #featureGates:
+  #  ClusterTopology: true
