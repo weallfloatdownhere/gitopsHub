@@ -14,7 +14,7 @@ spec:
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: cluster-api
+    namespace: capi-operator-system
     server: https://kubernetes.default.svc
   ignoreDifferences:
     - group: '*'
