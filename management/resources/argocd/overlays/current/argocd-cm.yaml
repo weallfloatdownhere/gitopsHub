@@ -20,6 +20,10 @@ data:
           hs = {}
           hs.status = "Healthy"
           return hs
+    admissionregistration.k8s.io/MutatingWebhookConfiguration:
+      ignoreDifferences: |
+        jqPathExpressions:
+        - '.webhooks[]?.clientConfig.caBundle'
   resource.customizations.ignoreDifferences.all: |
     managedFieldsManagers:
     - kyverno

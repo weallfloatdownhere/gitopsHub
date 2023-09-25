@@ -16,9 +16,16 @@ spec:
   destination:
     namespace: capi-operator-system
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+    - group: '*'
+      kind: MutatingWebhookConfiguration
+      jqPathExpressions:
+        - '.webhooks[]?.clientConfig.caBundle'
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - RespectIgnoreDifferences=true
