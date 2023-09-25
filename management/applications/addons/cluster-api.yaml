@@ -17,15 +17,18 @@ spec:
     namespace: capi-operator-system
     server: https://kubernetes.default.svc
   ignoreDifferences:
-    - group: 'operator.cluster.x-k8s.io'
+    - group: operator.cluster.x-k8s.io
       kind: CustomResourceDefinition
       jsonPointers:
       - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
+    managedNamespaceMetadata:
+      annotations:
+        isargo: yes
     automated:
-      prune: true
+      prune: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+      # - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
       - RespectIgnoreDifferences=true
