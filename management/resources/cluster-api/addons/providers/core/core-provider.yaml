@@ -6,8 +6,6 @@ metadata:
 spec:
   version: v1.4.3
   manager:
-    maxConcurrentReconciles: 5
-    verbosity: 1
     featureGates:
       MachinePools: true
       ClusterResourceSet: true
