@@ -5,8 +5,6 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
@@ -22,12 +20,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true
-      # - Replace=true
-
-  #ignoreDifferences:
-  #  - group: admissionregistration.k8s.io
-  #    kind: ValidatingWebhookConfiguration
-  #    name: cert-manager-webhook
-  #    jqPathExpressions:
-  #      - .webhooks[].namespaceSelector.matchExpressions[] | select(.key == "control-plane")

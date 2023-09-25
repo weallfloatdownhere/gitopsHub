@@ -5,8 +5,6 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   source:
@@ -18,9 +16,7 @@ spec:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      # - Replace=true
-      #- RespectIgnoreDifferences=true
