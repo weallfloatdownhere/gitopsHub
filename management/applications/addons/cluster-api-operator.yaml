@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: cluster-api-operator
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "2"
@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/cluster-api/overlays/current
+    path: management/resources/cluster-api-operator/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
