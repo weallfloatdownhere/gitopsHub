@@ -5,8 +5,8 @@ metadata:
   namespace: capi-system
 spec:
   version: v1.4.3
-  manager:
-    featureGates:
-      MachinePools: true
-      ClusterResourceSet: true
-      ClusterClass: true
+  #manager:
+  #  featureGates:
+  #    MachinePools: true
+  #    ClusterResourceSet: true
+  #    ClusterClass: true
