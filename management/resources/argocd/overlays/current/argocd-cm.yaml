@@ -20,10 +20,6 @@ data:
           hs = {}
           hs.status = "Healthy"
           return hs
-    admissionregistration.k8s.io/MutatingWebhookConfiguration:
-      ignoreDifferences: |
-        jqPathExpressions:
-        - '.webhooks[]?.clientConfig.caBundle'
   resource.customizations.ignoreDifferences.all: |
     managedFieldsManagers:
     - kyverno
@@ -31,12 +27,7 @@ data:
     jsonPointers:
     - /spec/replicas
   resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
-    jsonPointers:
-    - /webhooks/0/clientConfig/caBundle
     jqPathExpressions:
-    - .webhooks[0].clientConfig.caBundle
-    managedFieldsManagers:
-    - kube-controller-manager
-    - cainjector
+    - '.webhooks[]?.clientConfig.caBundle'
 
 
