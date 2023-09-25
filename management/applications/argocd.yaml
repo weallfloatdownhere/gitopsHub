@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: argocd
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  #finalizers:
-  #  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: management/resources/cert-manager/overlays/current
+    path: management/resources/argocd/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: cert-manager
+    namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

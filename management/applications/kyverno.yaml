@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: kyverno
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
-  #finalizers:
-  #  - resources-finalizer.argocd.argoproj.io
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
-    path: management/resources/argocd/overlays/current
+    path: management/resources/kyverno/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: argocd
+    namespace: kyverno
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
@@ -22,3 +20,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - Replace=true

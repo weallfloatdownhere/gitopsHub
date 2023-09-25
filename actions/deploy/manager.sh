@@ -27,6 +27,6 @@ kubectl apply -k "$GIT_ROOT/management/resources/argocd/overlays/current"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 sleep 1
-kubectl apply -f "$GIT_ROOT/management/applications/root.yaml"
+kubectl apply -f "$GIT_ROOT/management/root.yaml"
 sleep 1
 kubectl get pods -n argocd
