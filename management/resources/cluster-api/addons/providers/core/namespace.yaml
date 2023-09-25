@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: capi-core
+  name: capi-system
   labels:
-    name: capi-core
+    name: capi-system
