@@ -17,11 +17,11 @@ fi
 export CONTEXT="${2}"
 export KUBECONFIG="$(realpath "${1}")"
 
-read -p "You are about to initialize a kubernetes cluster.
-Kubeconfig file : $KUBECONFIG
-Context         : $CONTEXT
-
-Press ENTER to continue or CTRL-C to Abort..."
+#read -p "You are about to initialize a kubernetes cluster.
+#Kubeconfig file : $KUBECONFIG
+#Context         : $CONTEXT
+#
+#Press ENTER to continue or CTRL-C to Abort..."
 
 kubectl apply -k "$GIT_ROOT/management/resources/argocd/overlays/current"
 sleep 1
