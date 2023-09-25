@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/cluster-api/manifests/overlays/current
+    path: management/resources/cluster-api/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
@@ -26,8 +26,6 @@ spec:
       prune: false
       selfHeal: true
     syncOptions:
-      # - Validate=false
       - CreateNamespace=true
-      # - ApplyOutOfSyncOnly=true
+      - ApplyOutOfSyncOnly=true
       - RespectIgnoreDifferences=true
-      # - SkipDryRunOnMissingResource=true

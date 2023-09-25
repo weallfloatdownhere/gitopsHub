@@ -1,11 +1,7 @@
 apiVersion: operator.cluster.x-k8s.io/v1alpha2
 kind: CoreProvider
 metadata:
-  name: cluster-api
+  name: capi-core-provider
+  namespace: capi-core
 spec:
   version: v1.4.3
-  #manager:
-  #  featureGates:
-  #    MachinePools: true
-  #    ClusterResourceSet: true
-  #    ClusterClass: true

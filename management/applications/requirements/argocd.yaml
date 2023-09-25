@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/argocd/manifests/overlays/current
+    path: management/resources/argocd/overlays/current
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:

@@ -17,13 +17,13 @@ fi
 export CONTEXT="${2}"
 export KUBECONFIG="$(realpath "${1}")"
 
-#read -p "You are about to initialize a kubernetes cluster.
-#Kubeconfig file : $KUBECONFIG
-#Context         : $CONTEXT
-#
-#Press ENTER to continue or CTRL-C to Abort..."
+read -p "You are about to initialize a kubernetes cluster.
+Kubeconfig file : $KUBECONFIG
+Context         : $CONTEXT
 
-kubectl apply -k "$GIT_ROOT/management/resources/argocd/manifests/overlays/current"
+Press ENTER to continue or CTRL-C to Abort..."
+
+kubectl apply -k "$GIT_ROOT/management/resources/argocd/overlays/current"
 sleep 1
 kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 sleep 1
