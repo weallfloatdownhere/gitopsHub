@@ -11,12 +11,21 @@ data:
   admin.enabled: "true"
   application.resourceTrackingMethod: annotation
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
+  resource.compareoptions: |
+    ignoreAggregatedRoles: true
+    ignoreResourceStatusField: all
   resource.customizations: |
     extensions/Ingress:
         health.lua: |
           hs = {}
           hs.status = "Healthy"
           return hs
+  resource.customizations.ignoreDifferences.all: |
+    managedFieldsManagers:
+    - kyverno
+    - kube-controller-manager
+    jsonPointers:
+    - /spec/replicas
   resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
@@ -25,13 +34,5 @@ data:
     managedFieldsManagers:
     - kube-controller-manager
     - cainjector
-  resource.compareoptions: |
-    ignoreAggregatedRoles: true
-    ignoreResourceStatusField: all
-  resource.customizations.ignoreDifferences.all: |
-    managedFieldsManagers:
-    - kyverno
-    - kube-controller-manager
-    jsonPointers:
-    - /spec/replicas
+
 
