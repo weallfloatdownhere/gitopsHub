@@ -23,8 +23,8 @@ leaderElection:
   enabled: true
 image:
   manager:
-    repository: gcr.io/k8s-staging-capi-operator/cluster-api-operator
-    tag: dev
+    repository: registry.k8s.io/capi-operator/cluster-api-operator
+    tag: v0.6.0
     pullPolicy: IfNotPresent
   kubeRBACProxy:
     repository: gcr.io/kubebuilder/kube-rbac-proxy
