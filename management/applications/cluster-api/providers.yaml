@@ -15,7 +15,7 @@ spec:
     targetRevision: HEAD
     directory:
       recurse: true
-      include: '{**/*.yaml}'
+      include: '{*.yaml}'
   destination:
     namespace: capi-system
     server: https://kubernetes.default.svc
