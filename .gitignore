@@ -2,6 +2,7 @@
 .vagrant/
 *.tmp
 *.log
+test.sh
 *.secret
 vcluster
 kubectl

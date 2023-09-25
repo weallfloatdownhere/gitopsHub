@@ -11,7 +11,7 @@ export KUBECONFIG="$WORKSPACE/kubeconfig-manager" && \
 rm -rf $KUBECONFIG && \
 export CONTEXT="manager" && \
 mkdir -p $WORKSPACE && \
-$(git rev-parse --show-toplevel)/actions/distros/minikube/cluster-init.sh $CONTEXT $WORKSPACE/kubeconfig-manager && \
+$(git rev-parse --show-toplevel)/actions/distros/minikube/init.sh $CONTEXT $WORKSPACE/kubeconfig-manager && \
 $(git rev-parse --show-toplevel)/actions/deploy/manager.sh $KUBECONFIG $CONTEXT
 )
 ```

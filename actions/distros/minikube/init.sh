@@ -17,12 +17,6 @@ fi
 export CONTEXT="${1}"
 export KUBECONFIG="$(realpath "${2}")"
 
-read -p "
-CONTEXT: $CONTEXT
-KUBECONFIG DESTINATION: $KUBECONFIG
-
-Press enter to continue..."
-
 minikube delete -p $CONTEXT | true
 minikube start -p $CONTEXT --memory 3078 --cpus 2 --network bridge
 kubectl config view --context $CONTEXT --flatten --minify > .k.tmp

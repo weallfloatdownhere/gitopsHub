@@ -9,7 +9,7 @@ First, let's begin by starting a minikube kubernetes cluster which is going to o
 $ export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace"
 $ export CONTEXT="manager"
 $ mkdir -p $WORKSPACE
-$ $(git rev-parse --show-toplevel)/actions/provision/kubernetes/minikube/cluster-init.sh $CONTEXT $WORKSPACE/kubeconfig-manager
+$ $(git rev-parse --show-toplevel)/actions/provision/kubernetes/minikube/init.sh $CONTEXT $WORKSPACE/kubeconfig-manager
 ```
 
 ## 2. Management cluster resources deployment
