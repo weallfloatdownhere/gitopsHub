@@ -10,3 +10,6 @@ helmCharts:
   releaseName: cluster-api-operator
   namespace: cluster-api-operator
   valuesFile: values.yaml
+
+resources:
+  - namespace.yaml
