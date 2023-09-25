@@ -4,3 +4,8 @@ metadata:
   name: cluster-api
 spec:
   version: v1.4.3
+  manager:
+    featureGates:
+      MachinePool: true
+      ClusterResourceSet: true
+      ClusterClass: true
