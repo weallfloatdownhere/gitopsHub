@@ -1,4 +1,5 @@
+# https://github.com/kubernetes-sigs/cluster-api-operator/releases/latest/download/operator-components.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- cluster-api-components.yaml
+- operator-components.yaml

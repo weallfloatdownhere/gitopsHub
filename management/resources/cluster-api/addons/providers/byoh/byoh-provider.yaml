@@ -5,7 +5,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
     control-plane: controller-manager
-  name: byoh-system
+  name: capi-byoh
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -87,7 +87,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
+    cert-manager.io/inject-ca-from: capi-byoh/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
@@ -101,7 +101,7 @@ spec:
       clientConfig:
         service:
           name: byoh-webhook-service
-          namespace: byoh-system
+          namespace: capi-byoh
           path: /convert
       conversionReviewVersions:
       - v1
@@ -243,7 +243,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
+    cert-manager.io/inject-ca-from: capi-byoh/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
@@ -257,7 +257,7 @@ spec:
       clientConfig:
         service:
           name: byoh-webhook-service
-          namespace: byoh-system
+          namespace: capi-byoh
           path: /convert
       conversionReviewVersions:
       - v1
@@ -371,7 +371,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
+    cert-manager.io/inject-ca-from: capi-byoh/byoh-serving-cert
     controller-gen.kubebuilder.io/version: v0.10.0
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
@@ -385,7 +385,7 @@ spec:
       clientConfig:
         service:
           name: byoh-webhook-service
-          namespace: byoh-system
+          namespace: capi-byoh
           path: /convert
       conversionReviewVersions:
       - v1
@@ -1214,7 +1214,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-controller-manager
-  namespace: byoh-system
+  namespace: capi-byoh
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -1223,7 +1223,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-leader-election-role
-  namespace: byoh-system
+  namespace: capi-byoh
 rules:
 - apiGroups:
   - ""
@@ -1631,7 +1631,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-leader-election-rolebinding
-  namespace: byoh-system
+  namespace: capi-byoh
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -1639,7 +1639,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: byoh-controller-manager
-  namespace: byoh-system
+  namespace: capi-byoh
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -1690,7 +1690,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: byoh-controller-manager
-  namespace: byoh-system
+  namespace: capi-byoh
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -1706,7 +1706,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: byoh-controller-manager
-  namespace: byoh-system
+  namespace: capi-byoh
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -1744,7 +1744,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-manager-config
-  namespace: byoh-system
+  namespace: capi-byoh
 ---
 apiVersion: v1
 kind: Service
@@ -1754,7 +1754,7 @@ metadata:
     clusterctl.cluster.x-k8s.io: ""
     control-plane: controller-manager
   name: byoh-controller-manager-metrics-service
-  namespace: byoh-system
+  namespace: capi-byoh
 spec:
   ports:
   - name: https
@@ -1771,7 +1771,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-webhook-service
-  namespace: byoh-system
+  namespace: capi-byoh
 spec:
   ports:
   - port: 443
@@ -1788,7 +1788,7 @@ metadata:
     clusterctl.cluster.x-k8s.io: ""
     control-plane: controller-manager
   name: byoh-controller-manager
-  namespace: byoh-system
+  namespace: capi-byoh
 spec:
   replicas: 1
   selector:
@@ -1855,11 +1855,11 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-serving-cert
-  namespace: byoh-system
+  namespace: capi-byoh
 spec:
   dnsNames:
-  - byoh-webhook-service.byoh-system.svc
-  - byoh-webhook-service.byoh-system.svc.cluster.local
+  - byoh-webhook-service.capi-byoh.svc
+  - byoh-webhook-service.capi-byoh.svc.cluster.local
   issuerRef:
     kind: Issuer
     name: byoh-selfsigned-issuer
@@ -1872,7 +1872,7 @@ metadata:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
   name: byoh-selfsigned-issuer
-  namespace: byoh-system
+  namespace: capi-byoh
 spec:
   selfSigned: {}
 ---
@@ -1880,7 +1880,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: byoh-system/byoh-serving-cert
+    cert-manager.io/inject-ca-from: capi-byoh/byoh-serving-cert
   labels:
     cluster.x-k8s.io/provider: infrastructure-byoh
     clusterctl.cluster.x-k8s.io: ""
@@ -1891,7 +1891,7 @@ webhooks:
   clientConfig:
     service:
       name: byoh-webhook-service
-      namespace: byoh-system
+      namespace: capi-byoh
       path: /validate-infrastructure-cluster-x-k8s-io-v1beta1-bootstrapkubeconfig
   failurePolicy: Fail
   name: vbootstrapkubeconfig.kb.io
@@ -1912,7 +1912,7 @@ webhooks:
   clientConfig:
     service:
       name: byoh-webhook-service
-      namespace: byoh-system
+      namespace: capi-byoh
       path: /validate-infrastructure-cluster-x-k8s-io-v1beta1-byohost
   failurePolicy: Fail
   name: vbyohost.kb.io
