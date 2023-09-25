@@ -1,6 +1,7 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: capi-byoh
+  name: capi-system
   labels:
-    name: capi-byoh
+    name: capi-system
