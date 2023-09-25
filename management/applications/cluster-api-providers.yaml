@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: cluster-api-providers
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/resources/cluster-api
+    path: management/resources/cluster-api-providers
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
@@ -26,7 +26,7 @@ spec:
       - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
