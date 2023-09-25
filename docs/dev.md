@@ -1,61 +1,27 @@
-# Local dev
+# Basic getting started (Clean it later)
 
 
-## 1. Management cluster initialization
-
-First, let's begin by starting a minikube kubernetes cluster which is going to our **Management cluster**
-
+### Provision and deploy manager cluster (minikube)
 ```bash
-$ export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace"
-$ export CONTEXT="manager"
-$ mkdir -p $WORKSPACE
-$ $(git rev-parse --show-toplevel)/actions/provision/kubernetes/minikube/init.sh $CONTEXT $WORKSPACE/kubeconfig-manager
+(
+minikube delete --all && \
+export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace" && \
+mkdir -p $WORKSPACE && \
+export KUBECONFIG="$WORKSPACE/kubeconfig-manager" && \
+rm -rf $KUBECONFIG && \
+export CONTEXT="manager" && \
+mkdir -p $WORKSPACE && \
+$(git rev-parse --show-toplevel)/actions/distros/minikube/init.sh $CONTEXT $WORKSPACE/kubeconfig-manager && \
+$(git rev-parse --show-toplevel)/actions/deploy/manager.sh $KUBECONFIG $CONTEXT
+)
 ```
 
-## 2. Management cluster resources deployment
-
-We can now deploy our management cluster resources on the kubernetes cluster.
-
+### Provision a demo workload cluster (vagrant)
 ```bash
-$ export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace"
-$ export KUBECONFIG="$WORKSPACE/kubeconfig-manager"
-$ export CONTEXT="manager"
-$ $(git rev-parse --show-toplevel)/actions/deploy/manager.sh $KUBECONFIG $CONTEXT
-```
-
-## 3. Check everything is running correctly
-
-If you dont have external access to the ArgoCD service NodePort, LoadBalancer for example, you can use kubectl to forward an http tunel
-to the service on your local system.
-
-Using this command, the Management cluster's ArgoCD WebUI should be accessible at: `http(s)://127.0.0.1:8080`
-
-*Default credentials for the demonstration are:*
-
-- username: admin
-- password: password
-
-```bash
-$ kubectl port-forward -n argocd svc/argocd-server 8080:80
-```
-
-## 4. Workload cluster initialization
-
-We could use almost anything as workload cluster (vms, baremetal, raseberry pie, etc). This environment is using `Vagrant` and [Libvirt](https://ubuntu.com/server/docs/virtualization-libvirt) to run a single ubuntu vanilla node with nothing installed on it yet.
-
-*First, it is not already done, you have to install dependencies.*
-
-```bash
-$ sudo apt-get -y purge vagrant-libvirt
-$ sudo apt-mark hold vagrant-libvirt
-$ sudo apt-get -y update
-$ sudo apt-get install -y qemu libvirt-daemon-system ebtables libguestfs-tools vagrant ruby-fog-libvirt
-$ vagrant plugin install vagrant-libvirt
-```
-
-*Vagrantfile*
-
-```groovy
+(
+export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace"
+mkdir -p $WORKSPACE
+cat <<EOF > $WORKSPACE/Vagrantfile
 Vagrant.configure("2") do |config|
   config.vagrant.plugins = "vagrant-libvirt"
   config.vm.define :cluster do |cluster|
@@ -63,19 +29,32 @@ Vagrant.configure("2") do |config|
     cluster.vm.network :private_network, :ip => "10.20.30.40"
   end
 end
+EOF
+cd $WORKSPACE
+virsh undefine .workspace_cluster > /dev/null 2>&1
+virsh vol-delete --pool default .workspace_cluster.img > /dev/null 2>&1
+vagrant destroy --force > /dev/null 2>&1
+vagrant up --provision --provider=libvirt
+)
 ```
 
-We can now start the provisioning.
+### Install VM Prerequisites and the Bring Your Own Host agent binary
+
+*Step references*
+
+https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost/blob/main/docs/getting_started.md#vm-prerequisites
+
+https://stackoverflow.com/questions/305035/how-to-use-ssh-to-run-a-local-shell-script-on-a-remote-machine
+
 
 ```bash
-$ virsh list
-$ virsh destroy [YOURCLUSTER]
-$ vagrant up --provision --provider=libvirt
+export WORKLOAD_USER="vagrant"
+export WORKLOAD_PASSWORD="vagrant"
+export WORKLOAD_IP="192.168.121.215"
+export BYOH_AGENT_DOWNLOAD="https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost/releases/download/v0.4.0/byoh-hostagent-linux-amd64"
+sshpass -p $WORKLOAD_PASSWORD ssh $WORKLOAD_USER@$WORKLOAD_IP <<'ENDSSH'
+sudo apt-get -y install socat ebtables ethtool conntrack
+grep -q "127.0.1.1.*$(hostname)" /etc/hosts || sudo echo "127.0.0.1.*$(hostname)" >> /etc/hosts
+ENDSSH
 ```
 
-Download and install clusterctl
-
-```bash
-$ curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.5.1/clusterctl-linux-amd64 -o clusterctl
-$ sudo install -o root -g root -m 0755 clusterctl /usr/local/bin/clusterctl
-```
