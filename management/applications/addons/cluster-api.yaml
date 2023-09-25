@@ -26,8 +26,8 @@ spec:
       prune: false
       selfHeal: true
     syncOptions:
-      - Validate=false
+      # - Validate=false
       - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
+      # - ApplyOutOfSyncOnly=true
       - RespectIgnoreDifferences=true
       # - SkipDryRunOnMissingResource=true
