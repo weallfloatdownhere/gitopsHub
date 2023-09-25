@@ -22,9 +22,6 @@ spec:
       jsonPointers:
       - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
-    managedNamespaceMetadata:
-      annotations:
-        isargo: yes
     automated:
       prune: false
       selfHeal: true
