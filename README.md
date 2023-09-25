@@ -4,6 +4,7 @@
 
 ```bash
 ( 
+minikube delete --all && \
 export WORKSPACE="$(git rev-parse --show-toplevel)/.workspace" && \
 mkdir -p $WORKSPACE && \
 export KUBECONFIG="$WORKSPACE/kubeconfig-manager" && \

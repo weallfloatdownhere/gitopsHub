@@ -17,10 +17,10 @@ spec:
     namespace: capi-operator-system
     server: https://kubernetes.default.svc
   ignoreDifferences:
-    - group: '*'
-      kind: MutatingWebhookConfiguration
-      jqPathExpressions:
-        - '.webhooks[]?.clientConfig.caBundle'
+    - group: 'operator.cluster.x-k8s.io'
+      kind: CustomResourceDefinition
+      jsonPointers:
+      - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
     automated:
       prune: true
