@@ -1,10 +1,12 @@
-**/**/charts
-.vagrant/
 *.tmp
 *.log
-test.sh
 *.secret
+
+**/**/charts
+**/tests/workspace
+.vagrant/
+
 vcluster
 kubectl
-kubeconfig*
-.workspace
+nohup.out
+test.sh

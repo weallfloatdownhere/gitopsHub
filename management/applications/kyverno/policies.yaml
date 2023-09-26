@@ -15,7 +15,7 @@ spec:
       recurse: true
       include: '*.yaml'
   destination:
-    namespace: kyverno-policies
+    namespace: kyverno
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
