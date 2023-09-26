@@ -1,4 +1,5 @@
 # https://github.com/kubernetes-sigs/cluster-api-operator/tree/main/docs#installing-the-coreprovider
+# https://cluster-api.sigs.k8s.io/tasks/experimental-features/cluster-class/index.html
 
 apiVersion: operator.cluster.x-k8s.io/v1alpha2
 kind: CoreProvider
