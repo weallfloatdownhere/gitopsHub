@@ -1,12 +1,12 @@
 *.tmp
 *.log
 *.secret
-
+nohup.out
+test.sh
 **/**/charts
 **/tests/workspace
 .vagrant/
-
+demo/
+minikube-linux-amd64
 vcluster
 kubectl
-nohup.out
-test.sh
