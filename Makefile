@@ -1,6 +1,7 @@
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
+	
 	kubectl delete -k manager/resources/cert-manager
 	kubectl delete -k bootstrap/argocd/overlay
 	kubectl delete ns argocd
