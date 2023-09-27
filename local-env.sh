@@ -14,3 +14,5 @@ mv "$GIT_ROOT/k.tmp" $KUBECONFIG
 if test -f $KUBECONFIG; then
 make install
 fi
+
+kubectl port-forward -n argocd svc/argocd-server 8080:80
