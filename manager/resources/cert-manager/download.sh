@@ -6,4 +6,5 @@
   --create-namespace \
   --version $VERSION \
   --set installCRDs=true \
+  --set startupapicheck.enabled=false \
   > cert-manager.yaml

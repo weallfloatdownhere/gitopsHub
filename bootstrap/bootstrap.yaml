@@ -3,8 +3,9 @@ kind: Application
 metadata:
   name: bootstrap
   namespace: argocd
-  #finalizers:
-  #  - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   project: default
   source:
@@ -20,9 +21,9 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
     syncOptions:
-#     - ApplyOutOfSyncOnly=true
+      - ApplyOutOfSyncOnly=true
       - PrunePropagationPolicy=foreground
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
