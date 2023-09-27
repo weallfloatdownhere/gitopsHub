@@ -2,7 +2,7 @@
 *.log
 *.secret
 nohup.out
-test.sh
+*.kubeconfig
 **/**/charts
 **/tests/workspace
 .vagrant/

@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: argo-cd/apps
+    path: manager/apps
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
     directory:
