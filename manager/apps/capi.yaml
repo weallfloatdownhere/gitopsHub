@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: capi
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: default
+  source:
+    path: manager/resources/capi
+    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
+  destination:
+    namespace: capi-system
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+    - group: '*'
+      kind: CustomResourceDefinition
+      jsonPointers:
+      - /spec/conversion/webhook/clientConfig/caBundle
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
