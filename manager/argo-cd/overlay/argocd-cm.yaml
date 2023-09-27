@@ -10,6 +10,11 @@ data:
   application.resourceTrackingMethod: annotation
   kustomize.buildOptions: --enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone
   resource.ignoreResourceUpdatesEnabled: "true"
+  resource.customizations.ignoreDifferences.all: |
+    managedFieldsManagers:
+      - kube-controller-manager
+    jsonPointers:
+      - /spec/replicas
   resource.compareoptions: |
     ignoreAggregatedRoles: true
     ignoreResourceStatusField: all
