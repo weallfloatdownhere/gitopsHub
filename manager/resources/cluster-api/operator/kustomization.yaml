@@ -7,9 +7,9 @@ helmCharts:
   repo: https://kubernetes-sigs.github.io/cluster-api-operator
   releaseName: cluster-api-operator
   version: 0.6.0
-  namespace: cluster-api-operator
-  includeCRDs: true
+  namespace: capi-operator-system
   valuesFile: values.yaml
+  includeCRDs: true
 
 resources:
   - namespace.yaml
