@@ -4,10 +4,10 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - ../bases/v2.7.2
-  - namespace.yaml
+- ../base
+- namespace.yaml
   
 patchesStrategicMerge:
   - argocd-cm.yaml
-  - argocd-admin-password.yaml
+  - admin-password.yaml
   

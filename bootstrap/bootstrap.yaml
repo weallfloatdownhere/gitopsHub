@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: bootstrap
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,7 +13,6 @@ spec:
     targetRevision: HEAD
     directory:
       recurse: true
-      exclude: 'root.yaml'
       include: '*.yaml'
   destination:
     namespace: argocd
@@ -21,6 +20,8 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
     syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
       - RespectIgnoreDifferences=true
