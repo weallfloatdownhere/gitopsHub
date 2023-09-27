@@ -1,4 +1,3 @@
-
 install:
 	kubectl create ns argocd
 	kubectl apply -n argocd -k bootstrap/argocd/overlay
