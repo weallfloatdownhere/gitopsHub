@@ -56,9 +56,6 @@ data:
     - kube-controller-manager
 
   # Configuration to define customizations ignoring differences during watched resource updates to skip application reconciles.
-  resource.customizations.ignoreResourceUpdates.all: |
-    jsonPointers:
-    - /metadata/resourceVersion
 
   resource.customizations.health.certmanager.k8s.io-Certificate: |
     hs = {}
