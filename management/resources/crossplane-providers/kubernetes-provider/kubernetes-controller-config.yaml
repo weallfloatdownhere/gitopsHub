@@ -1,8 +1,0 @@
-apiVersion: pkg.crossplane.io/v1alpha1
-kind: ControllerConfig
-metadata:
-  name: kubernetes-controller-config
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
-spec:
-  serviceAccountName: kubernetes-provider-cluster-admin

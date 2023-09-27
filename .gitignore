@@ -1,10 +1,12 @@
 **/**/charts
-.vagrant/
+
 *.tmp
 *.log
-test.sh
+*.kubeconfig
 *.secret
+
 vcluster
 kubectl
-kubeconfig*
-.workspace
+
+.vagrant/
+.workspace/
