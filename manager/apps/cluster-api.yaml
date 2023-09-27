@@ -20,8 +20,10 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
+      - Validate=false
       - RespectIgnoreDifferences=true
+      - SkipDryRunOnMissingResource=true
+      # - ApplyOutOfSyncOnly=true
   ignoreDifferences:
     - group: '*'
       kind: CustomResourceDefinition

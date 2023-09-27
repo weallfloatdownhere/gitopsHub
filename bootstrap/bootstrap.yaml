@@ -3,8 +3,8 @@ kind: Application
 metadata:
   name: bootstrap
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -23,5 +23,6 @@ spec:
       selfHeal: true
     syncOptions:
 #     - ApplyOutOfSyncOnly=true
+      - PrunePropagationPolicy=foreground
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
