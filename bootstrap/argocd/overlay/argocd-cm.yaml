@@ -51,9 +51,8 @@ data:
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
     jqPathExpressions:
-    - .webhooks[0].clientConfig.caBundle
-    managedFieldsManagers:
-    - kube-controller-manager
+    - '.webhooks[0].clientConfig.caBundle'
+    - '.webhooks[]?.clientConfig.caBundle'
 
   # Configuration to define customizations ignoring differences during watched resource updates to skip application reconciles.
 
