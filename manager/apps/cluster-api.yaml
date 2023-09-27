@@ -3,29 +3,23 @@ kind: Application
 metadata:
   name: cluster-api
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
     path: manager/resources/cluster-api
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
     namespace: capi-operator-system
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
     syncOptions:
-      - CreateNamespace=true
       - Validate=false
       - RespectIgnoreDifferences=true
       - SkipDryRunOnMissingResource=true
-      # - ApplyOutOfSyncOnly=true
-  ignoreDifferences:
-    - group: '*'
-      kind: CustomResourceDefinition
-      jsonPointers:
-      - /spec/conversion/webhook/clientConfig/caBundle

@@ -2,6 +2,6 @@ apiVersion: operator.cluster.x-k8s.io/v1alpha2
 kind: InfrastructureProvider
 metadata:
   name: byoh
-  namespace: capi-infrastructure-providers
+  namespace: capi-operator-system
 spec:
   version: v0.4.0

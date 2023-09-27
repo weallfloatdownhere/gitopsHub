@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: capi-bootstrap-providers
-  labels:
-    name: capi-bootstrap-providers
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"

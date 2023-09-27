@@ -4,6 +4,6 @@ apiVersion: operator.cluster.x-k8s.io/v1alpha2
 kind: BootstrapProvider
 metadata:
   name: kubeadm
-  namespace: capi-bootstrap-providers
+  namespace: capi-operator-system
 spec:
   version: v1.5.1

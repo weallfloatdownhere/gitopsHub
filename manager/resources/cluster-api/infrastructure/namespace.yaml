@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: capi-infrastructure-providers
-  labels:
-    name: capi-infrastructure-providers
-  annotations:
-    argocd.argoproj.io/sync-wave: "4"
