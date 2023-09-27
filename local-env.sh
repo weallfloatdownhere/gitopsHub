@@ -11,4 +11,6 @@ minikube start -p manager --memory 3078 --cpus 2 --network bridge
 kubectl config view --context $CONTEXT --flatten --minify > "$GIT_ROOT/k.tmp"
 mv "$GIT_ROOT/k.tmp" $KUBECONFIG
 
-echo "Kubeconfig file available at: $KUBECONFIG"
+if test -f $KUBECONFIG; then
+make install
+fi
