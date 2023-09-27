@@ -7,4 +7,5 @@ helmCharts:
   repo: https://kubernetes-sigs.github.io/cluster-api-operator
   releaseName: cluster-api-operator
   version: 0.6.0
+  namespace: cluster-api-operator
   valuesFile: values.yaml
