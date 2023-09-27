@@ -12,3 +12,8 @@ helmCharts:
   version: 0.6.0
   namespace: capi-operator-system
   includeCRDs: true
+  valuesInline:
+    cert-manager:
+      enabled: false
+      fullnameOverride: "cert-manager"
+      namespace: "cert-manager"
