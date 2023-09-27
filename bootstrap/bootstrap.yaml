@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
@@ -23,6 +25,6 @@ spec:
       selfHeal: false
     syncOptions:
 #     - ApplyOutOfSyncOnly=true
-      - PrunePropagationPolicy=foreground
+#     - PrunePropagationPolicy=foreground
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
