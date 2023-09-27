@@ -3,9 +3,8 @@ kind: Application
 metadata:
   name: bootstrap
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "10"
-    argocd.argoproj.io/compare-options: IgnoreExtraneous
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -20,10 +19,10 @@ spec:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: false
     syncOptions:
-      - ApplyOutOfSyncOnly=true
+#     - ApplyOutOfSyncOnly=true
       - PrunePropagationPolicy=foreground
       - CreateNamespace=true
       - RespectIgnoreDifferences=true

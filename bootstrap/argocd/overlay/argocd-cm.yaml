@@ -26,7 +26,17 @@ data:
 
   resource.compareoptions: |
     ignoreAggregatedRoles: true
-    ignoreResourceStatusField: all
+    ignoreResourceStatusField: crd
+
+  resource.ignoreResourceUpdatesEnabled: "true"
+
+  resource.customizations.ignoreResourceUpdates.all: |
+    jsonPointers:
+    - /metadata/resourceVersion
+
+  resource.customizations.ignoreResourceUpdates.argoproj.io_Application: |
+    jsonPointers:
+    - /status
 
   resource.customizations: |
     extensions/Ingress:
