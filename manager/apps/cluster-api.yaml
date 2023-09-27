@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/cluster-api/overlay
+    path: manager/resources/cluster-api
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
