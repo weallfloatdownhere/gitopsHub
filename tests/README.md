@@ -45,7 +45,7 @@ $ minikube delete --all
 Download the newly provisionned minikube cluster.
 
 ```shell
-$ kubectl config view --context manager --flatten --minify > manager.kubeconfig
+$ kubectl config view --flatten --minify --context manager > manager.kubeconfig
 ```
 
 We can new deploy the manager's resources on the minikube cluster using the kubeconfig file `manager.kubeconfig` generated earlier.

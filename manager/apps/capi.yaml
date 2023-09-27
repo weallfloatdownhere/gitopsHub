@@ -24,7 +24,8 @@ spec:
       - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
     automated:
-      prune: true
+      prune: false
       selfHeal: true
     syncOptions:
+      - CreateNamespace=true
       - RespectIgnoreDifferences=true
