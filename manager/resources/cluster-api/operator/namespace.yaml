@@ -4,3 +4,5 @@ metadata:
   name: capi-operator-system
   labels:
     name: capi-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"

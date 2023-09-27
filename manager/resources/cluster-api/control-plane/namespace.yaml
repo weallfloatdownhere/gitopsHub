@@ -4,3 +4,5 @@ metadata:
   name: capi-ctrlplane-providers
   labels:
     name: capi-ctrlplane-providers
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"

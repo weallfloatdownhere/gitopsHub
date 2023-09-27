@@ -12,3 +12,7 @@ Todo..
 ## Powered by
 
 Todo..
+
+## Resources
+
+- https://metal3.io/blog/2022/07/08/One_cluster_multiple_providers.html

@@ -4,3 +4,5 @@ metadata:
   name: capi-system
   labels:
     name: capi-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
