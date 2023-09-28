@@ -4,5 +4,5 @@ metadata:
   name: argocd
   labels:
     name: argocd
-  # finalizers:
-  #   - resources-finalizer.argocd.argoproj.io
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
