@@ -3,7 +3,7 @@
 *.secret
 *.kubeconfig
 
-**/charts
+**/charts/*.tgz
 
 *workspace/
 *vagrant/
