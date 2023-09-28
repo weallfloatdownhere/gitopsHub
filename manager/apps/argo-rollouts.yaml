@@ -14,3 +14,7 @@ spec:
   destination:
     namespace: argo-rollouts
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: false
