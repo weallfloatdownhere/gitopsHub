@@ -2,10 +2,21 @@ KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
 	kubectl delete -f manager/bootstrap.yaml -n argocd
+	kubectl delete -f manager/apps/argocd.yaml
+	kubectl delete -f manager/apps/argo-rollouts.yaml
+	kubectl delete -f manager/apps/cert-manager.yaml
+	kubectl delete -f manager/apps/cluster-api.yaml
+	kubectl delete -f manager/apps/cluster-api-operator.yaml
+	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api/overlay | kubectl delete -f -
+	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api-operator/overlay | kubectl delete -f -
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl delete -f -
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argo-rollouts/overlay | kubectl delete -f -
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl delete -f -
 	kubectl delete ns argocd
+	kubectl delete ns argo-rollouts
+	kubectl delete ns cert-manager
+	kubectl delete ns capi-operator-system
+	kubectl delete ns cluster-api
 
 	
 install:
