@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-api
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: manager/resources/cluster-api/overlay
+    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    targetRevision: HEAD
+  destination:
+    namespace: cluster-api
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - RespectIgnoreDifferences=true
+    - CreateNamespace=true
+    automated:
+      selfHeal: false
+      prune: false
