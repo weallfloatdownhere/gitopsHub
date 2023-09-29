@@ -16,6 +16,12 @@ spec:
   destination:
     namespace: flux-system
     server: https://kubernetes.default.svc
+  retry: 
+    limit: 10
+    backoff:
+      duration: 20s
+      factor: 1
+      maxDuration: 1m
   syncPolicy:
     automated:
       selfHeal: false
@@ -26,4 +32,4 @@ spec:
       - ServerSideApply=true
       - AutoCreateFluxResources=true
       - FluxSubsystem=true
-      # - Validate=false
+      - Validate=false
