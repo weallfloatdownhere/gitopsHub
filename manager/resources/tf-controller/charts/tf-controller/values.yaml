@@ -104,7 +104,7 @@ allowBreakTheGlass: false
 #  ClusterDomain indicates the cluster domain, defaults to cluster.local.
 clusterDomain: cluster.local
 awsPackage:
-  install: true
+  install: false
   tag: v4.38.0-v1alpha11
   repository: ghcr.io/tf-controller/aws-primitive-modules
 # -- Runner-specific configurations

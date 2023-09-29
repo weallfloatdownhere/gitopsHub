@@ -1,3 +1,4 @@
+ARGO_FLAVOR=flamingo
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
@@ -12,7 +13,7 @@ clean:
 
 install:
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay/$(ARGO_FLAVOR) | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
