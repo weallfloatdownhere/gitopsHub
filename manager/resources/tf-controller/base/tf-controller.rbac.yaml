@@ -1,9 +1,20 @@
-{{- if .Values.rbac.create }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tf-controller
+  namespace: flux-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tf-runner
+  namespace: flux-system
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: tf-leader-election-role
-  namespace: {{ .Release.Namespace }}
+  namespace: flux-system
 rules:
 - apiGroups:
   - ""
@@ -47,6 +58,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  creationTimestamp: null
   name: tf-manager-role
 rules:
 - apiGroups:
@@ -150,15 +162,15 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: tf-leader-election-rolebinding
-  namespace: {{ .Release.Namespace }}
+  namespace: flux-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: tf-leader-election-role
 subjects:
 - kind: ServiceAccount
-  name: {{ include "tf-controller.serviceAccountName" . }}
-  namespace: {{ .Release.Namespace }}
+  name: tf-controller
+  namespace: flux-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -170,8 +182,8 @@ roleRef:
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
-  name: {{ include "tf-controller.serviceAccountName" . }}
-  namespace: {{ .Release.Namespace }}
+  name: tf-controller
+  namespace: flux-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -183,8 +195,8 @@ roleRef:
   name: tf-manager-role
 subjects:
 - kind: ServiceAccount
-  name: {{ include "tf-controller.serviceAccountName" . }}
-  namespace: {{ .Release.Namespace }}
+  name: tf-controller
+  namespace: flux-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -195,9 +207,6 @@ roleRef:
   kind: ClusterRole
   name: tf-runner-role
 subjects:
-{{- range include "tf-controller.runner.allowedNamespaces" . | fromJsonArray }}
 - kind: ServiceAccount
-  name: {{ include "tf-controller.runner.serviceAccountName" $ }}
-  namespace: {{ . }}
-{{- end }}
-{{- end }}
+  name: tf-runner
+  namespace: flux-system
