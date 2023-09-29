@@ -9,7 +9,7 @@ resources:
 
 patchesStrategicMerge:
   - argocd-cm.yaml
-  - argocd-cmd-params-cm.yaml
+# - argocd-cmd-params-cm.yaml
   - admin-password.yaml
 
 images:
