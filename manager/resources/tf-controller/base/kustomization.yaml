@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
 - tf-controller.crds.yaml
 - tf-controller.deployment.yaml
-# - tf-controller.packages.yaml
 - tf-controller.rbac.yaml

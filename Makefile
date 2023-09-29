@@ -25,8 +25,8 @@ install:
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argo-rollouts" -n argo-rollouts --timeout=300s
 # Tf-controller
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/tf-controller/overlay | kubectl apply --server-side --validate=false -f -
-	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=tf-controller" -n flux-system --timeout=300s
-	
+	kubectl wait --for=condition=available deployment -l "control-plane=tf-controller" -n flux-system --timeout=300s
+
 # Bootstrap App-ofApps
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
