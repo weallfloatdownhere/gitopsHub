@@ -1,4 +1,5 @@
 # Super Gitops repository.
+
 Structured repository to managed a fleet of Kubernetes clusters in an opionated way.
 
 ## Getting started
@@ -9,9 +10,16 @@ Todo..
 
 Todo..
 
+## Cluster-api providers
 
-## Download charts
-
+| Type                 | Provider                                                                                      |
+| -------------------- | --------------------------------------------------------------------------------------------- |
+| CoreProvider         | [Operator](https://github.com/kubernetes-sigs/cluster-api-operator)                           |
+| ControlPlaneProvider | [Kubeadm](https://github.com/kubernetes-sigs/cluster-api/tree/main/controlplane/kubeadm)      |
+| BootstrapProvider    | [Kubeadm](https://github.com/kubernetes-sigs/cluster-api/tree/main/bootstrap/kubeadm)         |
+| Infrastructure       | [docker](https://github.com/kubernetes-sigs/cluster-api/tree/main/test/infrastructure/docker) |
+| Infrastructure       | [byoh](https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost)                 |
+| Infrastructure       | [Metal3](https://github.com/metal3-io/cluster-api-provider-metal3)                            |
 
 ## Powered by
 
