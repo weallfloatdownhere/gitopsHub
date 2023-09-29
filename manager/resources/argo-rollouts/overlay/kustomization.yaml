@@ -6,8 +6,9 @@ namespace: argo-rollouts
 resources:
 - ../base/install.yaml
 - ../base/namespace.yaml
-  
-#patchesStrategicMerge:
-#  - argocd-cm.yaml
-#  - admin-password.yaml
-  
+
+patches:
+  - target:
+       group: '.*'
+       kind: CustomResourceDefinition
+    path: crds-sync-wave.yaml

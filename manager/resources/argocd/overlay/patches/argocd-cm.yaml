@@ -27,7 +27,7 @@ data:
 
   resource.compareoptions: |
     ignoreAggregatedRoles: true
-    ignoreResourceStatusField: all
+    ignoreResourceStatusField: crd
 
   #resource.customizations.ignoreResourceUpdates.all: |
   #  jsonPointers:
@@ -64,7 +64,6 @@ data:
     - '.webhooks[]?.clientConfig.caBundle'
 
   # Configuration to define customizations ignoring differences during watched resource updates to skip application reconciles.
-
   resource.customizations.health.argoproj.io_Application: |
     hs = {}
     hs.status = "Progressing"

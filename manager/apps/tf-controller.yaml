@@ -18,12 +18,12 @@ spec:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
       prune: false
     syncOptions:
       - ApplyOutOfSyncOnly=true
       - CreateNamespace=true
       - ServerSideApply=true
+      - AutoCreateFluxResources=true
+      - FluxSubsystem=true
       # - Validate=false
-      # - AutoCreateFluxResources=true
-      # - FluxSubsystem=true

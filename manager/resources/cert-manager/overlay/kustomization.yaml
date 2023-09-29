@@ -15,8 +15,8 @@ helmCharts:
   includeCRDs: true
   valuesFile: values.yaml
 
-#patches:
-#  - target:
-#       group: '.*'
-#       kind: CustomResourceDefinition
-#    path: crds-finilizers.yaml
+patches:
+  - target:
+       group: '.*'
+       kind: CustomResourceDefinition
+    path: crds-sync-wave.yaml
