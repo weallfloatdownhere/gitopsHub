@@ -13,3 +13,9 @@ helmCharts:
     startupapicheck:
       enabled: true
       timeout: 1m
+
+patches:
+  - target:
+       group: '.*'
+       kind: CustomResourceDefinition
+    path: crds-finilizers.yaml
