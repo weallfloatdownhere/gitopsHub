@@ -4,7 +4,8 @@ kind: Kustomization
 namespace: capi-operator-system
 
 resources:
-  - ../base
+- ../base/install.yaml
+- ../base/namespace.yaml
 
 patches:
   - target:

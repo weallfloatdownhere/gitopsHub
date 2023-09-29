@@ -1,24 +1,18 @@
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
-	- kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl delete -f -
-	- kubectl delete ns cert-manager
-	- kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api/overlay| kubectl delete -f -
-	- kubectl delete ns cluster-api
-	- kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api-operator/overlay | kubectl delete -f -
-	- kubectl delete ns capi-operator-system
-	- kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/argo-rollouts/overlay | kubectl delete -f -
-	- kubectl delete ns argo-rollouts
-	- kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl delete -f -
+	- kubectl delete -f manager/bootstrap.yaml
 	- kubectl delete ns argocd
+	- kubectl delete ns cert-manager
+	- kubectl delete ns cluster-api
+	- kubectl delete ns capi-operator-system
+	- kubectl delete ns argo-rollouts
 	
 install:
-	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply --wait -f -
-	kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
+	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
+	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=cert-manager" -n cert-manager --timeout=300s
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
-	kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/argo-rollouts/overlay | kubectl apply -f -
-	kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api-operator/overlay | kubectl apply -f -
-	kustomize build --load-restrictor=LoadRestrictionsNone manager/resources/cluster-api/overlay | kubectl apply -f -
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
 connect:
