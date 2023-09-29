@@ -5,18 +5,14 @@ resources:
   - namespace.yaml
 
 helmGlobals: 
-  chartHome: "../base"
+  chartHome: "../charts"
 
 helmCharts:
 - name: cert-manager
   releaseName: cert-manager
   version: v1.13.1
   namespace: cert-manager
-  valuesInline:
-    installCRDs: true
-    startupapicheck:
-      enabled: true
-      timeout: 1m
+  valuesFile: values.yaml
 
 patches:
   - target:
