@@ -28,6 +28,6 @@ install:
 	kubectl wait --for=condition=available deployment -l "control-plane=tf-controller" -n flux-system --timeout=300s
 # Bootstrap App-ofApps
 	kubectl apply -n argocd -f manager/bootstrap.yaml
-
-connect:
+# Forward ArgoCD WebUI to 127.0.0.1:8080
+	sleep 10
 	kubectl port-forward -n argocd svc/argocd-server 8080:80
