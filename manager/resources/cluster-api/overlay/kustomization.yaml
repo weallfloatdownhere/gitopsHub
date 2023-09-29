@@ -11,8 +11,8 @@ resources:
   - ../base/core/cluster-api.yaml
   - ../base/namespace.yaml
 
-patches:
- - target:
-      group: operator.cluster.x-k8s.io
-      version: v1alpha2
-   path: namespaces.yaml
+#patches:
+# - target:
+#      group: operator.cluster.x-k8s.io
+#      version: v1alpha2
+#   path: namespaces.yaml
