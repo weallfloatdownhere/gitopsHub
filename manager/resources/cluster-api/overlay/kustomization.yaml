@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: cluster-api
 
 resources:
-  - ./providers.ctrlplane.yaml
+  - ./providers.ctrlplanes.yaml
   - ./providers.infratructure.yaml
   - ./providers.bootstrap.yaml
   - ../base/cluster-api.yaml
