@@ -10,7 +10,6 @@ clean:
 
 install:
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
-	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=cert-manager" -n cert-manager --timeout=300s
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	kubectl apply -n argocd -f manager/bootstrap.yaml
