@@ -23,5 +23,7 @@ spec:
     syncOptions:
       - ApplyOutOfSyncOnly=true
       - CreateNamespace=true
+      - ServerSideApply=true
+      # - Validate=false
       # - AutoCreateFluxResources=true
       # - FluxSubsystem=true

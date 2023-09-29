@@ -9,12 +9,14 @@ clean:
 	- kubectl delete ns capi-operator-system
 	- kubectl delete ns kyverno
 	- kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl delete -f -
+	- kubectl delete ns flux-system
 	- kubectl delete ns argocd
 
 install:
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay/$(ARGO_FLAVOR) | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/tf-controller/overlay | kubectl apply -f -
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
 connect:
