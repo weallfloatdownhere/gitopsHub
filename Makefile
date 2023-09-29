@@ -24,10 +24,17 @@ install:
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argo-rollouts/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argo-rollouts" -n argo-rollouts --timeout=300s
 # Tf-controller
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/tf-controller/overlay | kubectl apply --server-side --validate=false -f -
-	kubectl wait --for=condition=available deployment -l "control-plane=tf-controller" -n flux-system --timeout=300s
+#	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/tf-controller/overlay | kubectl apply --server-side --validate=false -f -
+#	kubectl wait --for=condition=available deployment -l "control-plane=tf-controller" -n flux-system --timeout=300s
 # Bootstrap App-ofApps
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 # Forward ArgoCD WebUI to 127.0.0.1:8080
 	sleep 10
+	kubectl port-forward -n argocd svc/argocd-server 8080:80
+
+local:
+# Start a Minikube local cluster.
+	- ./scripts/local-env.sh
+
+connect:
 	kubectl port-forward -n argocd svc/argocd-server 8080:80
