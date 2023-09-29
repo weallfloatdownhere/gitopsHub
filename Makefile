@@ -31,4 +31,9 @@ install:
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
 connect:
-	kubectl port-forward -n argocd svc/argocd-server 8080:80
+	kubectl port-forward -n argocd svc/argocd-server 8080:80 &
+	python3 -m webbrowser https://127.0.0.1:8080
+	
+stop:
+	killall kubectl
+	
