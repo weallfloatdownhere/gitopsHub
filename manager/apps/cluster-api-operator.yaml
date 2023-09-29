@@ -14,21 +14,18 @@ spec:
     path: manager/resources/cluster-api-operator/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
-
   destination:
     namespace: capi-operator-system
     server: https://kubernetes.default.svc
-
   ignoreDifferences:
   - group: "*"
     kind: "CustomResourceDefinition"
     jsonPointers:
     - /spec/conversion/webhook/clientConfig/caBundle
-
   syncPolicy:
-    syncOptions:
-    - RespectIgnoreDifferences=true
-    - CreateNamespace=true
     automated:
       selfHeal: false
       prune: false
+    syncOptions:
+    - RespectIgnoreDifferences=true
+    - CreateNamespace=true
