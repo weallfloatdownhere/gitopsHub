@@ -1,3 +1,4 @@
+ARGOCD_FLAVOR=flamingo
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
@@ -9,8 +10,6 @@ clean:
 	- kubectl delete ns kyverno
 	- kubectl delete ns flux-system
 	- kubectl delete ns argocd
-
-ARGOCD_FLAVOR=flamingo
 
 install:
 # Cert-manager
@@ -31,9 +30,4 @@ install:
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
 connect:
-	kubectl port-forward -n argocd svc/argocd-server 8080:80 &
-	python3 -m webbrowser https://127.0.0.1:8080
-	
-stop:
-	killall kubectl
-	
+	kubectl port-forward -n argocd svc/argocd-server 8080:80

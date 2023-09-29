@@ -2,11 +2,18 @@
 
 version: '3'
 
-vars:
-  GREETING: Hello, World!
-
 tasks:
   default:
+    aliases: [ local, test ]
+    env:
+      KUBECONFIG: "{{.GIT_ROOT}}/manager/manager.kubeconfig"
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - rm -rf ~/.kube/config
+      - rm -rf {{.KUBECONFIG}}
+      - minikube delete --all
+      - minikube start -p manager --memory 3078 --cpus 2 --network bridge
+      - kubectl config view --context manager --flatten --minify > {{.GIT_ROOT}}/manager/k.tmp
+      - mv {{.GIT_ROOT}}/manager/k.tmp {{.GIT_ROOT}}/manager/manager.kubeconfig
+    vars:
+      GIT_ROOT:
+        sh: echo $(git rev-parse --show-toplevel)
