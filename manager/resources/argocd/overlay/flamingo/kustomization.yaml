@@ -4,16 +4,15 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-- ../base/install.yaml
-- ../base/namespace.yaml
-
-patchesStrategicMerge:
-  - argocd-cm.yaml
-# - argocd-cmd-params-cm.yaml
-  - admin-password.yaml
+- ../../base/install.yaml
+- ../../base/namespace.yaml
 
 images:
   - name: quay.io/argoproj/argocd:v2.7.10
     newName: ghcr.io/flux-subsystem-argo/fsa/argocd
     newTag: v2.7.10-fl.15-main-688d2fd7
-  
+
+patchesStrategicMerge:
+  - ../patches/argocd-cmd-params-cm.yaml
+  - ../patches/argocd-cm.yaml
+  - ../patches/admin-password.yaml

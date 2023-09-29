@@ -4,5 +4,15 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
-- ../base/install.yaml
-- ../base/namespace.yaml
+  - ./namespace.yaml
+
+helmGlobals: 
+  chartHome: "../charts"
+
+helmCharts:
+- name: tf-controller
+  releaseName: tf-controller
+  version: 0.15.1
+  namespace: flux-system
+  includeCRDs: true
+  valuesFile: values.yaml
