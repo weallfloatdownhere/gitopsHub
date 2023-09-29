@@ -26,5 +26,5 @@ spec:
       - ServerSideApply=true
       - Validate=false
       - AutoCreateFluxResources=true
-      #- FluxSubsystem=true
+      - FluxSubsystem=true
       

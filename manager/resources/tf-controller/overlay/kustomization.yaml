@@ -11,3 +11,9 @@ bases:
   - ../base/tf-controller.rbac.yaml
   - ../base/tf-controller.crds.yaml
   - ../base/namespace.yaml
+
+patches:
+  - target:
+       group: '.*'
+       kind: CustomResourceDefinition
+    path: crds-sync-wave.yaml

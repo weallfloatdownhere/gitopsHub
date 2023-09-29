@@ -17,9 +17,10 @@ spec:
   syncPolicy:
     automated:
       allowEmpty: true
-      selfHeal: true
-      prune: true
+      selfHeal: false
+      prune: false
     syncOptions:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
+      - AutoCreateFluxResources=true
 
