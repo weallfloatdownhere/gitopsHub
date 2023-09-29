@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tf-controller
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: manager/resources/tf-controller/overlay
+    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    targetRevision: HEAD
+  destination:
+    namespace: flux-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: false
+      prune: false
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - AutoCreateFluxResources=true
+      - FluxSubsystem=true
+      - CreateNamespace=true
