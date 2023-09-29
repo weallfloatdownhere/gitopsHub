@@ -1,4 +1,3 @@
-ARGO_FLAVOR=flamingo
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 clean:
@@ -11,6 +10,8 @@ clean:
 	- kubectl delete ns flux-system
 	- kubectl delete ns argocd
 
+ARGOCD_FLAVOR=flamingo
+
 install:
 # Cert-manager
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
@@ -18,7 +19,7 @@ install:
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/component=controller" -n cert-manager --timeout=100s
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/component=cainjector" -n cert-manager --timeout=100s
 # Argocd
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay/$(ARGO_FLAVOR) | kubectl apply -f -
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay/$(ARGOCD_FLAVOR) | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 # Argo-rollouts
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argo-rollouts/overlay | kubectl apply -f -
@@ -26,7 +27,6 @@ install:
 # Tf-controller
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/tf-controller/overlay | kubectl apply --server-side --validate=false -f -
 	kubectl wait --for=condition=available deployment -l "control-plane=tf-controller" -n flux-system --timeout=300s
-
 # Bootstrap App-ofApps
 	kubectl apply -n argocd -f manager/bootstrap.yaml
 
