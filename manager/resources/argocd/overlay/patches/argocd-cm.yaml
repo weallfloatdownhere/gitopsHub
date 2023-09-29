@@ -27,6 +27,7 @@ data:
 
   resource.compareoptions: |
     ignoreAggregatedRoles: true
+    ignoreResourceStatusField: all
 
   #resource.customizations.ignoreResourceUpdates.all: |
   #  jsonPointers:
