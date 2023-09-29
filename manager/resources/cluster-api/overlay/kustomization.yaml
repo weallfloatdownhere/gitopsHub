@@ -4,12 +4,52 @@ kind: Kustomization
 namespace: cluster-api
 
 resources:
-  - ../base/control-planes/kubeadm.yaml
-  - ../base/bootstrap/kubeadm.yaml
-  - ../base/infrastructure/byoh.yaml
-  - ../base/infrastructure/docker.yaml
-  - ../base/core/cluster-api.yaml
-  - ../base/namespace.yaml
+  - namespace.yaml
+
+bases:
+- ../base
+
+patches:
+  - target:
+      kind: CoreProvider
+      name: cluster-api
+    path: version-core.cluster-api.yaml
+
+  - target:
+      kind: BootstrapProvider
+      name: kubeadm
+    path: version-bootstrap.kubeadm.yaml
+
+  - target:
+      kind: ControlPlaneProvider
+      name: kubeadm
+    path: version-infrastructure.byoh.yaml
+
+  - target:
+      kind: InfrastructureProvider
+      name: docker
+    path: version-infrastructure.docker.yaml
+
+  - target:
+      kind: InfrastructureProvider
+      name: byoh
+    path: version-infrastructure.byoh.yaml
+
+
+
+
+  #  patch: |-
+  #    - op: replace
+  #      path: /spec/version
+  #      value: v1.5.1
+  #- target:
+  #    kind: BootstrapProvider
+  #    name: kubeadm
+  #  patch: |-
+  #    - op: replace
+  #      path: /spec/version
+  #      value: v1.5.1
+
 
 #patches:
 # - target:

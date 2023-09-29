@@ -4,11 +4,10 @@ kind: Kustomization
 namespace: capi-operator-system
 
 resources:
-  - ../base/install.yaml
-  - ../base/namespace.yaml
+  - ../base
 
 patches:
- - target:
-      group: '.*'
-      kind: CustomResourceDefinition
-   path: crds-finilizers.yaml
+  - target:
+       group: '.*'
+       kind: CustomResourceDefinition
+    path: crds-finilizers.yaml

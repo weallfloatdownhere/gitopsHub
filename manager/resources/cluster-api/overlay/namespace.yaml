@@ -4,3 +4,7 @@ metadata:
   name: cluster-api
   labels:
     name: cluster-api
+
+#- op: add
+#  path: /metadata/namespace
+#  value: cluster-api
