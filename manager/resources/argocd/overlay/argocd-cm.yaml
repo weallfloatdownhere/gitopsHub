@@ -29,7 +29,7 @@ data:
     ignoreAggregatedRoles: true
     ignoreResourceStatusField: crd
 
-  resource.ignoreResourceUpdatesEnabled: "true"
+  # resource.ignoreResourceUpdatesEnabled: "true"
 
   resource.customizations.ignoreResourceUpdates.all: |
     jsonPointers:
