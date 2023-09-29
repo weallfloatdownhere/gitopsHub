@@ -21,6 +21,10 @@ Todo..
 | Infrastructure       | [byoh](https://github.com/vmware-tanzu/cluster-api-provider-bringyourownhost)                 |
 | Infrastructure       | [Metal3](https://github.com/metal3-io/cluster-api-provider-metal3)                            |
 
+## Ansible
+
+[Metal3 virtual machines setup playbook](https://github.com/metal3-io/metal3-dev-env/tree/main/vm-setup)
+
 ## Powered by
 
 Todo..
