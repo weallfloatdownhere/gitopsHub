@@ -16,5 +16,5 @@
 - https://github.com/cert-manager/cert-manager
 
 # Flamingo ArgoCD Flux subsystem
-
+- https://flux-subsystem-argo.github.io/website/tutorials/terraform/
 - https://github.com/flux-subsystem-argo/flamingo
