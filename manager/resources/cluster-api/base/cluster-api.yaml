@@ -6,4 +6,4 @@ metadata:
   name: cluster-api
   namespace: cluster-api
 spec:
-  version: v1.4.3
+  version: v0.0.0

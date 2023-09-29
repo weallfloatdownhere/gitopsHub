@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-- bootstrap.kubeadm.yaml
-- core.cluster-api.yaml
-- ctrlplane.kubeadm.yaml
-- infrastructure.byoh.yaml
-- infrastructure.docker.yaml
