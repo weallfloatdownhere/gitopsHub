@@ -14,4 +14,7 @@ patches:
   - target:
       kind: CoreProvider
       name: cluster-api
-    path: version-cluster-api.yaml
+    patch: |-
+      - op: replace
+        path: /spec/version
+        value: v1.4.3

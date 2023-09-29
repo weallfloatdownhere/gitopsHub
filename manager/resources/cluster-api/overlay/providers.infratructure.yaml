@@ -14,11 +14,12 @@ metadata:
   namespace: cluster-api
 spec:
   version: v0.4.0
----
-apiVersion: operator.cluster.x-k8s.io/v1alpha2
-kind: InfrastructureProvider
-metadata:
-  name: metal3
-  namespace: cluster-api
-spec:
-  version: v1.5.1
+
+# ---
+# apiVersion: operator.cluster.x-k8s.io/v1alpha2
+# kind: InfrastructureProvider
+# metadata:
+#   name: metal3
+#   namespace: cluster-api
+# spec:
+#   version: v1.5.1
