@@ -7,7 +7,7 @@ clean:
 	- kubectl delete ns cluster-api
 	- kubectl delete ns capi-operator-system
 	- kubectl delete ns argo-rollouts
-	
+
 install:
 	kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/cert-manager/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=cert-manager" -n cert-manager --timeout=300s

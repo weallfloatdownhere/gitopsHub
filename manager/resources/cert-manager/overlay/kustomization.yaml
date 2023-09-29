@@ -13,6 +13,7 @@ helmCharts:
     startupapicheck:
       enabled: true
       timeout: 1m
+
 #patches:
 #  - target:
 #       group: '.*'
