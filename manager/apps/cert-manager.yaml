@@ -5,17 +5,19 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "4"
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  #finalizers:
+  #  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     path: manager/resources/cert-manager/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+
   destination:
     namespace: cert-manager
     server: https://kubernetes.default.svc
+
   syncPolicy:
     automated:
       selfHeal: false
