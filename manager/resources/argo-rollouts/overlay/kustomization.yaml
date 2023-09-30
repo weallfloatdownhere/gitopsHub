@@ -3,13 +3,16 @@ kind: Kustomization
 
 namespace: argo-rollouts
 
-resources:
-- ./argo-rollouts-extension.yaml
+bases:
 - ../base/install.yaml
 - ../base/namespace.yaml
 
+resources:
+- dashboard.yaml
+- notifications.yaml
+
 patches:
-- path: crds-sync-wave.yaml
+- path: sync-wave.yaml
   target:
      group: '.*'
      kind: CustomResourceDefinition
