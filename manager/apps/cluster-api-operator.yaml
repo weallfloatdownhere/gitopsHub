@@ -9,7 +9,6 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-
   source:
     path: manager/resources/cluster-api-operator/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git

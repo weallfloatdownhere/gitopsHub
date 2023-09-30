@@ -22,4 +22,3 @@ spec:
       prune: false
     syncOptions:
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true

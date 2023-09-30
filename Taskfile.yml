@@ -5,16 +5,41 @@ version: '3'
 vars:
   GIT_ROOT:
     sh: echo "$(git rev-parse --show-toplevel)"
+  GIT_REMOTE_URL:
+    sh: echo $(cd {{.GIT_ROOT}} && git ls-remote --get-url origin)
+  GIT_TYPE:
+    sh: |
+        if [ $(echo "{{.GIT_REMOTE_URL}}" | grep -c 'github.com') -gt 0 ]; then
+            echo "GITHUB"
+        elif [ $(echo "{{.GIT_REMOTE_URL}}" | grep -c 'bitbucket.org') -gt 0 ]; then
+            echo "BITBUCKET"
+        elif [ $(echo "{{.GIT_REMOTE_URL}}" | grep -c 'gitlab') -gt 0 ]; then
+            echo "GITLAB"
+        fi
 
-dotenv: [ 'configuration.env','{{.USER_WORKING_DIR}}/configuration.env','{{.GIT_ROOT}}/configuration.env' ]
-
-includes:
-  dev: hack/taskfiles/dev.yml
-  tools: hack/taskfiles/tools.yml
-  manifests: hack/taskfiles/manifests.yml
+env:
+  KUBECONFIG: '{{.GIT_ROOT}}/manager/manager.kubeconfig'
 
 tasks:
-  default:
-    desc: Hello world
+  kubectl:
+    internal: true
     cmds:
-      - echo $ARGOCD_FLAVOR
+      - sudo apt-get -y update
+      - sudo apt-get install -y kubectl
+    status:
+      - test $(command -v kubectl)
+
+  flux:
+    internal: true
+    cmds:
+      - curl -s https://fluxcd.io/install.sh | sudo bash
+    status:
+      - test $(command -v flux)
+      
+
+  default:
+    silent: true
+    cmds:
+      - echo 'git repo       - {{.GIT_ROOT}}'
+      - echo 'git remote url - {{.GIT_REMOTE_URL}}'
+      - echo 'git type       - {{.GIT_TYPE}}'

@@ -10,8 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    # path: manager/resources/argocd/overlay/vanilla
-    path: manager/resources/argocd/overlay/flamingo
+    path: manager/resources/argocd/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
