@@ -61,6 +61,7 @@ TODO..
 
 
 ## ArgoCD rollouts
+- https://victoryeo-62924.medium.com/getting-started-with-argo-cd-and-argo-rollout-757fc37ea8e8
 - https://github.com/argoproj/argo-rollouts/releases/download/v1.6.0/install.yaml
 
 ## Cluster-api
