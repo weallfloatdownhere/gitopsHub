@@ -2,6 +2,9 @@
 
 version: '3'
 
+env:
+  KUBECONFIG: '{{.GIT_ROOT}}/manager/manager.kubeconfig'
+
 vars:
   GIT_ROOT:
     sh: echo "$(git rev-parse --show-toplevel)"
@@ -17,25 +20,7 @@ vars:
             echo "GITLAB"
         fi
 
-env:
-  KUBECONFIG: '{{.GIT_ROOT}}/manager/manager.kubeconfig'
-
 tasks:
-  kubectl:
-    internal: true
-    cmds:
-      - sudo apt-get -y update
-      - sudo apt-get install -y kubectl
-    status:
-      - test $(command -v kubectl)
-
-  flux:
-    internal: true
-    cmds:
-      - curl -s https://fluxcd.io/install.sh | sudo bash
-    status:
-      - test $(command -v flux)
-
   default:
     silent: true
     cmds:

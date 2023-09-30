@@ -8,9 +8,9 @@ resources:
 - ../base/namespace.yaml
 
 patches:
-  - patch: argocd-cmd-params-cm.yaml
-  - patch: argocd-cm.yaml
-  - patch: admin-password.yaml
+- patch: argocd-cmd-params-cm.yaml
+- patch: argocd-cm.yaml
+- patch: admin-password.yaml
 
 components:
 - https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.1/manifests/install.yaml

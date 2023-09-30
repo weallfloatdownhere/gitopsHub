@@ -12,4 +12,5 @@ helmCharts:
   releaseName: kyverno
   version: 3.0.5
   namespace: kyverno
+  includeCRDs: true
   valuesFile: values.yaml

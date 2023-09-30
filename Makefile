@@ -3,10 +3,12 @@
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 local:
-	bash hack/scripts/init-local-env.sh
+	cd .tasks/local-dev && task start
 
 tools:
-	test $(command -v kubectl) || (sudo apt-get -y update sudo apt-get install -y kubectl)
+	sudo apt-get -y update
+	sudo apt-get install -y kubectl
+	curl -s https://fluxcd.io/install.sh | sudo bash
 
 clean:
 	- kubectl delete -f manager/bootstrap.yaml

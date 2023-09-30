@@ -4,17 +4,17 @@ kind: Kustomization
 namespace: cluster-api
 
 resources:
-  - ./providers.ctrlplanes.yaml
-  - ./providers.infratructure.yaml
-  - ./providers.bootstrap.yaml
-  - ../base/cluster-api.yaml
-  - ./namespace.yaml
+- ./providers.ctrlplanes.yaml
+- ./providers.infratructure.yaml
+- ./providers.bootstrap.yaml
+- ../base/cluster-api.yaml
+- ./namespace.yaml
 
 patches:
-  - target:
-      kind: CoreProvider
-      name: cluster-api
-    patch: |-
-      - op: replace
-        path: /spec/version
-        value: v1.4.3
+- target:
+    kind: CoreProvider
+    name: cluster-api
+  patch: |-
+    - op: replace
+      path: /spec/version
+      value: v1.4.3

@@ -8,7 +8,8 @@ resources:
 - ../base/namespace.yaml
 
 patches:
-  - target:
-       group: '.*'
-       kind: CustomResourceDefinition
-    path: crds-finilizers.yaml
+-  path: crds-finilizers.yaml
+   target:
+     group: '.*'
+     kind: CustomResourceDefinition
+    

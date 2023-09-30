@@ -9,7 +9,7 @@ resources:
 - ../base/namespace.yaml
 
 patches:
-  - target:
-       group: '.*'
-       kind: CustomResourceDefinition
-    path: crds-sync-wave.yaml
+- path: crds-sync-wave.yaml
+  target:
+     group: '.*'
+     kind: CustomResourceDefinition
