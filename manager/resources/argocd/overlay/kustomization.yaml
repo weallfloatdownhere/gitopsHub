@@ -11,3 +11,6 @@ patchesStrategicMerge:
   - argocd-cmd-params-cm.yaml
   - argocd-cm.yaml
   - admin-password.yaml
+
+components:
+- https://github.com/argoproj-labs/argocd-extensions/manifests

@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: argo-rollouts
 
 resources:
+- ./argo-rollouts-extension.yaml
 - ../base/install.yaml
 - ../base/namespace.yaml
 
