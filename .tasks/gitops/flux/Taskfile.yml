@@ -17,7 +17,7 @@ vars:
             echo "GITLAB"
         fi
 
-dotenv: ['params.env', '.params.env', '{{.USER_WORKING_DIR}}/params.env', '{{.USER_WORKING_DIR}}/.params.env', '{{.GIT_ROOT}}/params.env']
+dotenv: [ defaults.env, '{{.GIT_ROOT}}/params.env' ]
 
 tasks:
   default:
