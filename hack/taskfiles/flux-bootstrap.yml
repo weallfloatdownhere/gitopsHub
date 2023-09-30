@@ -35,7 +35,6 @@ tasks:
       - curl -s https://fluxcd.io/install.sh | sudo bash
     status:
       - test $(command -v flux)
-      
 
   default:
     silent: true
