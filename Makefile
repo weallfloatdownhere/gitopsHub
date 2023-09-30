@@ -32,9 +32,5 @@ install:
 	sleep 10
 	kubectl port-forward -n argocd svc/argocd-server 8080:80
 
-local:
-# Start a Minikube local cluster.
-	- ./scripts/local-env.sh
-
 connect:
 	kubectl port-forward -n argocd svc/argocd-server 8080:80

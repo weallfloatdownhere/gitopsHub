@@ -1,0 +1,20 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_ROOT:
+    sh: echo "$(git rev-parse --show-toplevel)"
+
+dotenv: [ 'configuration.env','{{.USER_WORKING_DIR}}/configuration.env','{{.GIT_ROOT}}/configuration.env' ]
+
+includes:
+  dev: hack/taskfiles/dev.yml
+  tools: hack/taskfiles/tools.yml
+  manifests: hack/taskfiles/manifests.yml
+
+tasks:
+  default:
+    desc: Hello world
+    cmds:
+      - echo $ARGOCD_FLAVOR

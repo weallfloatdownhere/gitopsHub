@@ -1,0 +1,27 @@
+# https://taskfile.dev
+
+version: '3'
+
+includes:
+  tools: tools.yml
+
+vars:
+  GIT_ROOT:
+    sh: echo "$(git rev-parse --show-toplevel)"
+
+tasks:
+  flux-system:
+    desc: Generate flux-system manifest using `flux install` command from the cli.
+    cmds:
+      - task: tools
+      - rm -rf {{.GIT_ROOT}}/manager/resources/flux-system
+      - mkdir -p {{.GIT_ROOT}}/manager/resources/flux-system/{base,overlay}
+      - flux install --export > {{.GIT_ROOT}}/manager/resources/flux-system/base/flux-system.yaml
+      - |
+        cat <<EOF > {{.GIT_ROOT}}/manager/resources/flux-system/overlay/kustomization.yaml
+        apiVersion: kustomize.config.k8s.io/v1beta1
+        kind: Kustomization
+        namespace: flux-system
+        resources:
+          - ../base/flux-system.yaml
+        EOF
