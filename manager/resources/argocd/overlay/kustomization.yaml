@@ -13,4 +13,4 @@ patchesStrategicMerge:
   - admin-password.yaml
 
 components:
-- https://github.com/argoproj-labs/argocd-extensions/manifests
+- https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.2.1/manifests/install.yaml
