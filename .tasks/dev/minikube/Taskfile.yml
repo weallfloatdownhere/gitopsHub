@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_ROOT: { sh: echo "$(git rev-parse --show-toplevel)" }
+
+dotenv: ['params.env', '.params.env', '{{.USER_WORKING_DIR}}/.params.env']
+
+tasks:
+  start:
+    dir: '{{.GIT_ROOT}}'
+    cmds:
+      - minikube delete --all
+      - rm -rf ~/.kube/config $KUBECONFIG
+      - minikube start -p manager --memory $RAM --cpus $CPUS --network bridge
+      - kubectl config view --context manager --flatten --minify > manager/k.tmp
+      - mv manager/k.tmp $KUBECONFIG
+  stop:
+    dir: '{{.GIT_ROOT}}'
+    cmds:
+      - minikube delete --all
+      - rm -rf ~/.kube/config 
+      - rm -rf $KUBECONFIG

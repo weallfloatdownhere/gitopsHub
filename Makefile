@@ -3,7 +3,8 @@
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 local:
-	cd .tasks/local-dev && task start
+	export KUBECONFIG=$(KUBECONFIG)
+	cd .tasks/dev/minikube && task start
 
 tools:
 	sudo apt-get -y update

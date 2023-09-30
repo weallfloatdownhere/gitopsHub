@@ -2,9 +2,6 @@
 
 version: '3'
 
-env:
-  KUBECONFIG: '{{.GIT_ROOT}}/manager/manager.kubeconfig'
-
 vars:
   GIT_ROOT:
     sh: echo "$(git rev-parse --show-toplevel)"
@@ -19,7 +16,6 @@ vars:
         elif [ $(echo "{{.GIT_REMOTE_URL}}" | grep -c 'gitlab') -gt 0 ]; then
             echo "GITLAB"
         fi
-
 tasks:
   default:
     silent: true
