@@ -16,6 +16,9 @@ vars:
         elif [ $(echo "{{.GIT_REMOTE_URL}}" | grep -c 'gitlab') -gt 0 ]; then
             echo "GITLAB"
         fi
+
+dotenv: ['params.env', '.params.env', '{{.USER_WORKING_DIR}}/params.env', '{{.USER_WORKING_DIR}}/.params.env', '{{.GIT_ROOT}}/params.env']
+
 tasks:
   default:
     silent: true

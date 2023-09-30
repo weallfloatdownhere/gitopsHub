@@ -5,7 +5,7 @@ version: '3'
 vars:
   GIT_ROOT: { sh: echo "$(git rev-parse --show-toplevel)" }
 
-dotenv: ['params.env', '.params.env', '{{.USER_WORKING_DIR}}/.params.env']
+dotenv: ['params.env', '.params.env', '{{.USER_WORKING_DIR}}/params.env', '{{.USER_WORKING_DIR}}/.params.env', '{{.GIT_ROOT}}/params.env']
 
 tasks:
   start:
@@ -13,7 +13,7 @@ tasks:
     cmds:
       - minikube delete --all
       - rm -rf ~/.kube/config $KUBECONFIG
-      - minikube start -p manager --memory $RAM --cpus $CPUS --network bridge
+      - minikube start -p manager --memory $MINIKUBE_RAM --cpus $MINIKUBE_CPUS --network bridge
       - kubectl config view --context manager --flatten --minify > manager/k.tmp
       - mv manager/k.tmp $KUBECONFIG
   stop:

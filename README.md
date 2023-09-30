@@ -47,7 +47,6 @@ TODO..
 
 - [Tf-controller - A GitOps Terraform controller for Kubernetes.](https://github.com/weaveworks/tf-controller)
 
-
 ## Resources
 
 <ol>
@@ -61,6 +60,7 @@ TODO..
 
 
 ## ArgoCD rollouts
+- https://raw.githubusercontent.com/argoproj/argo-rollouts/master/docs/getting-started/basic/rollout.yaml
 - https://victoryeo-62924.medium.com/getting-started-with-argo-cd-and-argo-rollout-757fc37ea8e8
 - https://github.com/argoproj/argo-rollouts/releases/download/v1.6.0/install.yaml
 
