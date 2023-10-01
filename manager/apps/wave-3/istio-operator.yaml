@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kyverno
+  name: istio-operator
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -10,16 +10,15 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/kyverno/overlay
+    path: manager/resources/istio-operator/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: kyverno
+    namespace: istio-operator
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      selfHeal: true
-      prune: true
+      selfHeal: false
+      prune: false
     syncOptions:
-      - CreateNamespace=true
-      - Replace=true
+    - CreateNamespace=true
