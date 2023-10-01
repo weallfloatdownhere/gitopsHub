@@ -8,7 +8,7 @@ tools:
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd tests/local-env && make start
+	cd scrits/tests && make start
 
 clean:
 	export KUBECONFIG=$(KUBECONFIG)
