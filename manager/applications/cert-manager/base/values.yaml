@@ -55,10 +55,10 @@ installCRDs: true
 replicaCount: 1
 
 strategy: {}
-  # type: RollingUpdate
-  # rollingUpdate:
-  #   maxSurge: 0
-  #   maxUnavailable: 1
+# type: RollingUpdate
+# rollingUpdate:
+#   maxSurge: 0
+#   maxUnavailable: 1
 
 podDisruptionBudget:
   enabled: false
@@ -155,17 +155,17 @@ dns01RecursiveNameserversOnly: false
 # Additional command line flags to pass to cert-manager controller binary.
 # To see all available flags run docker run quay.io/jetstack/cert-manager-controller:<version> --help
 extraArgs: []
-  # Use this flag to enable or disable arbitrary controllers, for example, disable the CertificiateRequests approver
-  # - --controllers=*,-certificaterequests-approver
+# Use this flag to enable or disable arbitrary controllers, for example, disable the CertificiateRequests approver
+# - --controllers=*,-certificaterequests-approver
 
 extraEnv: []
 # - name: SOME_VAR
 #   value: 'some value'
 
 resources: {}
-  # requests:
-  #   cpu: 10m
-  #   memory: 32Mi
+# requests:
+#   cpu: 10m
+#   memory: 32Mi
 
 # Pod Security Context
 # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -181,8 +181,8 @@ containerSecurityContext:
   capabilities:
     drop:
     - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
 
 
 volumes: []
@@ -218,9 +218,9 @@ nodeSelector:
   kubernetes.io/os: linux
 
 ingressShim: {}
-  # defaultIssuerName: ""
-  # defaultIssuerKind: ""
-  # defaultIssuerGroup: ""
+# defaultIssuerName: ""
+# defaultIssuerKind: ""
+# defaultIssuerGroup: ""
 
 prometheus:
   enabled: true
@@ -305,23 +305,23 @@ webhook:
   # An APIVersion and Kind must be specified in your values.yaml file.
   # Flags will override options that are set here.
   config:
-    # apiVersion: webhook.config.cert-manager.io/v1alpha1
-    # kind: WebhookConfiguration
+  # apiVersion: webhook.config.cert-manager.io/v1alpha1
+  # kind: WebhookConfiguration
 
-    # The port that the webhook should listen on for requests.
-    # In GKE private clusters, by default kubernetes apiservers are allowed to
-    # talk to the cluster nodes only on 443 and 10250. so configuring
-    # securePort: 10250, will work out of the box without needing to add firewall
-    # rules or requiring NET_BIND_SERVICE capabilities to bind port numbers <1000.
-    # This should be uncommented and set as a default by the chart once we graduate
-    # the apiVersion of WebhookConfiguration past v1alpha1.
-    # securePort: 10250
+  # The port that the webhook should listen on for requests.
+  # In GKE private clusters, by default kubernetes apiservers are allowed to
+  # talk to the cluster nodes only on 443 and 10250. so configuring
+  # securePort: 10250, will work out of the box without needing to add firewall
+  # rules or requiring NET_BIND_SERVICE capabilities to bind port numbers <1000.
+  # This should be uncommented and set as a default by the chart once we graduate
+  # the apiVersion of WebhookConfiguration past v1alpha1.
+  # securePort: 10250
 
   strategy: {}
-    # type: RollingUpdate
-    # rollingUpdate:
-    #   maxSurge: 0
-    #   maxUnavailable: 1
+  # type: RollingUpdate
+  # rollingUpdate:
+  #   maxSurge: 0
+  #   maxUnavailable: 1
 
   # Pod Security Context to be set on the webhook component Pod
   # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -346,8 +346,8 @@ webhook:
     capabilities:
       drop:
       - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
+      # readOnlyRootFilesystem: true
+      # runAsNonRoot: true
 
   # Optional additional annotations to add to the webhook Deployment
   # deploymentAnnotations: {}
@@ -375,9 +375,9 @@ webhook:
   featureGates: ""
 
   resources: {}
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  # requests:
+  #   cpu: 10m
+  #   memory: 32Mi
 
   ## Liveness and readiness probe values
   ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
@@ -468,7 +468,7 @@ webhook:
   # Overrides the mutating webhook and validating webhook so they reach the webhook
   # service using the `url` field instead of a service.
   url: {}
-    # host:
+  # host:
 
   # Enables default network policies for webhooks.
   networkPolicy:
@@ -508,10 +508,10 @@ cainjector:
   replicaCount: 1
 
   strategy: {}
-    # type: RollingUpdate
-    # rollingUpdate:
-    #   maxSurge: 0
-    #   maxUnavailable: 1
+  # type: RollingUpdate
+  # rollingUpdate:
+  #   maxSurge: 0
+  #   maxUnavailable: 1
 
   # Pod Security Context to be set on the cainjector component Pod
   # ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
@@ -536,8 +536,8 @@ cainjector:
     capabilities:
       drop:
       - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
+      # readOnlyRootFilesystem: true
+      # runAsNonRoot: true
 
 
   # Optional additional annotations to add to the cainjector Deployment
@@ -553,9 +553,9 @@ cainjector:
   # - --enable-profiling=true
 
   resources: {}
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  # requests:
+  #   cpu: 10m
+  #   memory: 32Mi
 
   nodeSelector:
     kubernetes.io/os: linux
@@ -646,8 +646,8 @@ startupapicheck:
     capabilities:
       drop:
       - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
+      # readOnlyRootFilesystem: true
+      # runAsNonRoot: true
 
   # Timeout for 'kubectl check api' command
   timeout: 2m
@@ -669,9 +669,9 @@ startupapicheck:
   extraArgs: []
 
   resources: {}
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
+  # requests:
+  #   cpu: 10m
+  #   memory: 32Mi
 
   nodeSelector:
     kubernetes.io/os: linux

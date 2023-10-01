@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -23,9 +23,10 @@ spec:
     - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
     automated:
-      selfHeal: false
-      prune: false
+      allowEmpty: true
+      selfHeal: true
+      prune: true
     syncOptions:
     - RespectIgnoreDifferences=true
     - CreateNamespace=true
-    validate: false
+    - Validate=false
