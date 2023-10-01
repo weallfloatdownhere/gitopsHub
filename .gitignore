@@ -4,8 +4,6 @@
 *.kubeconfig
 *.tgz
 
-manager/applications/**/charts
-
 Chart.lock
 nohup.out
 
