@@ -8,6 +8,7 @@
 *workspace/
 *vagrant/
 
+Chart.lock
 test.sh
 nohup.out
 
