@@ -14,6 +14,7 @@ Within each phase you can have one or more waves, that allows you to ensure cert
 | ---- | --------------------- | ------------------------------------------------- |
 | 1    | Cert-manager          |                                                   |
 | 1    | Kubernetes-replicator | https://github.com/mittwald/kubernetes-replicator |
+| 1    | Istio                 | https://github.com/istio/istio                    |
 | 2    | ArgoCD                | https://github.com/argoproj/argo-cd               |
 | 2    | Argo-rollouts         |                                                   |
 | 3    | Cluster-api-operator  |                                                   |
