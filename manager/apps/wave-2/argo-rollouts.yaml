@@ -1,24 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: argo-rollouts
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "2"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/resources/cluster-api/overlay
+    path: manager/resources/argo-rollouts/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: cluster-api
+    namespace: argo-rollouts
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: false
       prune: false
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
