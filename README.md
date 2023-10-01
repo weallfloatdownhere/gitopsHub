@@ -10,18 +10,18 @@ Argo CD executes a sync operation in a number of steps. At a high-level, there a
 
 Within each phase you can have one or more waves, that allows you to ensure certain resources are healthy before subsequent resources are synced.
 
-| Wave | Application           | Source                                            |
-| ---- | --------------------- | ------------------------------------------------- |
-| 1    | Cert-manager          |                                                   |
-| 1    | Kubernetes-replicator | https://github.com/mittwald/kubernetes-replicator |
-| 1    | Istio                 | https://github.com/istio/istio                    |
-| 2    | ArgoCD                | https://github.com/argoproj/argo-cd               |
-| 2    | Argo-rollouts         |                                                   |
-| 3    | Cluster-api-operator  |                                                   |
-| 3    | Kyverno               |                                                   |
-| 4    | Cluster-api           |                                                   |
-| 4    | Kyverno-policies      |                                                   |
-| 5    | Node-problem-detector |                                                   |
+| Wave | Application           | Source                                              |
+| ---- | --------------------- | --------------------------------------------------- |
+| 1    | Cert-manager          |                                                     |
+| 1    | Kubernetes-replicator | https://github.com/mittwald/kubernetes-replicator   |
+| 2    | Istio-operator        | https://istio.io/latest/docs/setup/install/operator |
+| 2    | ArgoCD                | https://github.com/argoproj/argo-cd                 |
+| 2    | Argo-rollouts         |                                                     |
+| 3    | Cluster-api-operator  |                                                     |
+| 3    | Kyverno               |                                                     |
+| 4    | Cluster-api           |                                                     |
+| 4    | Kyverno-policies      |                                                     |
+| 5    | Node-problem-detector |                                                     |
 
 ## Stories
 
@@ -29,9 +29,10 @@ Within each phase you can have one or more waves, that allows you to ensure cert
 
 Objectives:
 
-- Cluster API provider Bring Your Own Hosts
-- Bootstrap script using either, bash, ansible, or something better ?
-- See the VMs in the ArgoCD UI
+- Install and Setup Istio Operator https://istio.io/latest/docs/setup/install/operator
+- Install and Setup Istio using the Operator
+- Setup Istio monitoring
+- Demonstration / POC
 
 ### 2st
 
