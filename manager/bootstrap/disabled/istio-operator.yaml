@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/istio-operator/head
+    path: manager/applications/istio-operator/head
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:

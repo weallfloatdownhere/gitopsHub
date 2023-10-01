@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/node-problem-detector/head
+    path: manager/applications/node-problem-detector/head
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:

@@ -8,7 +8,7 @@
 # Generate a default namespace file to [CHARTNAME]/base/namespace.yaml
 
 # eg: 
-# pwd: manager/resources
+# pwd: manager/applications
 # ../../scripts/helpers/init-kustomize-helm-resource.sh URL CHARTNAME VERSION
 # ../../scripts/helpers/init-kustomize-helm-resource.sh https://charts.deliveryhero.io node-problem-detector 2.3.11
 
@@ -22,13 +22,13 @@ VERSION="${3}"
 $SCRIPT_DIR/../utilities/download-helmchart.sh $URL $CHARTNAME $VERSION
 
 # Create overlay directory
-mkdir -p $PWD/$CHARTNAME/overlay
+mkdir -p $PWD/$CHARTNAME/head
 
 # Import values file
-cp $PWD/$CHARTNAME/charts/$CHARTNAME/values.yaml $PWD/$CHARTNAME/overlay/values.yaml
+cp $PWD/$CHARTNAME/charts/$CHARTNAME/values.yaml $PWD/$CHARTNAME/head/values.yaml
 
 # Namespace yaml
-cat <<EOF > $PWD/$CHARTNAME/overlay/namespace.yaml
+cat <<EOF > $PWD/$CHARTNAME/head/namespace.yaml
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -38,7 +38,7 @@ metadata:
 EOF
 
 # Kustomization yaml
-cat <<EOF > $PWD/$CHARTNAME/overlay/kustomization.yaml
+cat <<EOF > $PWD/$CHARTNAME/head/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 

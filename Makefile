@@ -8,7 +8,7 @@ tools:
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd scrits/tests && make start
+	cd scripts/tests && make start
 
 clean:
 	export KUBECONFIG=$(KUBECONFIG)
@@ -18,7 +18,7 @@ clean:
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/applications/argocd/head | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	kubectl apply -f manager/bootstrap/bootstrap.yaml
 
