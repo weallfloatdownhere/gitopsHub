@@ -20,7 +20,7 @@ install:
 	export KUBECONFIG=$(KUBECONFIG)
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/resources/argocd/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
-	kubectl apply -f manager/apps/bootstrap.yaml
+	kubectl apply -f manager/bootstrap/bootstrap.yaml
 
 connect:
 	export KUBECONFIG=$(KUBECONFIG)
