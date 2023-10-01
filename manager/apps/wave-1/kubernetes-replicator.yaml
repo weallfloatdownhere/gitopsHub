@@ -14,11 +14,9 @@ spec:
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: kubernetes-replicator
+    namespace: kube-system
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: false
       prune: false
-    syncOptions:
-      - CreateNamespace=true
