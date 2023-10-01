@@ -6,10 +6,3 @@ namespace: capi-operator-system
 resources:
 - ../base/install.yaml
 - ../base/namespace.yaml
-
-patches:
--  path: crds-finilizers.yaml
-   target:
-     group: '.*'
-     kind: CustomResourceDefinition
-    
