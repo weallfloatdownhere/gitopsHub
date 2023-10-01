@@ -22,4 +22,4 @@ webhook:
   timeoutSeconds: 20
 
 startupapicheck:
-  enabled: true
+  enabled: false
