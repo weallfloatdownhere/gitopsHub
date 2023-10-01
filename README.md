@@ -28,12 +28,13 @@ Within each phase you can have one or more waves, that allows you to ensure cert
 
 Objectives:
 
-- Implement a way for the master k8s cluster to remotly manage factory default VM in a Gitops fashion using ArgoCD.
-- Kubernetes node-probleme-detector
+- Cluster API provider Bring Your Own Hosts
+- Bootstrap script using either, bash, ansible, or something better ?
+- See the VMs in the ArgoCD UI
 
 Goals:
 
-- Can managed pre provisionned `ON-PREMISE` virtual machines (Ubuntu, centos, etc..)
+- Can managed pre provisionned **On-premise** virtual machines (Ubuntu, centos, etc..)
 - Being able to provision standard default kubernetes cluster on the managed VM.
 - Need a way to control clusters role attributed to VMs
 
