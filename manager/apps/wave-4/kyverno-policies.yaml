@@ -1,24 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-problem-detector
+  name: kyverno-policies
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: "4"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/resources/node-problem-detector/overlay
+    path: manager/resources/kyverno-policies
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
-    namespace: node-problem-detector
+    namespace: kyverno
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      selfHeal: false
-      prune: false
-    syncOptions:
-    - CreateNamespace=true
+      allowEmpty: true
+      prune: true
+      selfHeal: true
