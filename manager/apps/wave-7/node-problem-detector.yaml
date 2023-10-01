@@ -10,11 +10,11 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/cluster-api/overlay
+    path: manager/resources/node-problem-detector/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: cluster-api
+    namespace: node-problem-detector
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:

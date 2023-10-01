@@ -9,7 +9,7 @@ Structured repository to managed a fleet of Kubernetes clusters in an opionated 
 Objectives:
 
 - Implement a way for the master k8s cluster to remotly manage factory default VM in a Gitops fashion using ArgoCD.
-- Kubernetes problem
+- Kubernetes node-probleme-detector
 
 Goals:
 
