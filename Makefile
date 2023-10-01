@@ -1,15 +1,14 @@
 .EXPORT_ALL_VARIABLES:
+.PHONY: install
 
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
 tools:
-	sudo apt-get -y update
-	sudo apt-get install -y kubectl
-	curl -s https://fluxcd.io/install.sh | sudo bash
+	if [ ! -x "$(shell command -v kubectll)" ]; then curl "https://dl.k8s.io/release/$(shell curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o ${HOME}/.local/bin/kubectl; fi
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd .tasks/dev/minikube && task start
+	cd tests/local-env && make start
 
 clean:
 	export KUBECONFIG=$(KUBECONFIG)
