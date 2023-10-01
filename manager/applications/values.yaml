@@ -1,0 +1,11 @@
+repoSource: https://github.com/weallfloatdownhere/gitopsHub.git
+
+applications:
+  app:
+    enabled: true
+    name: argocd
+    namespace: argocd
+    wave: 1
+    revision: HEAD
+    path: manager/resources/argo/overlay
+    recurse: false

@@ -1,0 +1,71 @@
+{{- $repoSource := .Values.repoSource -}}
+{{- range $key,$app := .Values.applications }}
+{{- if $app.enabled }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $app.name }}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $app.wave | quote }}
+spec:
+  project: {{ $app.project | default "default" }}
+  {{- if $app.sync_policy }}
+  syncPolicy:
+    automated:
+      selfHeal: {{ $app.sync_policy.selfHeal }}
+      prune: {{ $app.sync_policy.prune }}
+      allowEmpty: {{ $app.sync_policy.allowEmpty }}
+    {{- if $app.sync_policy.sync_options }}
+    syncOptions:
+    {{- if $app.sync_policy.sync_options.createns }}
+    - CreateNamespace=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.replace }}
+    - Replace=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.validate }}
+    - Validate=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.delete }}
+    - Delete=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.applyoutofsynconly }}
+    - ApplyOutOfSyncOnly=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.prunelast }}
+    - PruneLast=true
+    {{- end }}
+    {{- if $app.sync_policy.sync_options.respectignorediff }}
+    - RespectIgnoreDifferences=true
+    {{- end }}
+    {{- if eq $app.sync_policy.sync_options.prunepropagationpolicy "foreground" }}
+    - PrunePropagationPolicy=foreground
+    {{- else if eq $app.sync_policy.sync_options.prunepropagationpolicy "orphan" }}
+    - PrunePropagationPolicy=orphan
+    {{- else }}
+    - PrunePropagationPolicy=foreground
+    {{- end }}
+    {{- end }}
+    {{- end }}
+  source:
+    path: {{ $app.path | default nil }}
+    repoURL: {{ $repoSource }}
+    targetRevision: {{ $app.revision | default "HEAD" }}
+    {{- if $app.recurse }}
+    directory:
+      recurse: true
+      include: "{wave-*/*.yaml}"
+      exclude: "bootstrap.yaml"
+    {{- end }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: {{ $app.namespace }}
+
+{{- if $app.extraFields }}
+{{ tpl $app.extraFields $ | indent 2 }}
+
+{{- end }}
+{{- end }}
+{{- end }}

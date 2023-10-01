@@ -1,10 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
-namespace: kyverno
-
-bases:
-- ../bases/install-v1.10.3.yaml
-
+namespace: argocd
 resources:
+- install.yaml
 - namespace.yaml

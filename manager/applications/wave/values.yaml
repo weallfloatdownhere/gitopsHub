@@ -1,0 +1,23 @@
+repoSource: None
+
+applications: {}
+  #app:
+  #  enabled: true
+  #  name: argocd
+  #  namespace: argocd
+  #  wave: 1
+  #  revision: HEAD
+  #  path: manager/resources/argo/overlay
+  #  recurse: false
+  #  sync_policy:
+  #    selfHeal: false
+  #    prune: false
+  #    allowEmpty: false
+  #    sync_options:
+  #      createns: true
+  #      replace: false
+  #      validate: true
+  #      applyoutofsynconly: false
+  #      prunelast: false
+  #      prunepropagationpolicy: foreground
+  #      respectignorediff: false
