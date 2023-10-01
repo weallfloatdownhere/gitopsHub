@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: node-problem-detector
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -10,15 +10,15 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/resources/argocd/overlay
+    path: manager/resources/node-problem-detector/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: argocd
+    namespace: node-problem-detector
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: false
       prune: false
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
