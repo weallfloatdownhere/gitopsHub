@@ -8,7 +8,7 @@ metadata:
   name: {{ $app.name }}
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ $app.wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ (split "-" $key)._1 | quote }}
 spec:
   project: {{ $app.project | default "default" }}
   {{- if $app.sync_policy }}
@@ -61,11 +61,9 @@ spec:
     {{- end }}
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: {{ $app.namespace }}
-
+    namespace: {{ $app.namespace | default $app.name }}
 {{- if $app.extraFields }}
 {{ tpl $app.extraFields $ | indent 2 }}
-
 {{- end }}
 {{- end }}
 {{- end }}
