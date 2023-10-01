@@ -2,15 +2,11 @@
 *.log
 *.secret
 *.kubeconfig
+*.tgz
 
-**/charts/*.tgz
 manager/applications/**/charts
 
-*workspace/
-*vagrant/
-
 Chart.lock
-test.sh
 nohup.out
 
 minikube-linux-amd64
