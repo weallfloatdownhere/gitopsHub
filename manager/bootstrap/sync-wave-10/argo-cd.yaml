@@ -1,29 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap
+  name: argo-cd
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "99"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/bootstrap
+    path: manager/applications/argo-cd/head
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
-    directory:
-      recurse: true
-      exclude: '{bootstrap.yaml,argocd/*}'
-      include: 'sync-wave-*/*.yaml'
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      allowEmpty: true
-      selfHeal: true
-      prune: true
+      allowEmpty: false
+      selfHeal: false
+      prune: false
     syncOptions:
     - CreateNamespace=true
-    - PrunePropagationPolicy=foreground
-

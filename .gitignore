@@ -3,9 +3,14 @@
 *.secret
 *.kubeconfig
 *.tgz
+*.gotmpl
+.helmignore
 
 Chart.lock
 nohup.out
+
+output/
+ci/
 
 minikube-linux-amd64
 vcluster
