@@ -1,7 +1,7 @@
-repoSource: https://github.com/weallfloatdownhere/gitopsHub.git
-
 applications:
   wave-1:
     enabled: true
     name: argocd
-    path: manager/resources/argo/overlay
+    chart: manager/resources/argo/overlay
+    source: https://argoproj.github.io/argo-helm
+    version: 1.0.0

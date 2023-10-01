@@ -11,6 +11,23 @@ metadata:
     argocd.argoproj.io/sync-wave: {{ (split "-" $key)._1 | quote }}
 spec:
   project: {{ $app.project | default "default" }}
+  source:
+    {{- if $app.chart }}
+    chart: {{ $app.chart }}
+    {{- else }}
+    path: {{ $app.path }}
+    {{- end }}
+    repoURL: {{ $repoSource }}
+    targetRevision: {{ $app.revision | default "HEAD" }}
+    {{- if $app.recurse }}
+    directory:
+      recurse: true
+      exclude: 'bootstrap.yaml'
+      include: '{wave-*/*.yaml}'
+    {{- end }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: {{ $app.namespace | default $app.name }}
   {{- if $app.sync_policy }}
   syncPolicy:
     automated:
@@ -49,19 +66,6 @@ spec:
     {{- end }}
     {{- end }}
     {{- end }}
-  source:
-    path: {{ $app.path | default nil }}
-    repoURL: {{ $repoSource }}
-    targetRevision: {{ $app.revision | default "HEAD" }}
-    {{- if $app.recurse }}
-    directory:
-      recurse: true
-      include: "{wave-*/*.yaml}"
-      exclude: "bootstrap.yaml"
-    {{- end }}
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: {{ $app.namespace | default $app.name }}
 {{- if $app.extraFields }}
 {{ tpl $app.extraFields $ | indent 2 }}
 {{- end }}
