@@ -13,8 +13,7 @@ spec:
     targetRevision: HEAD
     directory:
       recurse: true
-      include: '{**/*.yaml}'
-      exclude: 'bootstrap.yaml'
+      include: '{wave-*/*.yaml}'
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
