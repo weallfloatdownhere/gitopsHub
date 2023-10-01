@@ -6,7 +6,10 @@ Structured repository to managed a fleet of Kubernetes clusters in an opionated 
 
 ## Current: 2023-09-30 / 2023-10-01
 
-Implement a way for the master k8s cluster to remotly manage factory default VM in a Gitops fashion using ArgoCD.
+Objectives:
+
+- Implement a way for the master k8s cluster to remotly manage factory default VM in a Gitops fashion using ArgoCD.
+- Kubernetes problem
 
 Goals:
 
