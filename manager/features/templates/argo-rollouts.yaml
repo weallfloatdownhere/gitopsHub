@@ -1,0 +1,34 @@
+{{- $repoSrc := .Values.repoSource -}}
+{{- if .Values.argo_rollouts.enabled -}}
+{{- $wave := .Values.argo_rollouts.wave -}}
+{{- $project := .Values.argo_rollouts.project -}}
+{{- $path := .Values.argo_rollouts.path -}}
+{{- $selfHeal := .Values.argo_rollouts.selfHeal -}}
+{{- $prune := .Values.argo_rollouts.prune -}}
+{{- $allowEmpty := .Values.argo_rollouts.allowEmpty -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $wave }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $project }}
+  source:
+    path: {{ $path }}
+    repoURL: {{ $repoSrc }}
+    targetRevision: HEAD
+  destination:
+    namespace: argo-rollouts
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: {{ $selfHeal }}
+      prune: {{ $prune }}
+      allowEmpty: {{ $allowEmpty }}
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}

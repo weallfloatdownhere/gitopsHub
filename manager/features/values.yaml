@@ -1,0 +1,56 @@
+repoSource: "https://github.com/weallfloatdownhere/gitopsHub.git"
+
+cert_manager:
+  enabled: true
+  wave: 1
+  project: default
+  path: manager/resources/cert-manager/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false
+
+argocd:
+  enabled: true
+  wave: 2
+  project: default
+  path: manager/resources/argocd/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false
+
+argo_rollouts:
+  enabled: true
+  wave: 2
+  project: default
+  path: manager/resources/argo-rollouts/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false
+
+cluster_api_operator:
+  enabled: true
+  wave: 3
+  project: default
+  path: manager/resources/cluster-api-operator/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false
+
+cluster_api:
+  enabled: true
+  wave: 4
+  project: default
+  path: manager/resources/cluster-api/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false
+
+kyverno:
+  enabled: true
+  wave: 4
+  project: default
+  path: manager/resources/kyverno/overlay
+  policies: manager/resources/cluster-api-operator/overlay
+  selfHeal: false
+  prune: false
+  allowEmpty: false

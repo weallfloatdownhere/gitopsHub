@@ -1,0 +1,34 @@
+{{- $repoSrc := .Values.repoSource -}}
+{{- if .Values.argocd.enabled -}}
+{{- $wave := .Values.argocd.wave -}}
+{{- $project := .Values.argocd.project -}}
+{{- $path := .Values.argocd.path -}}
+{{- $selfHeal := .Values.argocd.selfHeal -}}
+{{- $prune := .Values.argocd.prune -}}
+{{- $allowEmpty := .Values.argocd.allowEmpty -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ $wave }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $project }}
+  source:
+    path: {{ $path }}
+    repoURL: {{ $repoSrc }}
+    targetRevision: HEAD
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: {{ $selfHeal }}
+      prune: {{ $prune }}
+      allowEmpty: {{ $allowEmpty }}
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}
