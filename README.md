@@ -24,7 +24,7 @@ Within each phase you can have one or more waves, that allows you to ensure cert
 
 ## Stories
 
-### Current: 2023-09-30 / 2023-10-01
+### Current
 
 Objectives:
 
@@ -32,13 +32,15 @@ Objectives:
 - Bootstrap script using either, bash, ansible, or something better ?
 - See the VMs in the ArgoCD UI
 
-Goals:
+### 2st
 
-- Can managed pre provisionned **On-premise** virtual machines (Ubuntu, centos, etc..)
-- Being able to provision standard default kubernetes cluster on the managed VM.
-- Need a way to control clusters role attributed to VMs
+Objectives:
 
-### 2023-10-02 / 2023-10-05
+- Cluster API provider Bring Your Own Hosts
+- Bootstrap script using either, bash, ansible, or something better ?
+- See the VMs in the ArgoCD UI
+
+### 3st
 
 Objectives:
 
