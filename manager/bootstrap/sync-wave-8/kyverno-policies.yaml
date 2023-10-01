@@ -1,24 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: kyverno-policies
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "8"
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/cluster-api/head
+    path: manager/applications/kyverno-policies
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
-    namespace: cluster-api
+    namespace: kyverno
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      selfHeal: false
-      prune: false
-    syncOptions:
-    - CreateNamespace=true
+      allowEmpty: false
+      prune: true
+      selfHeal: true

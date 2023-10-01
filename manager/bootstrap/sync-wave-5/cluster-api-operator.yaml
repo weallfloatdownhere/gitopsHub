@@ -1,25 +1,32 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kyverno
+  name: cluster-api-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "5"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/kyverno/head
+    path: manager/applications/cluster-api-operator/head
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: kyverno
+    namespace: capi-operator-system
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: "*"
+    kind: "CustomResourceDefinition"
+    jsonPointers:
+    - /spec/conversion/webhook/clientConfig/caBundle
   syncPolicy:
     automated:
+      allowEmpty: true
       selfHeal: true
       prune: true
     syncOptions:
+    - RespectIgnoreDifferences=true
     - CreateNamespace=true
-    - Replace=true
+    - Validate=false

@@ -4,9 +4,9 @@ metadata:
   name: cert-manager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-wave: "3"
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -22,10 +22,10 @@ spec:
       selfHeal: true
       prune: false
     retry:
-        limit: -1
-        backoff:
-          duration: 15s
-          factor: 2
-          maxDuration: 3m
+      limit: 10
+      backoff:
+        duration: 15s
+        factor: 2
+        maxDuration: 3m
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
