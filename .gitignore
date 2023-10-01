@@ -4,6 +4,7 @@
 *.kubeconfig
 
 **/charts/*.tgz
+manager/applications/**/charts
 
 *workspace/
 *vagrant/
