@@ -1,7 +1,8 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
-  name: istio-system-control-plane
+  name: istio
+  namespace: istio-system
 spec:
   profile: default
   components:
@@ -10,6 +11,8 @@ spec:
         resources:
           requests:
             memory: 3072Mi
+
     egressGateways:
     - name: istio-egressgateway
       enabled: true
+      namespace: istio-system
