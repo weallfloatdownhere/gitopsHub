@@ -1,26 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kyverno-policies
+  name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/resources/kyverno-policies
+    path: manager/resources/argocd/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
-    directory:
-      recurse: true
-      include: '*.yaml'
   destination:
-    namespace: kyverno
+    namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      allowEmpty: true
-      prune: true
-      selfHeal: true
+      selfHeal: false
+      prune: false
+    syncOptions:
+      - CreateNamespace=true
