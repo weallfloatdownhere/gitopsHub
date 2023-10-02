@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/argo/overlay
+    path: manager/argo
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
