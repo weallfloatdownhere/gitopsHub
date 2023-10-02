@@ -9,13 +9,13 @@ spec:
   project: default
   source:
     path: manager/bootstrap
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ (datasource "config").sourceUrl }}
     targetRevision: HEAD
     helm:
       releaseName: bootstrap
       ignoreMissingValueFiles: true
       valueFiles:
-        - ../cluster-values.yaml
+        - ../manager-config.yaml
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
@@ -23,16 +23,8 @@ spec:
     automated:
       allowEmpty: true
       selfHeal: true
-      prune: false
-    # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options
+      prune: true
     syncOptions:
     - CreateNamespace=true
     - PrunePropagationPolicy=foreground
     - RespectIgnoreDifferences=true
-    #- ApplyOutOfSyncOnly=true
-    #- SkipDryRunOnMissingResource=true
-    #- Validate=false
-    #- PruneLast=true
-    #- Replace=true
-    #- ServerSideApply=true
-    #- FailOnSharedResource=true

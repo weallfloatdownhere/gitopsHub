@@ -1,5 +1,3 @@
-# Copy of ./bootstrap/values.yaml
-
 sourceUrl: https://github.com/weallfloatdownhere/gitopsHub.git
 
 cert_manager:
