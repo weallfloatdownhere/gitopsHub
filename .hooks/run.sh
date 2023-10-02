@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "${0}"
+# Run all repository hooks scripts.
 
 for hookdir in "$(find $(git rev-parse --show-toplevel)/* -name ".hooks" -type d)" ; do
   for hookscript in $hookdir/*; do

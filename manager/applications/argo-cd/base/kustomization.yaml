@@ -23,9 +23,6 @@ helmCharts:
       extensions:
         enabled: true
     configs:
-      cm:
-        exec.enabled: true
-        admin.enabled: true
       params:
         create: true
         server.insecure: true
