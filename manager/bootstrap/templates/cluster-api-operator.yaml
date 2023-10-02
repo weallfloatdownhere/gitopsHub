@@ -25,9 +25,9 @@ spec:
         - /metadata/annotations
   syncPolicy:
     automated:
-      allowEmpty: true
-      selfHeal: true
-      prune: false
+      allowEmpty: false
+      selfHeal: false
+      prune: true
     syncOptions:
       # - ApplyOutOfSyncOnly=true
       - SkipDryRunOnMissingResource=true
