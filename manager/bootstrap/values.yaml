@@ -1,9 +1,5 @@
 sourceUrl: https://github.com/weallfloatdownhere/gitopsHub.git
 
-argo:
-  enabled: true
-  wave: "99"
-
 cert_manager:
   enabled: true
   wave: "3"
@@ -27,3 +23,7 @@ cluster_api_operator:
 node_problem_detector:
   enabled: true
   wave: "2"
+
+argo:
+  enabled: true
+  wave: "99"
