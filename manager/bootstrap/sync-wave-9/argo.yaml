@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: argo
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "9"
@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/argo-cd/overlay
+    path: manager/argo/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
