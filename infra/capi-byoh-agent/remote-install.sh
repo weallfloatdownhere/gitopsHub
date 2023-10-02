@@ -12,8 +12,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# [1] - PRE-VALIDATIONS.
 source /etc/os-release
-
 if [[ "$NAME" != "Ubuntu" ]]; then
 echo "System is not an Ubuntu distribution."
 exit 1
@@ -22,12 +22,9 @@ echo "Compatible with: Ubuntu 20.04.*"
 exit 1
 fi
 
-
-
+# [2] - DOWNLOAD BINARIES.
 BIN_DIRECTORY=$(git rev-parse --show-toplevel)
 BIN="$BIN_DIRECTORY/bin/byoh-hostagent-linux-amd64"
-
-# Check binary and create one if it doesn't exists
 if [[ ! -f "$BIN" ]]
 then
     echo "Binary doesn't exists. Creating binary..."
@@ -37,9 +34,7 @@ else
     BIN_DIRECTORY=$(cd `dirname $1` && pwd)
 fi
 
-
-
-# Create the services and watchers
+# [3] - SERVICES FILES GENERATE.
 cat << EOF > /etc/systemd/system/host-agent.service
 [Unit]
 Description=host-agent service
@@ -73,7 +68,7 @@ PathChanged=/root/.byoh/config
 WantedBy=multi-user.target
 EOF
 
-# Enable and start the watchers and services
+# ENABLING AND STARTING SERVICES
 systemctl enable host-agent-watcher.{path,service}
 systemctl start host-agent-watcher.{path,service}
 systemctl enable host-agent.service
