@@ -12,16 +12,19 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/applications/cluster-api/head
+    path: manager/applications/cluster-api
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
     namespace: cluster-api
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       selfHeal: false
-      prune: false
+      prune: true
     syncOptions:
       - CreateNamespace=true
 {{- end }}
