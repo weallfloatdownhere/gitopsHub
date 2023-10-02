@@ -5,6 +5,7 @@ bases:
 - ../bases
 
 patches:
-- path: ./patch.argocd-cmd-params-cm.yaml
-- path: ./patch.argocd-cm.yaml
-- path: ./patch.admin-password.yaml
+- path: ./argocd-server.yaml
+- path: ./argocd-cmd-params-cm.yaml
+- path: ./argocd-cm.yaml
+- path: ./admin-password.yaml
