@@ -22,8 +22,16 @@ spec:
     automated:
       allowEmpty: true
       selfHeal: true
-      prune: true
+      prune: false
+    # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options
     syncOptions:
     - CreateNamespace=true
     - PrunePropagationPolicy=foreground
-
+    - RespectIgnoreDifferences=true
+    #- ApplyOutOfSyncOnly=true
+    #- SkipDryRunOnMissingResource=true
+    #- Validate=false
+    #- PruneLast=true
+    #- Replace=true
+    #- ServerSideApply=true
+    #- FailOnSharedResource=true
