@@ -13,6 +13,9 @@ spec:
     targetRevision: HEAD
     helm:
       releaseName: bootstrap
+      ignoreMissingValueFiles: true
+      valueFiles:
+        - ../cluster-values.yaml
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
