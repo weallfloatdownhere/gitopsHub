@@ -3,9 +3,16 @@
 
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
+req:
+	- curl -sLS https://get.arkade.dev | sudo sh
+	- arkade get kubectl
+	- arkade get kustomize
+	- arkade get helm
+	- arkade get yq
+
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd local-dev && make start
+	cd local && make start
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
