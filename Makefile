@@ -1,14 +1,6 @@
 .EXPORT_ALL_VARIABLES:
-.PHONY: install
 
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
-
-hooks:
-	./.hooks/run.sh
-
-local:
-	export KUBECONFIG=$(KUBECONFIG)
-	cd local/ && make start
 
 req:
 	- curl -sLS https://get.arkade.dev | sudo sh
@@ -16,6 +8,13 @@ req:
 	- arkade get kustomize
 	- arkade get helm
 	- arkade get yq
+
+hooks:
+	./.hooks/run.sh
+
+local:
+	export KUBECONFIG=$(KUBECONFIG)
+	cd local/ && make start
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
