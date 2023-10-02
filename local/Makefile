@@ -14,9 +14,8 @@ start:
 	kubectl config view --context manager --flatten --minify > $(TMPCONF) 
 	mv $(TMPCONF) $(KUBECONFIG)
 	export KUBECONFIG=$(KUBECONFIG)
-	exit 0
+	watch kubectl get pods -A
 
 stop:
 	minikube delete --all
 	minikube stop
-	exit 0

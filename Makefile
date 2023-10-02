@@ -9,12 +9,12 @@ req:
 	- arkade get helm
 	- arkade get yq
 
-hooks:
-	./.hooks/run.sh
-
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd local/ && make start
+	make -C ./local start
+
+hooks:
+	./.hooks/run.sh
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
