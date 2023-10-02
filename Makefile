@@ -11,7 +11,7 @@ req:
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	make -C ./local start
+	make -C ./infra/local-dev start
 
 hooks:
 	./.hooks/run.sh
