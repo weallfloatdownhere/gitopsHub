@@ -1,24 +1,25 @@
+{{- if .Values.node_problem_detector.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: node-problem-detector
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: {{ .Values.node_problem_detector.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/cluster-api/head
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    path: manager/applications/node-problem-detector/head
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
-    namespace: cluster-api
+    namespace: kube-system
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
+      allowEmpty: false
       selfHeal: false
       prune: false
-    syncOptions:
-      - CreateNamespace=true
+{{- end }}

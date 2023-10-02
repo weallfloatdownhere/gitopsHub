@@ -1,17 +1,18 @@
+{{- if .Values.cert_manager.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cert-manager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: {{ .Values.cert_manager.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     path: manager/applications/cert-manager/head
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
     namespace: cert-manager
@@ -30,3 +31,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
+{{- end }}

@@ -1,17 +1,18 @@
+{{- if .Values.cluster_api_operator.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cluster-api-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: {{ .Values.cluster_api_operator.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     path: manager/applications/cluster-api-operator/head
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
     namespace: capi-operator-system
@@ -33,3 +34,4 @@ spec:
       - RespectIgnoreDifferences=true
       - CreateNamespace=true
       - Validate=false
+{{- end }}

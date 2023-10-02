@@ -1,23 +1,27 @@
+{{- if .Values.argo.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-problem-detector
+  name: argo
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: {{ .Values.argo.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/node-problem-detector/head
+    path: manager/argo/overlay
     repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
     targetRevision: HEAD
   destination:
-    namespace: kube-system
+    namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       allowEmpty: false
       selfHeal: false
       prune: false
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}

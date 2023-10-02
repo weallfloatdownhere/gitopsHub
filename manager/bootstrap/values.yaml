@@ -1,0 +1,29 @@
+sourceUrl: https://github.com/weallfloatdownhere/gitopsHub.git
+
+argo:
+  enabled: true
+  wave: "99"
+
+cert_manager:
+  enabled: true
+  wave: "3"
+
+kubernetes_replicator:
+  enabled: true
+  wave: "6"
+
+kyverno:
+  enabled: true
+  wave: "7"
+  policies: true
+  policies_wave: "8"
+
+cluster_api_operator:
+  enabled: true
+  wave: "5"
+  cluster_api: true
+  cluster_api_wave: "7"
+
+node_problem_detector:
+  enabled: true
+  wave: "2"

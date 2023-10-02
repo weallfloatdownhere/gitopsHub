@@ -1,25 +1,28 @@
+{{- if .Values.cluster_api_operator.enabled -}}
+{{- if .Values.cluster_api_operator.cluster_api -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo
+  name: cluster-api
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "9"
+    argocd.argoproj.io/sync-wave: {{ .Values.cluster_api_operator.cluster_api_wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/argo/overlay
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    path: manager/applications/cluster-api/head
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
-    namespace: argocd
+    namespace: cluster-api
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      allowEmpty: false
       selfHeal: false
       prune: false
     syncOptions:
       - CreateNamespace=true
+{{- end }}
+{{- end }}

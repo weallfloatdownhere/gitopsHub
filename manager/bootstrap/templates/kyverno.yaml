@@ -1,17 +1,18 @@
+{{- if .Values.kyverno.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kyverno
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: {{ .Values.kyverno.policies_wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     path: manager/applications/kyverno/head
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
     namespace: kyverno
@@ -23,3 +24,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - Replace=true
+{{- end }}

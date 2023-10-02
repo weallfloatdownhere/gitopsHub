@@ -1,17 +1,18 @@
+{{- if .Values.kubernetes_replicator.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kubernetes-replicator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: {{ .Values.kubernetes_replicator.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     path: manager/applications/kubernetes-replicator/head
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
     namespace: kube-system
@@ -21,3 +22,4 @@ spec:
       allowEmpty: false
       selfHeal: false
       prune: false
+{{- end }}
