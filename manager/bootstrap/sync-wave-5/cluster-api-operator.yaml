@@ -21,12 +21,14 @@ spec:
       kind: "CustomResourceDefinition"
       jsonPointers:
         - /spec/conversion/webhook/clientConfig/caBundle
+        - /metadata/annotations
   syncPolicy:
     automated:
       allowEmpty: true
       selfHeal: true
-      prune: true
+      prune: false
     syncOptions:
+      - SkipDryRunOnMissingResource=true
       - RespectIgnoreDifferences=true
       - CreateNamespace=true
       - Validate=false
