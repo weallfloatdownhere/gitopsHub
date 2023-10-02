@@ -2,7 +2,7 @@
 
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
-req:
+deps:
 	- curl -sLS https://get.arkade.dev | sudo sh
 	- arkade get kubectl
 	- arkade get kustomize
@@ -13,13 +13,13 @@ local:
 	export KUBECONFIG=$(KUBECONFIG)
 	make -C ./infra/kubernetes/minikube start
 
-hooks:
+hook:
 	./.hooks/run.sh
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
-	make hooks
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/applications/argo-cd/head | kubectl apply -f -
+	make hook
+	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/argo-cd/overlay | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	kubectl apply -f manager/bootstrap/bootstrap.yaml
 	kubectl port-forward -n argocd svc/argocd-server 8080:80
