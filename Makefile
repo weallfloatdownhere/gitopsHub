@@ -3,25 +3,14 @@
 
 KUBECONFIG=${PWD}/manager/manager.kubeconfig
 
-tools:
-	if [ ! -x "$(shell command -v kubectll)" ]; then curl "https://dl.k8s.io/release/$(shell curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o ${HOME}/.local/bin/kubectl; fi
-
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	cd scripts/tests && make start
-
-clean:
-	export KUBECONFIG=$(KUBECONFIG)
-	kubectl delete -f manager/bootstrap/bootstrap.yaml
-	kubectl delete app bootstrap -n argocd
-	kubectl delete ns argocd
+	cd local-dev && make start
 
 install:
 	export KUBECONFIG=$(KUBECONFIG)
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/applications/argo-cd/head | kubectl apply -f -
 	kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	kubectl apply -f manager/bootstrap/bootstrap.yaml
-
-connect:
-	export KUBECONFIG=$(KUBECONFIG)
+	
 	kubectl port-forward -n argocd svc/argocd-server 8080:80

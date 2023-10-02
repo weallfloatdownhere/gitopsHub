@@ -1,0 +1,22 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+    - echo "{{.GREETING}}"
+    silent: true
+
+  hook:
+    desc: Loop in the sync-wave-# directories and ensure the apps are attributed the correct sync-wave number
+    cmds:
+    - |
+      for d in */ ; do
+        for FILE in $d/*; do 
+          echo $FILE;
+        done
+      done
