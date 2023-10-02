@@ -11,7 +11,7 @@ req:
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	make -C ./infra/local-dev start
+	make -C ./infra/kubernetes/minikube start
 
 hooks:
 	./.hooks/run.sh
