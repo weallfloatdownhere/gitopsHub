@@ -16,6 +16,10 @@ local:
 hook:
 	./.hooks/run.sh
 
+clean:
+	export KUBECONFIG=$(KUBECONFIG)
+	- kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/argo | kubectl delete -f -
+
 install:
 	export KUBECONFIG=$(KUBECONFIG)
 	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone manager/argo | kubectl apply -f -
