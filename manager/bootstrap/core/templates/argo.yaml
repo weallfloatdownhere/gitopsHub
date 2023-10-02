@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: manager/argo
-    repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+    repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
     namespace: argocd

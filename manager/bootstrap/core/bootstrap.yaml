@@ -8,14 +8,17 @@ metadata:
 spec:
   project: default
   source:
-    path: manager/bootstrap
-    repoURL: {{ (datasource "config").sourceUrl }}
+    path: manager/bootstrap/core
+    repoURL: $SOURCE_REPO
     targetRevision: HEAD
     helm:
       releaseName: bootstrap
       ignoreMissingValueFiles: true
+      parameters:
+        - name: "sourceUrl"
+          value: $SOURCE_REPO
       valueFiles:
-        - ../manager-config.yaml
+        - ../configuration.yaml
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc

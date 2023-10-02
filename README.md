@@ -1,6 +1,15 @@
-# Super Gitops repository.
+# Super Gitops repository
 
 Structured repository to managed a fleet of Kubernetes clusters in an opionated way.
+
+## Getting started
+
+Assuming that you already have access to a running Kubernetes cluster and the `kubeconfig` file to interact with it, you now have to create a **secret file**. Follow the steps below to generate it.
+
+```txt
+export SOURCE_REPO=[GITOPS REPOSITORY URL]
+export SOURCE_KUBECONFIG=[BASE64 ENCODED KUBECONFIG FILE CONTENT]
+```
 
 ## Manager features and sync-waves
 
@@ -10,29 +19,15 @@ Argo CD executes a sync operation in a number of steps. At a high-level, there a
 
 Within each phase you can have one or more waves, that allows you to ensure certain resources are healthy before subsequent resources are synced.
 
-| Wave | Application           | Source                                              |
-| ---- | --------------------- | --------------------------------------------------- |
-| 1    | Cert-manager          |                                                     |
-| 1    | Kubernetes-replicator | https://github.com/mittwald/kubernetes-replicator   |
-| 2    | Istio-operator        | https://istio.io/latest/docs/setup/install/operator |
-| 2    | ArgoCD                | https://github.com/argoproj/argo-cd                 |
-| 2    | Argo-rollouts         |                                                     |
-| 3    | Cluster-api-operator  |                                                     |
-| 3    | Kyverno               |                                                     |
-| 4    | Cluster-api           |                                                     |
-| 4    | Kyverno-policies      |                                                     |
-| 5    | Node-problem-detector |                                                     |
-
 ## Stories
 
 ### Current
 
 Objectives:
 
-- Install and Setup Istio Operator https://istio.io/latest/docs/setup/install/operator
+- [Install and Setup Istio Operator](https://istio.io/latest/docs/setup/install/operator)
 - Install and Setup Istio using the Operator
 - Setup Istio monitoring
-- Demonstration / POC
 
 ### 2st
 

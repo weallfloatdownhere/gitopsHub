@@ -6,6 +6,7 @@
 *.gotmpl
 .helmignore
 
+charts/
 Chart.lock
 nohup.out
 

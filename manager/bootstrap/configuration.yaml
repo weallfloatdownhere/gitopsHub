@@ -1,0 +1,18 @@
+sourceUrl: CHANGEME
+
+node_problem_detector:
+  enabled: true
+
+cert_manager:
+  enabled: true
+
+kubernetes_replicator:
+  enabled: true
+
+kyverno:
+  enabled: true
+  policies: true
+
+cluster_api_operator:
+  enabled: true
+  cluster_api: true

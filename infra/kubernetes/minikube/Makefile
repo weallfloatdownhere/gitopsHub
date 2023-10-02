@@ -2,8 +2,8 @@
 include config.env
 export $(shell sed 's/=.*//' config.env)
 
-KUBECONFIG := $(shell git rev-parse --show-toplevel)/manager/manager.kubeconfig
-TMPCONF := $(shell git rev-parse --show-toplevel)/manager/k.tmp
+KUBECONFIG := $(shell git rev-parse --show-toplevel)/manager.kubeconfig
+TMPCONF := $(shell git rev-parse --show-toplevel)/k.tmp
 
 .EXPORT_ALL_VARIABLES:
 
