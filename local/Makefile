@@ -20,9 +20,3 @@ stop:
 	minikube delete --all
 	minikube stop
 	exit 0
-
-install:
-	sudo apt-get -y update
-	sudo apt-get install -y kubectl virtualbox docker curl
-	curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-	sudo install minikube-linux-amd64 /usr/local/bin/minikube
