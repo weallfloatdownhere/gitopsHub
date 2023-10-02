@@ -22,13 +22,6 @@ spec:
       allowEmpty: false
       selfHeal: false
       prune: false
-    retry:
-      limit: 10
-      backoff:
-        duration: 15s
-        factor: 2
-        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true
 {{- end }}
