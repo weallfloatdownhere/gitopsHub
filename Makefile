@@ -20,6 +20,7 @@ install:
 ifndef KUBECONFIG
 	$(error KUBECONFIG is undefined)
 endif
-	kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone ${STATIC_DIR_ARGO} | KUBECONFIG=${KUBECONFIG} kubectl apply -f -
+	#kustomize build --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone ${STATIC_DIR_ARGO} | KUBECONFIG=${KUBECONFIG} kubectl apply -f -
+	KUBECONFIG=${KUBECONFIG} kubectl apply -k ${STATIC_DIR_ARGO}
 	KUBECONFIG=${KUBECONFIG} kubectl wait --for=condition=available deployment -l "app.kubernetes.io/name=argocd-server" -n argocd --timeout=300s
 	SOURCE_REPO="$(shell git ls-remote --get-url origin)" envsubst < ${STATIC_FILE_BOOTSTRAP} | KUBECONFIG=${KUBECONFIG} kubectl apply -f -
