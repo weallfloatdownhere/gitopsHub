@@ -5,7 +5,6 @@
 *.gotmpl
 *.out
 *.secret
-*.bootstrap
 *.kubeconfig
 
 charts/
@@ -16,5 +15,3 @@ ci/
 minikube-linux-amd64
 vcluster
 kubectl
-
-!sample.core.bootstrap

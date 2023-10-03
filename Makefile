@@ -1,11 +1,8 @@
 .SILENT:
 
-#STATIC_MINIKUBE_PROVISION=${PWD}/provisioning/cluster/minikube
-#STATIC_MINIKUBE_KUBECONFIG:=${PWD}/minikube.kubeconfig
-#SOURCE_REPO:=$(shell git ls-remote --get-url origin)
-
-STATIC_DIR_ARGO=${PWD}/management/applications/argo
-STATIC_FILE_BOOTSTRAP=${PWD}/management/bootstrap/core/bootstrap.yaml
+STATIC_DIR_ARGO=${PWD}/management/services/argo
+STATIC_FILE_BOOTSTRAP=${PWD}/management/.bootstrap/bootstrap.yaml
+STATIC_MINIKUBE_PROVISION=${PWD}/provisioning/kubernetes/minikube
 
 deps:
 	- curl -sLS https://get.arkade.dev | sudo sh
@@ -15,8 +12,8 @@ deps:
 	- arkade get task
 
 local:
-	- rm -rf ${PWD}/minikube.kubeconfig
-	make -C ${PWD}/provisioning/cluster/minikube start
+	rm -rf ${PWD}/minikube.kubeconfig
+	make -C ${STATIC_MINIKUBE_PROVISION} start
 	echo "SUCCES - Generated file: ${PWD}/minikube.kubeconfig"
 
 install:
