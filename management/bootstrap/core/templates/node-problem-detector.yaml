@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.sourceUrl }}/node-problem-detector/head'
+    path: '{{ .Values.appsPath }}/node-problem-detector/head'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:

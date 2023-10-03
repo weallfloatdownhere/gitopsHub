@@ -1,0 +1,47 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_ROOT: { sh: git rev-parse --show-toplevel }
+  GIT_ORIGIN: { sh: git ls-remote --get-url origin }
+  STATIC_DIR_ARGO: '{{.GIT_ROOT}}/management/argo'
+  STATIC_FILE_BOOTSTRAP: '{{.GIT_ROOT}}/management/bootstrap/core/bootstrap.yaml'
+  STATIC_FILE_CLUSTER_CONF: '{{.GIT_ROOT}}/management/bootstrap/configuration.yaml'
+
+tasks:
+  default:
+    cmds:
+      - echo HELP !
+
+  corefile:gen:
+    dir: '{{.USER_WORKING_DIR}}'
+    aliases:
+      - gen
+    cmds:
+      - echo "SOURCE_REPO={{.GIT_ORIGIN}}" > "$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1).core.bootstrap"
+    preconditions:
+      - sh: test -z $KUBECONFIG
+        msg: "ERROR - You have to set the KUBECONFIG variable."
+      - sh: test -f $KUBECONFIG
+        msg: "ERROR - Specified KUBECONFIG not found."
+
+  corefile:read:
+    aliases:
+      - read
+    silent: true
+    dotenv: ['{{.GIT_ROOT}}/sample.core.bootstrap','{{.COREFILE}}']
+    cmds:
+      - echo "{{.COREFILE}}"
+      - echo $SOURCE_REPO
+      #- echo "{{.GIT_ROOT}}"
+      #- echo "{{.STATIC_DIR_ARGO}}"
+      #- echo "{{.STATIC_FILE_BOOTSTRAP}}"
+      #- echo "{{.STATIC_FILE_CLUSTER_CONF}}"
+    preconditions:
+      - sh: test -f '{{.COREFILE}}'
+        msg: "Specified COREFILE not found: {{.COREFILE}}"
+    requires:
+      vars: [COREFILE]
+
+    

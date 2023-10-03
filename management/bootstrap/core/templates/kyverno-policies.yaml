@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.sourceUrl }}/kyverno-policies'
+    path: '{{ .Values.appsPath }}/kyverno-policies'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
     directory:

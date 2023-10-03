@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.sourceUrl }}/cluster-api'
+    path: '{{ .Values.appsPath }}/cluster-api'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
     directory:

@@ -1,18 +1,19 @@
+.helmignore
 *.tmp
 *.log
 *.secret
-*.kubeconfig
+*.bootstrap
 *.tgz
 *.gotmpl
-.helmignore
+*.out
 
 charts/
 Chart.lock
-nohup.out
-
 output/
 ci/
 
 minikube-linux-amd64
 vcluster
 kubectl
+
+!sample.core.bootstrap

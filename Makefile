@@ -5,19 +5,19 @@ include ${SECRETFILE}
 export $(shell sed 's/=.*//' "${SECRETFILE}" 2>&1)
 
 KUBECONFIG=${PWD}/manager.kubeconfig
-STATIC_DIR_ARGO=${PWD}/manager/argo
-STATIC_FILE_BOOTSTRAP=${PWD}/manager/bootstrap/core/bootstrap.yaml
-STATIC_FILE_CLUSTER_CONF=${PWD}/manager/bootstrap/configuration.yaml
+STATIC_DIR_ARGO=${PWD}/management/argo
+STATIC_FILE_BOOTSTRAP=${PWD}/management/bootstrap/core/bootstrap.yaml
+STATIC_FILE_CLUSTER_CONF=${PWD}/management/bootstrap/configuration.yaml
 
 deps:
 	- curl -sLS https://get.arkade.dev | sudo sh
 	- arkade get kubectl
-	- arkade get kustomize
 	- arkade get helm
+	- arkade get task
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	make -C ./infrastructure/kubernetes/minikube start
+	make -C ./provisioning/clusters/minikube start
 
 clean:
 	export KUBECONFIG=$(KUBECONFIG)

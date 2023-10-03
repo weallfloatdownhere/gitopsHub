@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.sourceUrl }}/kubernetes-replicator/head'
+    path: '{{ .Values.appsPath }}/kubernetes-replicator/head'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:

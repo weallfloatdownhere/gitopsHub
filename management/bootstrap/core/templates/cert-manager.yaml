@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.sourceUrl }}/cert-manager/head'
+    path: '{{ .Values.appsPath }}/cert-manager/head'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
