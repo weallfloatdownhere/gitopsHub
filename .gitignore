@@ -1,11 +1,12 @@
 .helmignore
 *.tmp
 *.log
-*.secret
-*.bootstrap
 *.tgz
 *.gotmpl
 *.out
+*.secret
+*.bootstrap
+*.kubeconfig
 
 charts/
 Chart.lock
