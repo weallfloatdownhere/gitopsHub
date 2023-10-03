@@ -11,7 +11,6 @@ vars:
     sh: echo "$(git ls-remote --get-url origin)"
   STATIC_DIR_ARGO: '{{.GIT_ROOT}}/management/argo'
   STATIC_FILE_BOOTSTRAP: '{{.GIT_ROOT}}/management/bootstrap/core/bootstrap.yaml'
-  STATIC_FILE_CLUSTER_CONF: '{{.GIT_ROOT}}/management/bootstrap/configuration.yaml'
 
 tasks:
   default:
