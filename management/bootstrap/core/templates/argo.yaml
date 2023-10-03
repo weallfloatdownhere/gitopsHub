@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: management/argo
+    path: '{{ .Values.appsPath }}/argo'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
