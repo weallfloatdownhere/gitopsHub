@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: bootstrap
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: infrastructure/manager/.root
+    path: infrastructure/manager/bootstrap
     repoURL: $SOURCE_REPO
     targetRevision: HEAD
     helm:
-      releaseName: root
+      releaseName: bootstrap
       ignoreMissingValueFiles: true
       parameters:
         - name: "sourceUrl"

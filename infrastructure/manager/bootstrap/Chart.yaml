@@ -1,4 +1,4 @@
 apiVersion: v2
 description: Generic bootstrap helm chart.
-name: root
+name: bootstrap
 version: 1.0.0
