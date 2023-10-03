@@ -1,27 +1,22 @@
 appsPath: management/services
-
 sourceUrl: CHANGEME
 
-argo:
-  enabled: true
-  wave: "99"
-
 cert_manager:
-  enabled: true
+  enabled: false
   wave: "-10"
 
 kyverno:
-  enabled: true
+  enabled: false
   wave: "3"
 
-kyverno_policies:
-  enabled: true
-  wave: "8"
-
 capi_operator:
-  enabled: true
+  enabled: false
   wave: "5"
 
+kyverno_policies:
+  enabled: false
+  wave: "6"
+
 capi:
-  enabled: true
+  enabled: false
   wave: "7"

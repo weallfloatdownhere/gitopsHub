@@ -4,7 +4,7 @@ metadata:
   name: argo
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.argo.wave | quote }}
+    argocd.argoproj.io/sync-wave: "99"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

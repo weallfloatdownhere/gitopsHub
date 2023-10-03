@@ -1,5 +1,14 @@
+cert_manager:
+  enabled: false
+
 kyverno:
   enabled: false
 
 capi_operator:
+  enabled: false
+
+kyverno_policies:
+  enabled: false
+
+capi:
   enabled: false
