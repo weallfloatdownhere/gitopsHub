@@ -15,18 +15,20 @@ vars:
 
 tasks:
   default:
+    desc: Show this message.
     cmds:
-      - echo "mkcorefile - task mkcorefile KUBECONFIG=path/to/my/core.bootstrap"
+      - task --list-all
 
   mkcorefile:
     silent: true
-    desc: "Corefile generating task."
+    desc: "Generate a Corefile | task mkcorefile KUBECONFIG=path/to/my/core.bootstrap"
     cmds:
       - |
         RND="{{.USER_WORKING_DIR}}/$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1).core.bootstrap"
         echo SOURCE_REPO={{.GIT_ORIGIN}} > $RND
         echo SOURCE_KUBECONFIG=$(cat {{.KUBECONFIG}} | base64 -w0) >> $RND
-        echo "New Corefile generated at: $RND"
+        echo "New corefile at: $RND"
+        cat $RND
     preconditions:
       - sh: test -f '{{.KUBECONFIG}}'
         msg: "ERROR - Specified KUBECONFIG does NOT exists.."
