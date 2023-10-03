@@ -2,15 +2,15 @@ cert_manager:
   enabled: true
 
 kyverno:
-  enabled: true
+  enabled: false
   policies: true
 
 cluster_api_operator:
-  enabled: true
+  enabled: false
   cluster_api: true
 
 kubernetes_replicator:
-  enabled: true
+  enabled: false
 
 node_problem_detector:
-  enabled: true
+  enabled: false
