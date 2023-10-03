@@ -1,5 +1,3 @@
-sourceUrl: CHANGEME
-
 node_problem_detector:
   enabled: true
 

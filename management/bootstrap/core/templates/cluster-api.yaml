@@ -1,27 +1,31 @@
-{{- if .Values.kyverno.enabled -}}
+{{- if .Values.cluster_api_operator.enabled -}}
+{{- if .Values.cluster_api_operator.cluster_api -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kyverno
+  name: cluster-api
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.kyverno.policies_wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ .Values.cluster_api_operator.cluster_api_wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/kyverno/head
+    path: '{{ .Values.sourceUrl }}/cluster-api'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
-    namespace: kyverno
+    namespace: cluster-api
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
       prune: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
+{{- end }}
 {{- end }}

@@ -1,27 +1,30 @@
-{{- if .Values.argo.enabled -}}
+{{- if .Values.kyverno.enabled -}}
+{{- if .Values.kyverno.policies -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo
+  name: kyverno-policies
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.argo.wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ .Values.kyverno.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/argo
+    path: '{{ .Values.sourceUrl }}/kyverno-policies'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
+    directory:
+      recurse: true
+      include: '*.yaml'
   destination:
-    namespace: argocd
+    namespace: kyverno
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       allowEmpty: false
-      selfHeal: false
-      prune: false
-    syncOptions:
-      - CreateNamespace=true
+      prune: true
+      selfHeal: true
+{{- end }}
 {{- end }}

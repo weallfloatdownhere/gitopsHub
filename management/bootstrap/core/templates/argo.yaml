@@ -1,31 +1,27 @@
-{{- if .Values.cluster_api_operator.enabled -}}
-{{- if .Values.cluster_api_operator.cluster_api -}}
+{{- if .Values.argo.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: argo
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.cluster_api_operator.cluster_api_wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ .Values.argo.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/cluster-api
+    path: management/argo
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
-    directory:
-      recurse: true
-      include: '*.yaml'
   destination:
-    namespace: cluster-api
+    namespace: argocd
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
+      allowEmpty: false
       selfHeal: false
-      prune: true
+      prune: false
     syncOptions:
       - CreateNamespace=true
-{{- end }}
 {{- end }}

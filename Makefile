@@ -17,7 +17,7 @@ deps:
 
 local:
 	export KUBECONFIG=$(KUBECONFIG)
-	make -C ./infra/kubernetes/minikube start
+	make -C ./infrastructure/kubernetes/minikube start
 
 clean:
 	export KUBECONFIG=$(KUBECONFIG)

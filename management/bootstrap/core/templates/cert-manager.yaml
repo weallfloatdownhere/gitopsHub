@@ -1,25 +1,27 @@
-{{- if .Values.node_problem_detector.enabled -}}
+{{- if .Values.cert_manager.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-problem-detector
+  name: cert-manager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.node_problem_detector.wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ .Values.cert_manager.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: manager/applications/node-problem-detector/head
+    path: '{{ .Values.sourceUrl }}/cert-manager/head'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
-    namespace: kube-system
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       allowEmpty: false
       selfHeal: false
-      prune: false
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
 {{- end }}

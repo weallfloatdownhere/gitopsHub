@@ -24,11 +24,6 @@ data:
           hs.status = "Healthy"
           return hs
 
-    admissionregistration.k8s.io/MutatingWebhookConfiguration:
-      ignoreDifferences: |
-        jsonPointers:
-        - /webhooks/0/clientConfig/caBundle
-
     install.istio.io/IstioOperator:
       health.lua: |
         hs = {}
@@ -56,8 +51,6 @@ data:
         - '*'
 
   resource.customizations.ignoreDifferences.all: |
-    managedFieldsManagers:
-      - kube-controller-manager
     jsonPointers:
       - /spec/replicas
 
@@ -69,7 +62,7 @@ data:
     jsonPointers:
     - /status
 
-  resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
+  resource.customizations.ignoreDifferences.admissionregistration.istio.io_MutatingWebhookConfiguration: |
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
     jqPathExpressions:
@@ -136,14 +129,12 @@ data:
 
   # List of Lua Scripts to introduce custom actions
   resource.customizations.actions.apps_Deployment: |
-    # Lua Script to indicate which custom actions are available on the resource
     discovery.lua: |
       actions = {}
       actions["restart"] = {}
       return actions
     definitions:
       - name: restart
-        # Lua Script to modify the obj
         action.lua: |
           local os = require("os")
           if obj.spec.template.metadata == nil then

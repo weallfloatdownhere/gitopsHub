@@ -1,3 +1,5 @@
+appsPath: manager/applications
+
 sourceUrl: CHANGEME
 
 cert_manager:
