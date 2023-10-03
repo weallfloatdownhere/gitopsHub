@@ -1,6 +1,9 @@
 argo_rollouts:
   enabled: false
 
+metallb:
+  enabled: false
+
 cert_manager:
   enabled: false
 

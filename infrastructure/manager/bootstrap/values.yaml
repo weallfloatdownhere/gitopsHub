@@ -1,13 +1,17 @@
 appsPath: infratructure/manager/services
 sourceUrl: CHANGEME
 
+cert_manager:
+  enabled: false
+  wave: "-10"
+
 argo_rollouts:
   enabled: false
   wave: "75"
 
-cert_manager:
+metallb:
   enabled: false
-  wave: "-10"
+  wave: "3"
 
 kyverno:
   enabled: false
