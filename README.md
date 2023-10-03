@@ -4,6 +4,16 @@ Structured repository to managed a fleet of Kubernetes clusters in an opionated 
 
 ## Getting started
 
+If you dont already have access to a running Kubernetes cluster, you can start the local minikube environment using the command below. If the provisioning complete succesfully, the newly genarated KUBECONFIG file (minikube.kubeconfig) should be located in the root of the repository.
+
+<u>Please note that if you made a mistake going through the steps, you can always revert the environment using the same command</u>
+
+```bash
+make -C provisioning/kubernetes/minikube start
+```
+
+You can now deploy resources on the management cluster.
+
 ```bash
 KUBECONFIG=/path/to/my/kubeconfig make install
 ```
