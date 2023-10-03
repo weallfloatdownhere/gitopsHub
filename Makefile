@@ -1,7 +1,7 @@
 .SILENT:
 
-STATIC_DIR_ARGO=${PWD}/management/services/argo
-STATIC_FILE_BOOTSTRAP=${PWD}/management/.bootstrap/bootstrap.yaml
+STATIC_DIR_ARGO=${PWD}/infrastructure/manager/argo-cd
+STATIC_FILE_BOOTSTRAP=${PWD}/infrastructure/manager/.root/root.yaml
 STATIC_MINIKUBE_PROVISION=${PWD}/provisioning/kubernetes/minikube
 
 deps:

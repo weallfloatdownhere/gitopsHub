@@ -12,13 +12,13 @@ spec:
     repoURL: $SOURCE_REPO
     targetRevision: HEAD
     helm:
-      releaseName: bootstrap
+      releaseName: root
       ignoreMissingValueFiles: true
       parameters:
         - name: "sourceUrl"
           value: $SOURCE_REPO
       valueFiles:
-        - ../services.yaml
+        - ../services/enabled.yaml
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
