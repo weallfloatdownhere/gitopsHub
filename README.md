@@ -4,10 +4,8 @@ Structured repository to managed a fleet of Kubernetes clusters in an opionated 
 
 ## Getting started
 
-Assuming that you already have access to a running Kubernetes cluster and the `kubeconfig` file to interact with it, you now have to create a **secret file**. Follow the steps below to generate it.
-
 ```bash
-$ task corefile:default KUBECONFIG=/path/to/core.bootstrap
+KUBECONFIG=/path/to/my/kubeconfig make install
 ```
 
 ## Stories

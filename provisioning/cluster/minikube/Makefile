@@ -2,7 +2,7 @@
 include config.env
 export $(shell sed 's/=.*//' config.env)
 
-KUBECONFIG := $(shell git rev-parse --show-toplevel)/manager.kubeconfig
+KUBECONFIG := $(shell git rev-parse --show-toplevel)/minikube.kubeconfig
 TMPCONF := $(shell git rev-parse --show-toplevel)/k.tmp
 
 .EXPORT_ALL_VARIABLES:
