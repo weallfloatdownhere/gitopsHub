@@ -1,0 +1,11 @@
+version: 2.3.11
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+name: node-problem-detector
+namespace: kube-system
+metadata:
+  name: node-problem-detector
+repo: https://charts.deliveryhero.io
+releaseName: node-problem-detector
+IncludeCRDs: true
+valuesFile: values.yaml

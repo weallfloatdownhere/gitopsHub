@@ -1,0 +1,17 @@
+argo_rollouts:
+  enabled: false
+
+cert_manager:
+  enabled: false
+
+kyverno:
+  enabled: false
+
+kyverno_policies:
+  enabled: false
+
+capi_operator:
+  enabled: false
+
+capi:
+  enabled: false

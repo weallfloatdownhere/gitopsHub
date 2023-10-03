@@ -1,0 +1,11 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+name: kubernetes-replicator
+namespace: kube-system
+metadata:
+  name: replicator
+repo: https://helm.mittwald.de
+version: 2.9.1
+releaseName: kubernetes-replicator
+IncludeCRDs: true
+valuesFile: values.yaml
