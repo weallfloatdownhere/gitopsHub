@@ -2,19 +2,10 @@
 
 version: '3'
 
-tasks:
-  terraform:install:
-    dir: '{{.USER_WORKING_DIR}}'
-    vars: { PRODUCT: '{{.PRODUCT | default ""}}' }
-    cmds:
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} init
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} validate
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} plan -var-file={{.USER_WORKING_DIR}}/cluster.tfvars
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} apply -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+includes:
+  master: taskfiles/task.master.yml
 
-  terraform:destroy:
-    dir: '{{.USER_WORKING_DIR}}'
-    vars: { PRODUCT: '{{.PRODUCT | default ""}}' }
+tasks:
+  default:
     cmds:
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} init
-      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} destroy -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+      - echo "YEE"

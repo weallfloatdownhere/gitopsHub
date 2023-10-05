@@ -1,0 +1,42 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_ROOT:
+    sh: echo $(git rev-parse --show-toplevel)
+
+tasks:
+  install:
+    desc: Provison the master kubernetes cluster using terraform.
+    dir: "{{.GIT_ROOT}}/files"
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} validate
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} plan -var-file={{.GIT_ROOT}}/files/cluster.tfvars
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} apply -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state-out={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
+
+  deploy:
+    desc: Deploying resources into the master kubernetes cluster.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone olm/ | kubectl create -f -
+    preconditions:
+      - test -d olm/
+      - test -d operators/
+
+  delete:
+    desc: Uninstall resources from the master kubernetes cluster.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone olm/ | kubectl delete -f -
+    preconditions:
+      - test -d olm/
+      - test -d operators/
+
+  destroy:
+    desc: Destroy the master kubernetes cluster using terraform.
+    dir: '{{.GIT_ROOT}}/files'
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} destroy -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve

@@ -18,11 +18,11 @@ variable "memory" {
 
 resource "null_resource" "minikube" {
   triggers = {
-      name            = var.name
+      name = var.name
   }
   provisioner "local-exec" {
     interpreter   = ["bash", "-c"]
-    environment   = { KUBECONFIG = "${path.cwd}/cluster.kubeconfig" }
+    environment   = { KUBECONFIG = "${path.cwd}/${self.triggers.name}.kubeconfig" }
     command = <<-EOT
       minikube delete -p ${self.triggers.name}
       rm -rf ${path.cwd}/*.kubeconfig
@@ -37,11 +37,11 @@ resource "null_resource" "minikube" {
 resource "terraform_data" "provision" {
   provisioner "local-exec" {
     interpreter   = ["bash", "-c"]
-    environment   = { KUBECONFIG = "${path.cwd}/cluster.kubeconfig" }
+    environment   = { KUBECONFIG = "${path.cwd}/${var.name}.kubeconfig" }
     command = <<-EOT
       minikube start -p ${var.name} --cpus ${var.cpus} --memory ${var.memory} --network bridge
-      kubectl config view --context ${var.name} --flatten --minify > ${path.cwd}/cluster.kubeconfig.tmp
-      mv ${path.cwd}/cluster.kubeconfig.tmp ${path.cwd}/cluster.kubeconfig
+      kubectl config view --context ${var.name} --flatten --minify > ${path.cwd}/${var.name}.kubeconfig.tmp
+      mv ${path.cwd}/${var.name}.kubeconfig.tmp ${path.cwd}/${var.name}.kubeconfig
     EOT
   }
 }
