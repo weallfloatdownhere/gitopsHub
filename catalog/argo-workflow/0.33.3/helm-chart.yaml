@@ -1,0 +1,9 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: argo-workflows
+name: argo-workflows
+repo: https://argoproj.github.io/argo-helm
+version: 0.33.3
+releaseName: argo-workflows
+valuesFile: values.yaml

@@ -6,15 +6,20 @@ argocd:
   wave: "99"
   path: "kubernetes/services/argocd"
 
-cert_manager:
-  enabled: true
-  wave: "-10"
-  path: "kubernetes/services/cert-manager"
+argo_workflow:
+  enabled: false
+  wave: "70"
+  path: "kubernetes/services/argo-workflow"
 
 argo_rollouts:
   enabled: false
   wave: "75"
   path: "kubernetes/services/argo-rollouts"
+
+cert_manager:
+  enabled: true
+  wave: "-10"
+  path: "kubernetes/services/cert-manager"
 
 metallb:
   enabled: false
