@@ -16,14 +16,8 @@ variable "memory" {
   nullable = false
 }
 
-variable "kubeconfig" {
-  type     = string
-  nullable = false
-}
-
 resource "null_resource" "minikube" {
   triggers = {
-      kubeconfig      = var.kubeconfig
       name            = var.name
   }
   provisioner "local-exec" {
@@ -31,7 +25,7 @@ resource "null_resource" "minikube" {
     interpreter   = ["bash", "-c"]
     on_failure    = continue
     when          = destroy
-    environment   = { KUBECONFIG = self.triggers.kubeconfig }
+    environment   = { KUBECONFIG = "${path.cwd}/private/cluster.kubeconfig" }
   }
 }
 
@@ -40,9 +34,9 @@ resource "terraform_data" "provision" {
     interpreter   = ["bash", "-c"]
     command = <<-EOT
       minikube start -p ${var.name} --cpus 2 --memory 3096 --network bridge
-      kubectl config view --context manager --flatten --minify > ${var.kubeconfig}.tmp
-      mv ${var.kubeconfig}.tmp ${var.kubeconfig}
+      kubectl config view --context manager --flatten --minify > ${path.cwd}/private/cluster.kubeconfig.tmp
+      mv ${path.cwd}/private/cluster.kubeconfig.tmp ${path.cwd}/private/cluster.kubeconfig
     EOT
-    environment   = { KUBECONFIG = var.kubeconfig }
+    environment   = { KUBECONFIG = "${path.cwd}/private/cluster.kubeconfig" }
   }
 }
