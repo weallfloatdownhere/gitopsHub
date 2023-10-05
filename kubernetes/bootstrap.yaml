@@ -9,37 +9,32 @@ spec:
         repoURL: $SOURCE_REPO
         revision: HEAD
         directories:
-          - path: kubernetes/*
+          - path: kubernetes/groups/**/*
   strategy:
     type: RollingSync
     rollingSync:
       steps:
-        - matchExpressions:
-            - key: appname
+        - matchExpressions: # 1 - Sync the requirements
+            - key: appgroup
               operator: In
               values:
-                - argocd
+                - requirements
           maxUpdate: 100%
-        - matchExpressions:
-            - key: appname
-              operator: In
-              values:
-                - cert-manager
-          maxUpdate: 100%
-        - matchExpressions:
-            - key: appname
+
+        - matchExpressions: # 2 - Sync the operators
+            - key: appgroup
               operator: NotIn
               values:
-                - argocd
-                - cert-manager
+                - operators
           maxUpdate: 100%
+
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   template:
     metadata:
       name: "{{.path.basename}}"
       labels:
-        appname: "{{.path.basename}}"
+        appgroup: "{{.path.path[3]}}"
     spec:
       project: default
       source:

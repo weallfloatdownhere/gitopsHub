@@ -1,6 +1,6 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 vars:
   GIT_ROOT:
@@ -19,30 +19,28 @@ tasks:
 
   destroy:
     desc: Destroy the master kubernetes cluster using terraform.
-    dir: '{{.GIT_ROOT}}/files'
+    dir: "{{.GIT_ROOT}}/files"
     cmds:
       - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
       - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} destroy -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
-
 
   # Kubernetes deployments using helm, kustomize and kubectl
   deploy:
     desc: Deploying resources into the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd/ | kubectl apply -f -
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone groups/requirements/argocd | kubectl apply -f -
       - SOURCE_REPO="$(git ls-remote --get-url origin)" envsubst < bootstrap.yaml | kubectl apply -f -
     preconditions:
-      - test -d argocd/
+      - test -d groups/requirements/argocd
       - test -f bootstrap.yaml
 
   delete:
     desc: Uninstall resources from the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd/ | kubectl delete -f -
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone groups/requirements/argocd | kubectl delete -f -
       - kubectl delete -f bootstrap.yaml
     preconditions:
-      - test -d argocd/
+      - test -d groups/requirements/argocd
       - test -f bootstrap.yaml
-
