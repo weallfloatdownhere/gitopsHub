@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: capi
+  name: cluster-api
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: {{ .Values.capi.wave | quote }}
@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.appsPath }}/capi'
+    path: '{{ .Values.appsPath }}/cluster-api'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
     directory:
