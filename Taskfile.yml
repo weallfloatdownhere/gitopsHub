@@ -2,21 +2,19 @@
 
 version: '3'
 
-vars:
-  GIT_ROOT: { sh: printf "$(git rev-parse --show-toplevel)" }
-  FLAVOR: '{{.FLAVOR | default "minikube"}}'
-
 tasks:
   terraform:install:
     dir: '{{.USER_WORKING_DIR}}'
+    vars: { PRODUCT: '{{.PRODUCT | default ""}}' }
     cmds:
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} init
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} validate
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} plan -var-file={{.USER_WORKING_DIR}}/cluster.tfvars
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} apply -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
-  
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} init
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} validate
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} plan -var-file={{.USER_WORKING_DIR}}/cluster.tfvars
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} apply -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+
   terraform:destroy:
     dir: '{{.USER_WORKING_DIR}}'
+    vars: { PRODUCT: '{{.PRODUCT | default ""}}' }
     cmds:
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} init
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} destroy -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} init
+      - terraform -chdir=$(git rev-parse --show-toplevel)/infra-as-code/terraform/products/{{.PRODUCT}} destroy -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve

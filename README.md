@@ -10,14 +10,14 @@ To ensure that the current environment is clean.
 
 ```shell
 $ cd $(git rev-parse --show-toplevel)/environments/hub/infra
-$ task terraform:destroy FLAVOR=minikube
+$ task terraform:destroy PRODUCT=minikube
 ```
 
 Provision the hub.
 
 ```shell
 $ cd $(git rev-parse --show-toplevel)/environments/hub/infra
-$ task terraform:install FLAVOR=minikube
+$ task terraform:install PRODUCT=minikube
 ```
 
 ## Stories
