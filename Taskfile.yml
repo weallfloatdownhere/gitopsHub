@@ -3,7 +3,8 @@
 version: '3'
 
 includes:
-  master: taskfiles/task.master.yml
+  master: taskfiles/master.yml
+  slaves: taskfiles/slaves.yml
 
 tasks:
   default:

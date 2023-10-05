@@ -7,6 +7,7 @@ vars:
     sh: echo $(git rev-parse --show-toplevel)
 
 tasks:
+  # Infrastructure provisioning using terraform
   install:
     desc: Provison the master kubernetes cluster using terraform.
     dir: "{{.GIT_ROOT}}/files"
@@ -16,11 +17,22 @@ tasks:
       - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} plan -var-file={{.GIT_ROOT}}/files/cluster.tfvars
       - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} apply -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state-out={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
 
+  destroy:
+    desc: Destroy the master kubernetes cluster using terraform.
+    dir: '{{.GIT_ROOT}}/files'
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} destroy -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
+
+
+  # Kubernetes deployments using helm, kustomize and kubectl
   deploy:
     desc: Deploying resources into the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
       - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone olm/ | kubectl create -f -
+      - kubectl rollout status -w deployment/catalog-operator --namespace="olm"
+      - kubectl rollout status -w deployment/olm-operator --namespace="olm"
     preconditions:
       - test -d olm/
       - test -d operators/
@@ -34,9 +46,3 @@ tasks:
       - test -d olm/
       - test -d operators/
 
-  destroy:
-    desc: Destroy the master kubernetes cluster using terraform.
-    dir: '{{.GIT_ROOT}}/files'
-    cmds:
-      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
-      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} destroy -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
