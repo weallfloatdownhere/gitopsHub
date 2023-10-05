@@ -6,6 +6,8 @@
 *.out
 *.secret
 *.kubeconfig
+.*.lock.hcl
+*.tfstate
 
 charts/
 Chart.lock
