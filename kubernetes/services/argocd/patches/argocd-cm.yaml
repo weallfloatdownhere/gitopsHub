@@ -57,17 +57,16 @@ data:
     jsonPointers:
     - /metadata/resourceVersion
 
-  resource.customizations.ignoreResourceUpdates.argoproj.io_Application: |
-    jsonPointers:
-    - /status
-
-  ? resource.customizations.ignoreDifferences.admissionregistration.istio.io_MutatingWebhookConfiguration
-  : |
+  resource.customizations.ignoreDifferences.admissionregistration.istio.io_MutatingWebhookConfiguration: |
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
     jqPathExpressions:
     - '.webhooks[0].clientConfig.caBundle'
     - '.webhooks[]?.clientConfig.caBundle'
+
+  resource.customizations.ignoreResourceUpdates.argoproj.io_Application: |
+    jsonPointers:
+    - /status
 
   resource.customizations.health.argoproj.io_Application: |
     hs = {}

@@ -11,3 +11,6 @@ patches:
 resources:
   - ../../../catalog/argocd/v2.8.4
   - namespace.yaml
+
+components:
+  - ../../../catalog/argocd/extensions/v0.2.1
