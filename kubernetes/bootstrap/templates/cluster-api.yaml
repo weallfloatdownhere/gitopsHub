@@ -25,4 +25,6 @@ spec:
       allowEmpty: false
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 {{- end }}
