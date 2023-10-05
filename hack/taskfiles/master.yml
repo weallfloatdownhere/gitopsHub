@@ -29,10 +29,10 @@ tasks:
     desc: Deploying resources into the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd | kubectl apply -f -
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone services/argocd | kubectl apply -f -
       - SOURCE_REPO="$(git ls-remote --get-url origin)" envsubst < bootstrap/bootstrap.yaml | kubectl apply -f -
     preconditions:
-      - test -d argocd
+      - test -d services/argocd
       - test -f bootstrap/bootstrap.yaml
 
   strictarp:
@@ -46,8 +46,8 @@ tasks:
     desc: Uninstall resources from the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd | kubectl delete -f -
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone services/argocd | kubectl delete -f -
       - kubectl delete -f bootstrap/bootstrap.yaml
     preconditions:
-      - test -d argocd
+      - test -d services/argocd
       - test -f bootstrap/bootstrap.yaml
