@@ -14,25 +14,39 @@ spec:
     type: RollingSync
     rollingSync:
       steps:
-        - matchExpressions: # 1 - Sync the gitops app group
+        - matchExpressions: # 1 - Sync the encryption app group (cert-manager, sealed-secret, etc..)
+            - key: appgroup
+              operator: In
+              values:
+                - encryption
+          maxUpdate: 100%
+
+        - matchExpressions: # 2 - Sync the operators app group (istio-operator, capi-operator, etc..)
             - key: appgroup
               operator: In
               values:
                 - gitops
           maxUpdate: 100%
 
-        - matchExpressions: # 2 - Sync the security app group
+        - matchExpressions: # 3 - Sync the networking app group (metallb, istio, etc..)
+            - key: appgroup
+              operator: In
+              values:
+                - networking
+          maxUpdate: 100%
+
+        - matchExpressions: # 3 - Sync the security app group (kyverno)
             - key: appgroup
               operator: In
               values:
                 - security
           maxUpdate: 100%
 
-        - matchExpressions: # 3 - Sync the networking app group
+        - matchExpressions: # 4 - Sync the argo app group
             - key: appgroup
               operator: In
               values:
-                - networking
+                - argo
           maxUpdate: 100%
 
   goTemplate: true

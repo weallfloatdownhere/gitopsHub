@@ -3,9 +3,9 @@ kind: HelmChartInflationGenerator
 name: cert-manager
 metadata:
   name: cert-manager
-namespace: cert-manager
+#namespace: cert-manager
 repo: https://charts.jetstack.io
 releaseName: cert-manager
-IncludeCRDs: false
+IncludeCRDs: true
 version: v1.13.1
 valuesFile: values.yaml
