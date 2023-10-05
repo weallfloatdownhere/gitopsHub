@@ -1,10 +1,13 @@
+argocd:
+  enabled: true
+
 cert_manager:
   enabled: true
 
-cluster_api:
-  enabled: false
-
 argo_rollouts:
+  enabled: true
+
+cluster_api:
   enabled: false
 
 metallb:
