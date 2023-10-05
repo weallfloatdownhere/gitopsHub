@@ -6,3 +6,4 @@ name: cert-manager
 repo: https://charts.jetstack.io
 version: v1.13.1
 releaseName: cert-manager
+valuesFile: values.yaml

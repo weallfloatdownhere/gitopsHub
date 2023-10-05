@@ -6,3 +6,4 @@ name: cluster-api-operator
 repo: https://kubernetes-sigs.github.io/cluster-api-operator
 version: 0.6.0
 releaseName: cluster-api-operator
+valuesFile: values.yaml
