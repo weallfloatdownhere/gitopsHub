@@ -6,6 +6,6 @@ metadata:
 namespace: cert-manager
 repo: https://charts.jetstack.io
 releaseName: cert-manager
-IncludeCRDs: true
+IncludeCRDs: false
 version: 1.13.1
 valuesFile: values.yaml

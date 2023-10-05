@@ -32,21 +32,8 @@ spec:
             - key: appgroup
               operator: In
               values:
-                - networking
-          maxUpdate: 100%
-
-        - matchExpressions: # 3 - Sync the security app group (kyverno)
-            - key: appgroup
-              operator: In
-              values:
                 - security
-          maxUpdate: 100%
-
-        - matchExpressions: # 4 - Sync the argo app group
-            - key: appgroup
-              operator: In
-              values:
-                - argo
+                - networking
           maxUpdate: 100%
 
   goTemplate: true
@@ -67,8 +54,8 @@ spec:
         namespace: "{{.path.basename}}"
       syncPolicy:
         automated:
-          allowEmpty: true
-          selfHeal: true
+          allowEmpty: false
+          selfHeal: false
           prune: true
         syncOptions:
           - CreateNamespace=true
