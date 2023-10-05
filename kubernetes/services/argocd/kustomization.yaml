@@ -9,5 +9,5 @@ patches:
   - path: patches/argocd-cmd-params-cm.yaml
 
 resources:
-  - ../../catalog/argocd/v2.8.4
+  - ../../../catalog/argocd/v2.8.4
   - namespace.yaml
