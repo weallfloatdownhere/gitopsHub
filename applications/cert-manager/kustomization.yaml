@@ -3,5 +3,8 @@ kind: Kustomization
 
 namespace: cert-manager
 
+generators:
+  - helm-chart.yaml
+
 resources:
-  - ../../../../applications/cert-manager
+  - ns.cert-manager.yaml

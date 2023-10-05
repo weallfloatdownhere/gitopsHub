@@ -21,11 +21,11 @@ spec:
                 - requirements
           maxUpdate: 100%
 
-        - matchExpressions: # 2 - Sync the operators
+        - matchExpressions: # 2 - Sync the networking
             - key: appgroup
               operator: In
               values:
-                - operators
+                - networking
           maxUpdate: 100%
 
   goTemplate: true
@@ -46,7 +46,7 @@ spec:
         namespace: "{{.path.basename}}"
       syncPolicy:
         automated:
-          allowEmpty: false
+          allowEmpty: true
           selfHeal: true
           prune: true
         syncOptions:
