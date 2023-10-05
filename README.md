@@ -17,13 +17,27 @@ task: Available tasks for this project:
 To ensure that the current environment is clean.
 
 ```shell
-$ task master:destroy -- minikube
+task master:destroy -- minikube
 ```
 
-Provision the hub.
+Provision the master's infrastructure.
+
+*This example uses minikube but you can use any other terraform products in terraform/products.*
 
 ```shell
-$ task master:install -- minikube
+task master:install -- minikube
+```
+
+**Deploy** the master's resources.
+
+```shell
+task master:deploy
+```
+
+**Delete** the master's resources.
+
+```shell
+task master:delete
 ```
 
 ## Stories

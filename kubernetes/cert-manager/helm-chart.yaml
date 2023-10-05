@@ -1,0 +1,8 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+name: cert-manager
+repo: https://charts.jetstack.io
+releaseName: cert-manager
+IncludeCRDs: false
+version: v1.13.1
+valuesFile: values.yaml
