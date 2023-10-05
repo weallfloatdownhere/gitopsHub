@@ -8,7 +8,7 @@
 *.kubeconfig
 .*.lock.hcl
 *.tfstate
-
+**/.terraform
 charts/
 Chart.lock
 output/

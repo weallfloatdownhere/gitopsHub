@@ -2,7 +2,6 @@ install:
 	terraform init -reconfigure -cloud=false -lock=false
 	terraform plan
 	terraform apply -auto-approve -lock=false
-	- rm -rf ${PWD}/.terraform
 
 clean:
 	- terraform apply -auto-approve -destroy
