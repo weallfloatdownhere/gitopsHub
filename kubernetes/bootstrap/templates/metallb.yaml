@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.appsPath }}/metallb'
+    path: '{{ .Values.metallb.path }}'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:

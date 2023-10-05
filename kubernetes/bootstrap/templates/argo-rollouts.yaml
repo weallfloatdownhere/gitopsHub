@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.appsPath }}/argo-rollouts'
+    path: '{{ .Values.argo_rollouts.path }}'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:

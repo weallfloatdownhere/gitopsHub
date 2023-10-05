@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    path: '{{ .Values.appsPath }}/kyverno'
+    path: '{{ .Values.kyverno.path }}'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
