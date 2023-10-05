@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+      repoURL: $SOURCE_REPO
       revision: HEAD
       directories:
         - path: kubernetes/*
@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/weallfloatdownhere/gitopsHub.git
+        repoURL: $SOURCE_REPO
         targetRevision: HEAD
         path: '{{path}}'
       destination:

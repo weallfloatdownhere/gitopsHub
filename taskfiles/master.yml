@@ -30,19 +30,19 @@ tasks:
     desc: Deploying resources into the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone olm/ | kubectl create -f -
-      - kubectl rollout status -w deployment/catalog-operator --namespace="olm"
-      - kubectl rollout status -w deployment/olm-operator --namespace="olm"
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd/ | kubectl apply -f -
+      - SOURCE_REPO="$(shell git ls-remote --get-url origin)" envsubst < bootstrap.yaml | kubectl apply -f -
     preconditions:
-      - test -d olm/
-      - test -d operators/
+      - test -d argocd/
+      - test -f bootstrap.yaml
 
   delete:
     desc: Uninstall resources from the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"
     cmds:
-      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone olm/ | kubectl delete -f -
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd/ | kubectl delete -f -
+      - kubectl delete -f bootstrap.yaml
     preconditions:
-      - test -d olm/
-      - test -d operators/
+      - test -d argocd/
+      - test -f bootstrap.yaml
 
