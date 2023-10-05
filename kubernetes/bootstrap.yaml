@@ -34,7 +34,7 @@ spec:
     metadata:
       name: "{{.path.basename}}"
       labels:
-        appgroup: "{{ index .path.segments 3}}"
+        appgroup: "{{ index .path.segments 2}}"
     spec:
       project: default
       source:
