@@ -6,7 +6,10 @@
 *.out
 *.secret
 *.kubeconfig
-
+.*.lock.hcl
+.*.lock.info
+*.tfstate
+**/.terraform
 charts/
 Chart.lock
 output/

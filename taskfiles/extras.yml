@@ -1,0 +1,15 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GIT_ROOT:
+    sh: echo $(git rev-parse --show-toplevel)
+
+tasks:
+  strictarp:
+    desc: Enabling strictARP in the kube-proxy config map https://metallb.universe.tf/installation.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - |
+        kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
