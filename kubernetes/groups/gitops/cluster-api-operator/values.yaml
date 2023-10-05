@@ -7,7 +7,7 @@ cert-manager:
   namespace: "cert-manager"
 # ---
 # Cluster API provider options
-core: "cluster-api:v1.4.3"
+core: ""
 bootstrap: ""
 controlPlane: ""
 infrastructure: ""
