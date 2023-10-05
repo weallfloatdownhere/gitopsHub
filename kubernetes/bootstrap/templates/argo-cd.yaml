@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    path: 'infratructure/manager/argo-cd'
+    path: 'kubernetes/argocd'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
