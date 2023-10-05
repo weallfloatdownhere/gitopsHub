@@ -7,6 +7,7 @@
 *.secret
 *.kubeconfig
 .*.lock.hcl
+*.tfstate.backup
 .*.lock.info
 *.tfstate
 **/.terraform
@@ -14,7 +15,6 @@ charts/
 Chart.lock
 output/
 ci/
-
 minikube-linux-amd64
 vcluster
 kubectl

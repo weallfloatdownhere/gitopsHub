@@ -1,0 +1,10 @@
+version: 4.7.4
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+name: metallb
+releaseName: metallb
+metadata:
+  name: metallb
+repo: https://charts.bitnami.com/bitnami
+IncludeCRDs: true
+valuesFile: values.yaml

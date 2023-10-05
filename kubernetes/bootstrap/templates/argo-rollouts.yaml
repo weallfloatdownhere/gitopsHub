@@ -1,0 +1,27 @@
+{{- if .Values.argo_rollouts.enabled -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.argo_rollouts.wave | quote }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: '{{ .Values.appsPath }}/argo-rollouts'
+    repoURL: {{ .Values.sourceUrl }}
+    targetRevision: HEAD
+  destination:
+    namespace: argo-rollouts
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      allowEmpty: false
+      selfHeal: false
+      prune: false
+    syncOptions:
+      - CreateNamespace=true
+{{- end }}

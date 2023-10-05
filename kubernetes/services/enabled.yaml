@@ -1,0 +1,14 @@
+cert_manager:
+  enabled: true
+
+argo_rollouts:
+  enabled: false
+
+metallb:
+  enabled: false
+
+kyverno:
+  enabled: false
+
+capi_operator:
+  enabled: false

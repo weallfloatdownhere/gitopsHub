@@ -1,0 +1,53 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GIT_ROOT:
+    sh: echo $(git rev-parse --show-toplevel)
+
+tasks:
+  # Infrastructure provisioning using terraform
+  provision:
+    desc: Provison the master kubernetes cluster using terraform.
+    dir: "{{.GIT_ROOT}}/files"
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} validate
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} plan -var-file={{.GIT_ROOT}}/files/cluster.tfvars
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} apply -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state-out={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
+
+  destroy:
+    desc: Destroy the master kubernetes cluster using terraform.
+    dir: "{{.GIT_ROOT}}/files"
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} init
+      - terraform -chdir={{.GIT_ROOT}}/terraform/products/{{.CLI_ARGS}} destroy -var-file={{.GIT_ROOT}}/files/cluster.tfvars -state={{.GIT_ROOT}}/files/cluster.tfstate -auto-approve
+
+  # Kubernetes deployments using helm, kustomize and kubectl
+  deploy:
+    desc: Deploying resources into the master kubernetes cluster.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd | kubectl apply -f -
+      - SOURCE_REPO="$(git ls-remote --get-url origin)" envsubst < bootstrap/bootstrap.yaml | kubectl apply -f -
+    preconditions:
+      - test -d argocd
+      - test -f bootstrap/bootstrap.yaml
+
+  strictarp:
+    desc: Enabling strictARP in the kube-proxy config map https://metallb.universe.tf/installation.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - |
+        kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+
+  delete:
+    desc: Uninstall resources from the master kubernetes cluster.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - kustomize build --enable-helm --enable-alpha-plugins --load-restrictor=LoadRestrictionsNone argocd | kubectl delete -f -
+      - kubectl delete -f bootstrap/bootstrap.yaml
+    preconditions:
+      - test -d argocd
+      - test -f bootstrap/bootstrap.yaml

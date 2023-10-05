@@ -1,0 +1,28 @@
+appsPath: kubernetes/services
+sourceUrl: CHANGEME
+
+cert_manager:
+  enabled: true
+  wave: "-10"
+
+argo_rollouts:
+  enabled: false
+  wave: "75"
+
+metallb:
+  enabled: false
+  wave: "3"
+
+kyverno:
+  enabled: false
+  wave: "3"
+
+kyverno_policies:
+  wave: "6"
+
+capi_operator:
+  enabled: false
+  wave: "5"
+
+capi:
+  wave: "7"

@@ -3,9 +3,9 @@
 version: "3"
 
 includes:
-  extras: taskfiles/extras.yml
-  master: taskfiles/master.yml
-  slaves: taskfiles/slaves.yml
+  extras: hack/taskfiles/extras.yml
+  master: hack/taskfiles/master.yml
+  slaves: hack/taskfiles/slaves.yml
 
 tasks:
   default:
