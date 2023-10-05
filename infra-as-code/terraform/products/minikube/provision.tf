@@ -23,7 +23,12 @@ resource "null_resource" "minikube" {
   provisioner "local-exec" {
     interpreter   = ["bash", "-c"]
     environment   = { KUBECONFIG = "${path.cwd}/cluster.kubeconfig" }
-    command       = "minikube delete -p ${self.triggers.name}"
+    command = <<-EOT
+      minikube delete -p ${self.triggers.name}
+      rm -rf ${path.cwd}/*.kubeconfig
+      rm -rf ${path.cwd}/*.tfstate
+      rm -rf ${path.cwd}/*.tfstate.backup
+    EOT
     on_failure    = continue
     when          = destroy
   }

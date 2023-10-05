@@ -1,0 +1,23 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GIT_ROOT: { sh: printf "$(git rev-parse --show-toplevel)" }
+  PROVIDER: "terraform"
+  FLAVOR: '{{.FLAVOR | default ""}}'
+
+tasks:
+  install:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} init
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} validate
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} plan
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} apply -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+  
+  destroy:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} init
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} destroy -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
