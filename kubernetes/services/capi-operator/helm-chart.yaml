@@ -1,11 +1,11 @@
 apiVersion: builtin
 kind: HelmChartInflationGenerator
-name: capi-operator
+name: cluster-api-operator
 namespace: capi-operator-system
 metadata:
   name: cluster-api-operator
 repo: https://kubernetes-sigs.github.io/cluster-api-operator
 version: 0.6.0
-releaseName: capi-operator
+releaseName: cluster-api-operator
 IncludeCRDs: true
 valuesFile: values.yaml
