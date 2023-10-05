@@ -1,8 +1,9 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 includes:
+  extras: taskfiles/extras.yml
   master: taskfiles/master.yml
   slaves: taskfiles/slaves.yml
 

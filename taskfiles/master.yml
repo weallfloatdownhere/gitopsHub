@@ -35,6 +35,13 @@ tasks:
       - test -d groups/requirements/argocd
       - test -f bootstrap.yaml
 
+  strictarp:
+    desc: Enabling strictARP in the kube-proxy config map https://metallb.universe.tf/installation.
+    dir: "{{.GIT_ROOT}}/kubernetes"
+    cmds:
+      - |
+        kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+
   delete:
     desc: Uninstall resources from the master kubernetes cluster.
     dir: "{{.GIT_ROOT}}/kubernetes"

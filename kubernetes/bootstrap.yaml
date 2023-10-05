@@ -14,21 +14,14 @@ spec:
     type: RollingSync
     rollingSync:
       steps:
-        - matchExpressions: # 1 - Sync kubernetes itself (kube-system services)
-            - key: appgroup
-              operator: In
-              values:
-                - system
-          maxUpdate: 100%
-
-        - matchExpressions: # 2 - Sync the requirements
+        - matchExpressions: # 1 - Sync the requirements
             - key: appgroup
               operator: In
               values:
                 - requirements
           maxUpdate: 100%
 
-        - matchExpressions: # 3 - Sync the operators
+        - matchExpressions: # 2 - Sync the operators
             - key: appgroup
               operator: In
               values:
