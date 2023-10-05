@@ -11,4 +11,4 @@ kyverno:
   enabled: false
 
 capi_operator:
-  enabled: false
+  enabled: true
