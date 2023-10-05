@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollouts
+  name: argo-workflow
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: {{ .Values.argo_workflow.wave | quote }}
@@ -15,7 +15,7 @@ spec:
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
-    namespace: argo-rollouts
+    namespace: argo-workflow
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
