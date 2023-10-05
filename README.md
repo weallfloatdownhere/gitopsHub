@@ -25,7 +25,7 @@ Provision the master's infrastructure.
 *This example uses minikube but you can use any other terraform products in terraform/products.*
 
 ```shell
-task master:install -- minikube
+task master:provision -- minikube
 ```
 
 **Deploy** the master's resources.

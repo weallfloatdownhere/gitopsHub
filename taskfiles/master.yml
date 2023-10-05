@@ -8,7 +8,7 @@ vars:
 
 tasks:
   # Infrastructure provisioning using terraform
-  install:
+  provision:
     desc: Provison the master kubernetes cluster using terraform.
     dir: "{{.GIT_ROOT}}/files"
     cmds:
