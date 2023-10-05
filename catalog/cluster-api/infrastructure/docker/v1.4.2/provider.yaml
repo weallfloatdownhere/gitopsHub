@@ -2,7 +2,7 @@
 apiVersion: operator.cluster.x-k8s.io/v1alpha2
 kind: InfrastructureProvider
 metadata:
-  name: metal3
-  namespace: cluster-api
+  name: docker
+  #namespace: cluster-api
 spec:
-  version: v1.5.1
+  version: v1.4.2

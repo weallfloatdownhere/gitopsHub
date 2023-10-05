@@ -1,11 +1,11 @@
-{{- if .Values.capi_operator.enabled -}}
+{{- if .Values.cluster_api.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: capi-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: {{ .Values.capi_operator.wave | quote }}
+    argocd.argoproj.io/sync-wave: {{ .Values.cluster_api_operator.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

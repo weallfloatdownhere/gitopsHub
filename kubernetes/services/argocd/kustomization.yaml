@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd
+
+patches:
+  - path: patches/argocd-cm.yaml
+  - path: patches/admin-password.yaml
+  - path: patches/argocd-cmd-params-cm.yaml
+
+resources:
+  - ../../catalog/argocd/v2.8.4
+  - namespace.yaml

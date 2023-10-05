@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cluster-api
+
+resources:
+  - ../../../catalog/cluster-api/infrastructure/docker/v1.4.2/provider.yaml
+  - ../../../catalog/cluster-api/control-plane/kubeadm/v1.5.1/provider.yaml
+  - ../../../catalog/cluster-api/bootstrap/kubeadm/v1.5.1/provider.yaml
+  - ../../../catalog/cluster-api/core/v1.4.3/provider.yaml
+  - namespace.yaml

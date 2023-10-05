@@ -1,28 +1,40 @@
 appsPath: kubernetes/services
 sourceUrl: CHANGEME
 
+argocd:
+  enabled: true
+  wave: "99"
+  path: "kubernetes/services/argocd"
+
 cert_manager:
   enabled: true
   wave: "-10"
+  path: "kubernetes/services/cert-manager"
 
 argo_rollouts:
   enabled: false
   wave: "75"
+  path: "kubernetes/services/argo-rollouts"
 
 metallb:
   enabled: false
   wave: "3"
+  path: "kubernetes/services/metallb"
 
 kyverno:
   enabled: false
   wave: "3"
+  path: "kubernetes/services/kyverno"
 
 kyverno_policies:
   wave: "6"
+  path: "kubernetes/services/kyverno-policies"
 
-capi_operator:
-  enabled: false
+cluster_api_operator:
   wave: "5"
+  path: "kubernetes/services/cluster-api-operator"
 
-capi:
+cluster_api:
+  enabled: false
   wave: "7"
+  path: "kubernetes/services/cluster-api"

@@ -1,16 +1,17 @@
+{{- if .Values.argocd.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argo-cd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "99"
+    argocd.argoproj.io/sync-wave: {{ .Values.argocd.wave | quote }}
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    path: 'kubernetes/argocd'
+    path: '{{ .Values.appsPath }}/argocd'
     repoURL: {{ .Values.sourceUrl }}
     targetRevision: HEAD
   destination:
@@ -23,3 +24,4 @@ spec:
       prune: false
     syncOptions:
       - CreateNamespace=true
+{{- end }}

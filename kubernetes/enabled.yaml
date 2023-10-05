@@ -1,6 +1,9 @@
 cert_manager:
   enabled: true
 
+cluster_api:
+  enabled: false
+
 argo_rollouts:
   enabled: false
 
@@ -9,6 +12,3 @@ metallb:
 
 kyverno:
   enabled: false
-
-capi_operator:
-  enabled: true
