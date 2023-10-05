@@ -4,20 +4,19 @@ version: '3'
 
 vars:
   GIT_ROOT: { sh: printf "$(git rev-parse --show-toplevel)" }
-  PROVIDER: "terraform"
-  FLAVOR: '{{.FLAVOR | default ""}}'
+  FLAVOR: '{{.FLAVOR | default "minikube"}}'
 
 tasks:
-  install:
+  terraform:install:
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} init
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} validate
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} plan
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} apply -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} init
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} validate
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} plan -var-file={{.USER_WORKING_DIR}}/cluster.tfvars
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} apply -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state-out={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
   
-  destroy:
+  terraform:destroy:
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} init
-      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/{{.PROVIDER}}/products/{{.FLAVOR}} destroy -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} init
+      - terraform -chdir={{.GIT_ROOT}}/infra-as-code/terraform/products/{{.FLAVOR}} destroy -var-file={{.USER_WORKING_DIR}}/cluster.tfvars -state={{.USER_WORKING_DIR}}/cluster.tfstate -auto-approve

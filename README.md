@@ -9,15 +9,15 @@ Provision a brand new management cluster called `hub` using terraform.
 To ensure that the current environment is clean.
 
 ```shell
-$ cd environments/hub/infra
-$ task destroy FLAVOR=minikube
+$ cd $(git rev-parse --show-toplevel)/environments/hub/infra
+$ task terraform:destroy FLAVOR=minikube
 ```
 
 Provision the hub.
 
 ```shell
-$ cd environments/hub/infra
-$ task install FLAVOR=minikube
+$ cd $(git rev-parse --show-toplevel)/environments/hub/infra
+$ task terraform:install FLAVOR=minikube
 ```
 
 ## Stories

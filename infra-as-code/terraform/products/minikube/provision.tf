@@ -39,8 +39,8 @@ resource "terraform_data" "provision" {
     interpreter   = ["bash", "-c"]
     environment   = { KUBECONFIG = "${path.cwd}/cluster.kubeconfig" }
     command = <<-EOT
-      minikube start -p ${var.name} --cpus 2 --memory 3096 --network bridge
-      kubectl config view --context manager --flatten --minify > ${path.cwd}/cluster.kubeconfig.tmp
+      minikube start -p ${var.name} --cpus ${var.cpus} --memory ${var.memory} --network bridge
+      kubectl config view --context ${var.name} --flatten --minify > ${path.cwd}/cluster.kubeconfig.tmp
       mv ${path.cwd}/cluster.kubeconfig.tmp ${path.cwd}/cluster.kubeconfig
     EOT
   }
