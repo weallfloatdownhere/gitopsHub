@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: metallb-system
 
 resources:
-  - ../../../../applications/argocd
+  - ../../../../applications/metallb
